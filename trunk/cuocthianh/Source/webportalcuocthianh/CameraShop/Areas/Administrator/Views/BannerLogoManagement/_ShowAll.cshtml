@@ -1,0 +1,74 @@
+﻿@using CoreData
+@using System.Text.RegularExpressions
+@model IEnumerable<Banner_Logo>
+@if (Model!=null && Model.Count() > 0)
+{
+    var i = 0;
+    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortableBanner">
+        <thead>
+            <tr>
+                <th width="20px">STT
+                </th>
+                <th width="70px">Tên banner</th>
+                <th width="70px">Hình ảnh</th>
+                <th width="75px">Loại</th>
+                <th width="60px">Danh mục SP</th>
+                <th width="60px">Hiện từ</th>
+                <th width="60px">Hiện đến</th>
+                <th width="60px">Vị trí</th>
+                <th width="60px">Kích hoạt</th>
+                <th width="60px">Công cụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td width="20px">
+                        @i
+                        <span class="SpanId" style="display: none;">@item.ID</span>
+                    </td>
+                    <td width="70px">
+                        @item.Name
+                    </td>
+                    <td width="70px">
+                        <img src="@Url.Content("~/Media/bannerlogo/"+ item.Image)" width="70px" height="70px" alt="@item.Name" /></td>
+                    <td width="75px">
+                        @item.Type
+                    </td>
+                    <td width="75px">
+                        @item.ProductCateID
+                    </td>
+                    <td width="75px">
+                        @item.ShowFrom
+                    </td>
+                    <td width="75px">
+                        @item.ShowTo
+                    </td>
+                    <td width="75px">
+                        @item.Position
+                    </td>
+                    <td width="60px">
+                        @Html.CheckBoxFor(x => item.Active, new { @disabled = "disabled" })
+                    </td>
+                    <td width="60px">
+                     @if (CameraShop.BaseController.Permission.Contains("U"))
+                     {
+                        <a title="Sửa" href="@Url.Action("AddOrUpdate", "BannerLogoManagement", new { id = item.ID })" class="icon-pencil"></a>
+                     }
+                      @if (CameraShop.BaseController.Permission.Contains("D"))
+                      {
+                        <a title="Xóa" href="@Url.Action("Delete", "BannerLogoManagement", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');"></a>
+                      }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="error-text">Không tìm thấy dữ liệu.
+    </h2>
+}

@@ -1,0 +1,48 @@
+﻿@using CoreData
+@model IList<Configuration>
+
+          
+
+                  
+              
+       @foreach (var item in Model)
+        {
+                 <div class="row-form">
+                    <div class="span2">
+                       @item.Name :</div>
+                    <div class="span9">
+                    @if(String.IsNullOrEmpty(item.Value))
+                    {
+                        item.Value=" ";
+                    }
+                      @if (item.Code == "EmailPassword")
+                      {
+                        @Html.Password(item.Value, item.Value, new { @id = item.Code })
+                      }
+                      else
+                      {
+                           @Html.TextBox(item.Value, item.Value, new { @id = item.Code })
+                      }
+                     </div>
+                    <div class="clear">
+                    </div>
+                </div>
+        }
+
+                
+        <div class="row-form">
+           <div class="span2">
+           </div>
+           <div class="span9">
+             @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+             {
+                <input type="submit" class="btn btn-info span3 cmdupdateemail" value="Cập nhật" />
+             }
+                </div>
+             
+           <div class="clear">
+           </div>
+        </div>
+
+
+

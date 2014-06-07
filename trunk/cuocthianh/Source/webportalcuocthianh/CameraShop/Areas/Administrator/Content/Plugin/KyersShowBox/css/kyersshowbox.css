@@ -1,0 +1,63 @@
+body{
+	height: 100em;
+	background: #009;
+}
+#kyers-showbox .overlay-box{
+	position: fixed;
+	background: #000;
+	display: block;
+	top: 0;
+	left: 0;
+	display: none;
+	opacity: 0.8;
+	cursor: pointer;
+	width: 100%;
+	bottom: 0;
+}
+#btn-click{
+	background: #fff;
+	margin-top: 10em;
+	margin-left: 10em;
+}
+#kyers-showbox #wrap-showbox {
+	position: absolute;
+	height: auto;
+	background: #ddd;
+	display: none;
+	padding:0 0 0.2em 0;
+	border: 5px solid #ddd;
+}
+#kyers-showbox #wrap-showbox .showbox-control {
+	padding: 0.5em 0 0em 0;
+}
+#kyers-showbox #wrap-showbox .showbox-control .wrap-cotrol{
+	float: right;
+}
+#kyers-showbox #wrap-showbox .showbox-content{
+	height: 88%;
+	min-height: 20em;
+	_height: 20em;
+	padding: 0.5em;
+	background: #fff;
+}
+#kyers-showbox #wrap-showbox .showbox-control .btn {
+	height: 2em;
+	line-height: 2em;
+	width: 5em;
+	background: #8dbb04;
+	color: #fff;
+	float: left;
+	margin-right: 1em;
+	text-align: center;
+	border: 1px solid #6c9000;
+	display: block;
+}
+#kyers-showbox #wrap-showbox .close-button {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	cursor: pointer;
+	background: url(../images/close-button.png) no-repeat;
+	top: -12px;
+	right: -12px;
+}

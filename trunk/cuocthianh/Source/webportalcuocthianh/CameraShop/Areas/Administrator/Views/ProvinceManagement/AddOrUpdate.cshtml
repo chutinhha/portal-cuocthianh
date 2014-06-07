@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Thêm hoặc chỉnh sửa";
+}
+@using Helper
+
+<script src="@Url.ContentArea("~/Content/javascript/Province.js")" type="text/javascript"></script>
+@Html.Action("_AddOrUpdate", "ProvinceManagement", new { id = Model })

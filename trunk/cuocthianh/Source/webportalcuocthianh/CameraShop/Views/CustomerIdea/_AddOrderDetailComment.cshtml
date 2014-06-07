@@ -1,0 +1,48 @@
+﻿@model CoreData.CustomerIdea
+@using (Html.BeginForm("_AddOrderDetailComment", "CustomerIdea", FormMethod.Post))
+{
+    <div class="module-head">
+        <h4>
+            Phản hồi đơn hàng</h4>
+    </div>
+    <div class="comment-item">
+        <ul>
+            <li>
+                <label>
+                    Upload ảnh:</label>
+                <input type="file" class="file" id="fileuploadcusomeridea" name="Ideafile" />
+            </li>
+            <li>
+                 <label>
+                    Mô tả:</label>
+                <div id="imagecomment">
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix">
+        </div>
+    </div>
+    <div class="comment-item">
+        @Html.TextAreaFor(x => x.Content, new { @id = "inputComment", @class = "txt" })
+    </div>
+    <div class="comment-item">
+        <input type="submit" class="btn" value="Gửi ý kiến" />
+    </div>
+}
+<script type="text/javascript">
+    ///Document Ready jQuery
+    //    $(document).ready(function () {
+
+    //        $('#fileuploadcusomeridea').fileupload({
+    //            dataType: 'json',
+    //            url: '/CustomerIdea/UploadFiles?dir=CustomerIdea',
+    //            autoUpload: true,
+    //            done: function (e, data) {
+    //                $('#imagecomment').html('<img width=\"70px\" height=\"70px\" src="/Media/CustomerIdea/' + data.result.name + '" />');
+    //            }
+    //        }).on('fileuploadprogressall', function (e, data) {
+    //            var progress = parseInt(data.loaded / data.total * 100, 10);
+    //            $('.progress .progress-bar').css('width', progress + '%');
+    //        });
+    //    });
+</script>

@@ -1,0 +1,16 @@
+﻿@using CoreData
+@model User
+<div class="formsearch" >
+    <div>
+        <label>Tên người dùng:</label> @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <label>Tên đăng nhập:</label> @Html.TextBoxFor(x => x.UserName)</div>
+    <div>
+        <label>Email:</label> @Html.TextBoxFor(x => x.Email, new { @class = "validate[custom[email]]" })</div>
+    <div>
+        <label>Nhóm:</label> @Html.DropDownListFor(x => x.GroupIDExt, Model.ListGroupExt)</div>
+    <div class="row-form">
+        <input id="searchaction" class="btn btn-primary" type="button" value="Tìm" />
+        <input id="closesearchform" class="btn btn-danger" type="button" value="Đóng" /></div>
+</div>

@@ -1,0 +1,22 @@
+﻿.orderlabel
+{
+    padding:2px 3px;color:#fff;
+    font-weight:bold;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.new-order{background:#ccc;}
+.pending-order{background:#f89406;}
+.complete-order{background:#468847;}
+.cancel-order{background:#b94a48;}
+.other-order{background:#333333;}
+.delivery-order{background:#3a87ad;}
+.paid-order{background:#3a87ad;}
+.findicon
+{
+    background:url('../img/icons/find.png') center center no-repeat transparent;
+    width:32px;
+    height:32px;
+    border:none;
+    }

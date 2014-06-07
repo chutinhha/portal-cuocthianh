@@ -1,0 +1,111 @@
+/* CSS Document */
+.kyer-autocomplete 
+{
+    position: relative;
+	z-index: 30;
+}
+.search-dr-link{
+	display: block;
+	height: 100%;
+}
+.kyer-autocomplete #search-dropdown.active{
+	width: 112%;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	position: absolute;
+	top: 120%;
+	left: -14.5%;
+	background: #fff;
+}
+.auto-dropdown-arrow
+{
+    width: 0;
+    position: absolute;
+    top: -7px;
+    right: 17%;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #F1F1F1;
+}
+#search-dropdown >ul.auto-dropdwon-ul{
+	border: 1px solid #f1f1f1;
+	background: #fff;
+	max-height: 400px;
+	overflow: auto;
+    position: relative;
+    padding: 0 0;
+}
+.kyer-autocomplete #kyers-textbox{
+	height: 2.5em;
+	line-height: 2.7em;
+	width: 100%;
+	border: 1px solid #ccc;
+	outline: none;
+}
+.atcp-infor-block{
+	height: 100%;
+}
+.kyer-autocomplete .atcp-img {
+	float: left;
+	width: 2em;
+    height: 2em;
+    margin-right: 2%;
+	display: block;
+	text-align: left;
+	border: 1px solid #f1f1f1;
+	position: relative;
+}
+.kyer-autocomplete .atcp-img img{
+	max-width: 2em;
+	text-align: center;
+	max-height: 2em;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+}
+.kyer-autocomplete .dropdown-li{
+	display: block;
+	clear: both;
+}
+.kyer-autocomplete .atcp-ahref {
+	background: #fff;
+	height: 100%;
+	display: block;
+	padding: 5px 5px;
+	border-bottom: 1px dotted #ccc;
+}
+.kyer-autocomplete .atcp-ahref:hover {
+	background: #f1f1f1;
+}
+.kyer-autocomplete .dropdown-li.focus .atcp-ahref {
+	background: #ccc;
+}
+.kyer-autocomplete .atcp-title {
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: #00A695;
+}
+.kyer-autocomplete .dropdown-li.focus .atcp-title
+{
+    color: #444;
+}
+.kyer-autocomplete .dropdown-li.focus .atcp-description
+{
+    color: #4c4c4c;
+}
+.kyer-autocomplete .atcp-description {
+	display: block;
+	font-size: 13px;
+	color: #666;
+}
+.kyer-autocomplete .atcp-type {
+	display: block;
+	font-size: 13px;
+	color: #c4c4c4;
+}
+.kyer-autocomplete .dropdown-li.focus .atcp-type {
+	color: #f0f0f0;
+}

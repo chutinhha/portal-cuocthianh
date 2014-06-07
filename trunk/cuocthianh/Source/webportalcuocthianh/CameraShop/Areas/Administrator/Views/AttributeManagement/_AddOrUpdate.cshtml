@@ -1,0 +1,65 @@
+﻿@model CoreData.Attribute
+@{ 
+    ViewBag.Title = "Cập nhật thuộc tính";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Chi tiết</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            <ul>
+                <li><a href="#tabs-1">Nội dung trang</a></li>
+            </ul>
+            @using (Ajax.BeginForm("AddOrUpdate", "AttributeManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                <div id="tabs-1">
+                     @Html.HiddenFor(model => model.ID)
+                <div class="row-form">
+                    <div class="span2">
+                        Tên thuộc tính:</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "validate[required]" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+              
+                <div class="row-form">
+                    <div class="span2">
+                        Mô tả</div>
+                    <div class="span9">
+                        @Html.TextAreaFor(x => x.Note, new { @cols = "10", @rows = "10" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Kích hoạt :</div>
+                    <div class="span9">
+                        @Html.CheckBoxFor(x => x.Active)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                </div>
+                        if (CameraShop.BaseController.Permission.Contains("C") || CameraShop.BaseController.Permission.Contains("U"))
+                        {
+                        <div class="row-form">
+                            <div class="span2">
+                            </div>
+                            <div class="span9">
+                                <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        }
+            }
+        </div>
+    </div>
+</div>

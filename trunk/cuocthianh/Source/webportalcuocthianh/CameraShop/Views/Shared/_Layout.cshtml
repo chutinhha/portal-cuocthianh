@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/main.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/controls.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/reset.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/AutoComplete/css/KyersAutoComplete.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/TopAlertPopup/css/TopAlertPopup.css")" />
+    
+    @RenderSection("HeadResource", required: false)
+</head>
+<body>
+    <div id="container">
+        <div class="container-wrap">
+            @Html.Action("_Header", "Home")
+            <div id="mainContainer">
+            @Html.Action("_ViewedProduct", "Product")
+                <div class="maincontainer-wrap">
+                    @RenderSection("BreadCrumb", required: false)
+                    @RenderSection("MainBanner", required: false)
+                    <div class="main-content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <!--VENDOR_CONNECT-->
+            @Html.Action("_VendorConnect", "Manufacturer")
+            <!--FOOTER-->
+            @Html.Action("_Footer","Home")
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="@Url.Content("~/Content/js/jquery-1.9.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/main.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/helper.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/AutoComplete/javascript/KyersAutoComplete.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/TopAlertPopup/javascript/TopAlertPopup.js")"></script>
+    @RenderSection("BottomResource", required: false)
+</html>

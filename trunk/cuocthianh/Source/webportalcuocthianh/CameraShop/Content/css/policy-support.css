@@ -1,0 +1,125 @@
+#mainContainer{
+	margin-bottom: 10px;
+}
+.grid-content-row{
+	width: 83%;
+	float: left;
+}
+.center-module {
+	width: 83%;
+}
+.left-module .cat-item{
+	position: relative;
+	z-index: 15;
+}
+.inner-module.left-category{
+	padding: 0;
+}
+.left-module .child-cat-item{
+	width: 200px;
+	height: auto;
+	top: -36px;
+	margin-left: 1px;
+}
+.left-module .child-cat-item ul{
+	border: 1px solid #f0f0f0;
+}
+.left-module .child-cat-item li{
+	width: auto;
+	float: none;
+	min-height: 25px;
+	padding-left: 5px;
+	line-height: 25px;
+}
+.grid-content-item{
+	height: 12em;
+}
+.block-item-infor a{
+	height: 100%;
+}
+.left-module .main-cat{
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	padding: 0;
+	border: 0;
+}
+.left-module{
+	margin-bottom: 10px;
+}
+.left-module .inner-module{
+	padding: 0;
+	border: 1px solid #f0f0f0;
+	width: auto;
+}
+.chooseSprice{
+	width: 100%;
+}
+.inner-module.select-sprice{
+	padding: 0;
+}
+.inner-module >ul >li{
+	font-size: 14px;
+	border-bottom: 1px solid #f9f9f9;
+	height: auto;
+	width: auto;
+	margin-bottom: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+.inner-module li li{
+	height: auto;
+	width: auto;
+}
+.inner-content{
+	margin-left: 10px;
+}
+.product-head{
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.product-title {
+	border-bottom: 3px solid #ccc;
+	height: 1.5em;
+	margin-bottom: 5px;
+}
+.product-title h1 {
+	border-bottom: 3px solid #00AC6B;
+	float: left;
+	color: #00AC6B;
+	font-weight: normal;
+	height: 100%;
+	font-size: 20px;
+}
+
+.inner-module >ul >li >a{
+	padding: 0.5em 10px;
+	display: inline-block;
+	width: auto;
+	vertical-align: middle;
+}
+.inner-module li .chk{
+	vertical-align: middle;
+	margin-left: 5px;
+}
+.inner-module >ul >li.selected >a{
+	font-weight: bold;
+	color: #00AC6B;
+}
+.module-foot{
+	margin: 10px 0;
+	clear: both;
+	text-align: right;
+}
+
+.inner-module .open-connect{
+	margin-bottom: 5px;
+}
+.inner-module .open-connect a{
+	padding: 0;
+	width: 100%;
+}
+.open-connect img{
+	width: 100%;
+}

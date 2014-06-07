@@ -1,0 +1,30 @@
+﻿<div id="header">
+    <div class="header-wrap">
+        <div class="left-header">
+            <div class="showcat-button">
+                <span></span>
+            </div>
+            <div class="logo-block">
+                <a href="@Url.Action("Index", "Home")" title="Bello Shop"></a>
+            </div>
+            @Html.Action("_NavigationCategory", "Category")
+        </div>
+        <div class="right-header">
+            <div class="nav-box">
+                @*Menu on top header*@
+                @Html.Action("_TopMenu", "Home")
+                @*Search Box on Header*@
+                @Html.Action("_SearchInputControl", "Search")
+            </div>
+            <div class="cart-and-contact">
+                <div class="nav-cart-account">
+                    @Html.Action("_NavigationAccount", "User")
+                    <div class="nav-cart-box">
+                        @Html.Action("_CartHeader", "ShoppingCart")
+                    </div>
+                </div>
+                @Html.Action("_TopInforContact", "Home")
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Thêm hoặc chỉnh sửa";
+}
+@using Helper
+
+<script src="@Url.ContentArea("~/Content/javascript/OrderDetail.js")" type="text/javascript"></script>
+
+@Html.Action("_AddOrUpdateDetail", "OrderManagement", new { id = Model })
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+
+     
+
+    });
+</script>

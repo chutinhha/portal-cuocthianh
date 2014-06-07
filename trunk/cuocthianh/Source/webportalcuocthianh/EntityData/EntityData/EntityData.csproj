@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DBE3160-545A-4B19-A61E-0E0DAF55C0F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EntityData</RootNamespace>
+    <AssemblyName>EntityData</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleEntity.cs" />
+    <Compile Include="AttributeEntity.cs" />
+    <Compile Include="Banner_LogoEntity.cs" />
+    <Compile Include="CategoryEntity.cs" />
+    <Compile Include="ConfigurationEntity.cs" />
+    <Compile Include="CustomerIdeaEntity.cs" />
+    <Compile Include="DistrictEntity.cs" />
+    <Compile Include="EmailListEntity.cs" />
+    <Compile Include="EmailTemplateEntity.cs" />
+    <Compile Include="GroupEntity.cs" />
+    <Compile Include="Group_Role_ModuleEntity.cs" />
+    <Compile Include="ManufacturerEntity.cs" />
+    <Compile Include="ModelEntity.cs" />
+    <Compile Include="ModuleEntity.cs" />
+    <Compile Include="OrderDetailEntity.cs" />
+    <Compile Include="OrderEntity.cs" />
+    <Compile Include="ProductAttributeEntity.cs" />
+    <Compile Include="ProductEntity.cs" />
+    <Compile Include="ProductTypeEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceEntity.cs" />
+    <Compile Include="ShoppingCartEntity.cs" />
+    <Compile Include="UserEntity.cs" />
+    <Compile Include="User_GroupEntity.cs" />
+    <Compile Include="User_Role_ModuleEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BaseEntity\BaseEntity\BaseEntity.csproj">
+      <Project>{B4C68C6E-1CFA-40DB-AF2E-CEFEDEC43B4D}</Project>
+      <Name>BaseEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CoreData\CoreData\CoreData.csproj">
+      <Project>{F1FCDD7C-FA6A-46FD-9C41-308BFA4C3EDA}</Project>
+      <Name>CoreData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

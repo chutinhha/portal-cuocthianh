@@ -1,0 +1,234 @@
+.center-module
+{
+    width: 83%;
+}
+.grid-content-item
+{
+    width: 18.4%;
+}
+span.grid-content-item
+{
+    width: auto;
+}
+.grid-content-row{
+	width: 83%;
+	float: left;
+}
+.left-module
+{
+    margin-bottom: 10px;
+}
+.left-category
+{
+    position: relative;
+    z-index: 10;
+}
+.left-category .cat-item{
+	z-index: 15;
+	border-bottom: 1px dotted #f0f0f0;
+	height: auto;
+    margin-bottom: 0;
+}
+.left-category .child-toggle
+{
+    height: auto;
+}
+.left-category .main-cat{
+	-webkit-border-top-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	border-top-left-radius: 0;
+	padding: 0;
+	border: 0;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.left-category .inner-module{
+	padding: 0 5px;
+	border: 1px solid #f9f9f9;
+	width: auto;
+}
+
+.inner-module >ul >li{
+	font-size: 14px;
+	height: auto;
+	width: auto;
+	margin-bottom: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border-bottom: 1px dotted #f0f0f0;
+}
+
+.inner-module .cat-item >a{
+	padding: 10px 0 10px 5px;
+	display: block;
+	width: auto;
+	vertical-align: middle;
+	border-bottom:  0;
+}
+.inner-module >ul.main-cat >li >a{
+	border-bottom:  0;
+	background: url('../imgs/category-circle.png') no-repeat 95% center;
+}
+.inner-module li .chk{
+	vertical-align: middle;
+	margin-left: 5px;
+}
+.inner-module >ul >li.selected >a{
+	font-weight: bold;
+	color: #444;
+	border-bottom: 0;
+}
+
+/*------------------------Filter-serch-tool----------------------------------*/
+.search-tool
+{
+    margin-bottom: 10px;
+    height: 38px;
+}
+.search-tool label
+{
+    min-width: 0;
+    display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin-right: 0;
+}
+
+.search-tool .select
+{
+    width: 23%;
+    font-size: 13px;
+    text-align: left;
+    margin-left: 1%;
+    margin-right: 1%;
+    vertical-align: middle;
+    height: auto;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+.search-left-tool
+{
+    float: left;
+    width: 49%;
+    padding-left: 1.6%;
+}
+.search-right-tool
+{
+    float: left;
+    width: 49%;
+    text-align: right;
+    vertical-align: middle;
+}
+/*----------------------------.left-module .saleSlide---------------------------*/
+.slide-item-infor 
+{
+    position: absolute;
+    z-index: 20;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 20px 5px 10px 5px;
+    color: #fff;
+}
+.slide-item-infor a
+{
+    color: #00a695;
+    font-weight: bold;
+    font-size: 18px;
+}
+.slide-item-infor a:hover
+{
+    color: #FF6600;
+}
+.slide-item-infor .discount-sprice
+{
+    text-align: left;
+    margin-top: 10px;
+    color: #FF6600;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.slide-item-infor .real-sprice
+{
+    text-align: right;
+    margin-top: 10px;
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+.discount-to
+{
+    display: block;
+	color: #f9f9f9;
+	margin: 0 0 5px 0;
+	background: #00a695;
+	padding: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	clear: both;
+}
+.discount-percent
+{
+    -webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #FF6600;
+	color: #fff;
+	text-align: center;
+	padding: 5px;
+	width: 45px;
+	height: 45px;
+}
+.discount-percent label
+{
+    display: inline;
+    margin-right: auto;
+    color: #fff;
+    text-transform: uppercase;
+}
+.discount-percent span
+{
+    font-size: 20px;
+    color: #fff;
+}
+
+.slide-block-image{
+	height: 100%;
+	width: 100%;
+}
+.slide-block-image ul{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #f9f9f9;
+}
+.slide-block-image li{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	background: #fff;
+}
+.slide-block-image li.active{
+	display: block;
+}
+.slide-block-image li a{
+	display: block;
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 100%;
+	height: 100%;
+}

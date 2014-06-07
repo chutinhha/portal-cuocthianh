@@ -1,0 +1,192 @@
+﻿@model CoreData.Order
+@{ 
+    ViewBag.Title = "Cập nhật đơn hàng";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Cập nhật đơn hàng</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            @using (Ajax.BeginForm("AddOrUpdate", "OrderManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                @Html.HiddenFor(x => x.ID)
+                <div class="row-form">
+                    <div class="span2">
+                        Mã đơn hàng</div>
+                    <div class="span9">
+                        # @Html.DisplayTextFor(x => x.ID)</div>
+                    <div class="clear">
+                    </div>
+                </div>                
+                <div class="row-form">
+                    <div class="span2">
+                        Khách hàng</div>
+                    <div class="span9">
+                        @Html.HiddenFor(c => c.UserID)
+                        @Html.HiddenFor(c => c.Name)
+                        @Html.DisplayTextFor(x => x.Name)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Địa chỉ</div>
+                    <div class="span9">
+                        @Html.HiddenFor(x => x.Address)
+                        @Html.DisplayTextFor(x => x.Address)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Điện thoại</div>
+                    <div class="span9">
+                        @Html.HiddenFor(x => x.Phone)
+                        @Html.DisplayTextFor(x => x.Phone)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Phí chuyển hàng (VNĐ)</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.Ship_Fee, new { @class = "validate[required,custom[integer]]" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+               
+                <div class="row-form">
+                    <div class="span2">
+                        Ngày đặt</div>
+                    <div class="span9">
+                        @Html.HiddenFor(c => c.CreateDate)
+                        @Html.DisplayTextFor(x => x.CreateDate)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Ngày giao hàng</div>
+                    <div class="span9">
+                        @Html.HiddenFor(c => c.DateCompleted)
+                        @if (Model.DateCompleted == DateTime.MinValue)
+                        {
+                            @Html.Label("Chưa giao hàng")
+                        }
+                        else
+                        {
+                            @Html.DisplayTextFor(x => x.DateCompleted)
+                        }
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Phương thức chuyển hàng</div>
+                    <div class="span9">
+                        @Html.HiddenFor(c => c.ShipMethod)
+                        @switch (Model.ShipMethod)
+                        {
+                            case 1:
+                            @: Qua shop nhận hàng
+                              break;
+                            case 2:
+                            @: Giao hàng tận nơi
+                              break;
+
+                            default:
+                            @: Giao hàng tận nơi
+                                                                              break;
+                        }
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                
+                <div class="row-form">
+                    <div class="span2">
+                        Phương thức thanh toán</div>
+                    <div class="span9">
+                        @Html.HiddenFor(c => c.PaymentMethod)
+                        @switch (Model.PaymentMethod)
+                        {
+                            case 1:
+                            @: PayPal
+                                break;
+                            case 2:
+                            @: Credit Card
+                                break;
+
+                            case 3:
+                            @: Ngân hàng
+                                break;
+
+                            case 4:
+                            @: Thanh toán tại cửa hàng
+                                break;
+
+                            case 5:
+                            @: Thanh toán khi nhận hàng
+                                                                                break;
+                            default:
+                                                                                break;
+                        }
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Giá trị đơn hàng</div>
+                    <div class="span9">
+                        @Html.HiddenFor(x => x.TotalPrice)
+                        @Helper.StringHelper.FormatCurrencyVN(Model.TotalPrice)
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Ghi chú</div>
+                    <div class="span9">
+                        @Html.TextAreaFor(x => x.Note)
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Tình trạng đơn hàng :</div>
+                    <div class="span9">
+                        @Html.HiddenFor(x => x.Active)
+                        @Html.DropDownListFor(x => x.Status, Model.ListStatusExt, new { @class = "validate[required]" })
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                {
+                <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                }
+
+          
+            }
+        </div>
+    </div>
+</div>

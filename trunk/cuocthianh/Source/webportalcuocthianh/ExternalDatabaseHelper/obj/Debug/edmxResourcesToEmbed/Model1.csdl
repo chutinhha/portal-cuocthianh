@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CameraDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CameraDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Configurations" EntityType="CameraDBModel.Configuration" />
+    <EntitySet Name="Orders" EntityType="CameraDBModel.Order" />
+    <EntitySet Name="OrderDetails" EntityType="CameraDBModel.OrderDetail" />
+    <EntitySet Name="Products" EntityType="CameraDBModel.Product" />
+  </EntityContainer>
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" />
+    <Property Name="TotalPrice" Type="Int32" />
+    <Property Name="Ship_Fee" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreateDate" Type="DateTime" />
+    <Property Name="DateCompleted" Type="DateTime" />
+    <Property Name="PaymentMethod" Type="Int16" />
+    <Property Name="ShipMethod" Type="Int16" />
+    <Property Name="Status" Type="Int16" />
+    <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int64" />
+    <Property Name="OrderID" Type="Int64" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="CateID" Type="Int64" />
+    <Property Name="ModelID" Type="Int64" />
+    <Property Name="ManufacturerID" Type="Int64" />
+    <Property Name="ProductTypeID" Type="Int64" />
+    <Property Name="ProductComponenID" Type="Int64" />
+    <Property Name="ShortDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="FullDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="DiscountFrom" Type="DateTime" />
+    <Property Name="DiscountTo" Type="DateTime" />
+    <Property Name="Instock" Type="Int32" />
+    <Property Name="UpdateDate" Type="DateTime" />
+    <Property Name="View" Type="Int32" />
+    <Property Name="Like" Type="Int32" />
+    <Property Name="SoleAmout" Type="Int32" />
+    <Property Name="New" Type="Boolean" />
+    <Property Name="Typical" Type="Boolean" />
+    <Property Name="Link" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="ShowHomePage" Type="Boolean" />
+    <Property Name="Image" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="MetaTitle" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MetaKeyword" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="MetaDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+</Schema>

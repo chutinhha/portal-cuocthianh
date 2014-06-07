@@ -1,0 +1,20 @@
+﻿@using CoreData
+@model IEnumerable<Manufacturer>
+
+
+@if (Model != null && Model.Count() > 0)
+{ 
+    <div class="right-menu">
+    <h3 class="r-menu-title">
+        Nhà sản xuất</h3>
+    <div class="r-bock-content">
+        <ul>
+        @foreach (var item in Model)
+        {
+             <li><a href="@Url.RouteUrl("manufacture_details", new { Id = item.ID, Link = item.Link })">@item.Name</a></li>
+        }         
+        </ul>
+    </div>
+</div>
+}
+

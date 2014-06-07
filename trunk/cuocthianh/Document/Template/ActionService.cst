@@ -1,0 +1,86 @@
+<%-- 
+Name: Generator ActionService
+Author: Pham duy linh
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" Debug="False" CompilerVersion="v3.5" Description="Template description here." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the object is based on." %>
+<%@ Property Name="NameSpace" Type="String" Category="Context" Description="Current namespace of the application" %>
+<%@ Assembly Name ="SchemaExplorer" %>
+<%@ Import NameSpace="SchemaExplorer" %>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using CoreData;
+using Services;
+using Helper;
+namespace ActionServices
+{
+
+    public interface I<%=SourceTable.Name%>ActionService
+    {
+        long Save(object _model);
+        CoreData.<%=SourceTable.Name%> GetByID(long _id);
+        IList<CoreData.<%=SourceTable.Name%>> GetList();
+        IList<CoreData.<%=SourceTable.Name%>> GetListByLINQ(Func<CoreData.<%=SourceTable.Name%>, Boolean> _where);
+        CoreData.<%=SourceTable.Name%> GetOneByLINQ(Func<CoreData.<%=SourceTable.Name%>, Boolean> _where);
+        IList<CoreData.<%=SourceTable.Name%>> GetList(string _searchstring);
+        bool Delete(object _model);
+    }
+
+    public partial class <%=SourceTable.Name%>ActionService:I<%=SourceTable.Name%>ActionService
+    {
+       <%=SourceTable.Name%>Service Service;
+
+       public <%=SourceTable.Name%>ActionService(<%=SourceTable.Name%>Service _Service)
+       {
+           Service = _Service;
+       }
+
+       #region Main Method
+
+       public virtual long Save(object _model)
+       {
+           return Service.Save(_model);
+       }
+
+       public virtual CoreData.<%=SourceTable.Name%> GetByID(long _id)
+       {
+           return Service.GetByID(_id);
+       }
+
+       public virtual IList<CoreData.<%=SourceTable.Name%>> GetList()
+       {
+           return Service.GetList();
+       }
+
+       public virtual IList<CoreData.<%=SourceTable.Name%>> GetListByLINQ(Func<CoreData.<%=SourceTable.Name%>, Boolean> _where)
+       {
+           return Service.GetListByLINQ(_where);
+       }
+
+       public virtual CoreData.<%=SourceTable.Name%> GetOneByLINQ(Func<CoreData.<%=SourceTable.Name%>, Boolean> _where)
+       {
+           return Service.GetOneByLINQ(_where);
+       }
+
+       public virtual IList<CoreData.<%=SourceTable.Name%>> GetList(string _searchstring)
+       {
+           return Service.GetList(_searchstring);
+       }
+
+       public virtual bool Delete(object _model)
+       {
+           return Service.Delete(_model);
+       }
+
+       #endregion
+
+
+        #region Other Method
+        #endregion
+
+    }
+         
+}

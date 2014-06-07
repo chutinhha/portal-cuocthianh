@@ -1,0 +1,20 @@
+﻿@using CoreData
+@model Product
+<div class="formsearch" >
+    <div>
+        <label> Mã sản phẩm:</label> @Html.TextBoxFor(x => x.Code)
+    </div>
+    <div>
+        <label>Tên sản phẩm:</label> @Html.TextBoxFor(x => x.Name)</div>
+    <div>
+        <label>Loại sản phẩm:</label> @Html.DropDownListFor(x => x.ProductTypeID, Model.ListProductTypeExt)</div>
+    <div>
+        <label>Nhà sản xuất:</label> @Html.DropDownListFor(x => x.ManufacturerID, Model.ListManufacturerExt)</div>
+    <div>
+        <label>Danh mục:</label> @Html.DropDownListFor(x => x.CateID, Model.ListCategoryExt)</div>
+    <div class="row-form">
+        <input id="searchaction" class="btn btn-primary" type="button" value="Tìm" />
+        <input id="closesearchform" class="btn btn-danger" type="button" value="Đóng" />
+    </div>
+</div>
+

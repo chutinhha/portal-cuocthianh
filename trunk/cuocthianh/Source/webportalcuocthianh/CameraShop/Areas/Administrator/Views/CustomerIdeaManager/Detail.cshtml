@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Chi tiết ý kiến người dùng";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+@using CoreData
+@model CustomerIdea
+@if (Model != null)
+{
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="head">
+                <div class="isw-documents">
+                </div>
+                <h1>
+                    @ViewBag.Title</h1>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="block-fluid tabs">
+                @Html.HiddenFor(x => x.ID)
+                <div class="row-form">
+                    <div class="span2">
+                        Người gửi:</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.UserNameExt, new { @disabled = "disabled" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Attachment:</div>
+                    <div class="span9">
+                        @if (Model != null && Model.Attachment != null && Model.Attachment != "")
+                        {
+                            <a href="@Url.Content("~/Media/CustomerIdea/" + Model.Attachment)" >@Model.Attachment</a>
+                        }
+                        else
+                        {
+                            <span>Không có đính kèm</span>
+                        }
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Nội dung:</div>
+                    <div class="span9">
+                        @Html.TextAreaFor(x => x.Content, new { @cols = "10", @rows = "10", @disabled = "disabled" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Email</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.Email, new { @disabled = "disabled" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Ngày gửi</div>
+                    <div class="span9">
+                        <span>@Model.DateCreate</span></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                @if (Model.OrderID != 0)
+                {
+                <div class="row-form">
+                    <div class="span2">
+                        Thuộc đơn hàng:</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.OrderID, new { @disabled = "disabled" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h2 class="error-text">
+        Không tìm thấy dữ liệu.
+    </h2>
+}

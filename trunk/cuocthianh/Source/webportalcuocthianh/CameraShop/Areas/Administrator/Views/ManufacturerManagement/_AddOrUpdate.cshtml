@@ -1,0 +1,120 @@
+﻿@model CoreData.Manufacturer
+@{ 
+    ViewBag.Title = "Thêm nhà sản xuất";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Thêm nhà sản xuất</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            <ul>
+                <li><a href="#tabs-1">Nội dung trang</a></li>
+                <li><a href="#tabs-2">Quản lý SEO</a></li>
+            </ul>
+            @using (Ajax.BeginForm("AddOrUpdate", "ManufacturerManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                <div id="tabs-1">
+                    @Html.HiddenFor(x => x.ID)
+                    <div class="row-form">
+                        <div class="span2">
+                            Tên nhà sản xuất:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Hình ảnh :</div>
+                        <div class="span8">
+                            <input id="fileupload" type="file" name="file" />
+                            @if (Model != null && Model.Image != null && Model.Image != "")
+                        {
+                                <div id="image">
+                                   <img src="@Url.Content("~/Media/Manufacturer/" + Model.Image)" width="70px" height="70px" alt="@Model.Image" />
+                                </div>
+                          
+                        } else
+                            {
+                                <div id="image"> 
+                                 </div>
+                            }
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Mô tả</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.Note, new { @cols = "10", @rows = "10" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Kích hoạt :</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.Active)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-2">
+                    <div class="row-form">
+                        <div class="span2">
+                            Link :</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Link)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Title :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaTitle)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Keyword :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaKeyword)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Description :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaDescription)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+               
+                 if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                 {
+                <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                 }
+            }
+        </div>
+    </div>
+</div>

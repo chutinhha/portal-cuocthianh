@@ -1,0 +1,117 @@
+﻿@using CoreData
+@model IEnumerable<Order>
+@if (Model!=null&&Model.Count() > 0)
+{
+    var id ="tSortable"+ Model.First().Status;
+    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="@id">
+        <thead>
+            <tr>
+                <th>Mã đơn hàng
+                </th>
+                <th>Tên khách hàng
+                </th>
+               
+                <th>Phương thức thanh toán</th>
+                <th>Phương thức giao hàng</th>
+                <th>Ngày tạo</th>
+                <th>Giá trị đơn hàng</th>
+                <th>Tình trạng</th>
+                <th width="60px">Chức năng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       #@item.ID
+                    </td>
+                    <td>
+                        <span class="SpanId" style="display: none;">@item.ID</span>
+                        <span class="SpanName" style="display: none;">@item.Name</span>
+                        @item.Name 
+
+                    </td>
+                    <td>
+                      @if (item.PaymentMethod == 1)
+                      {
+                           <span >Paypal</span> 
+                      }
+                       @if (item.PaymentMethod == 2)
+                      {
+                           <span >Credit Card</span> 
+                      }
+                       @if (item.PaymentMethod == 3)
+                      {
+                           <span >Ngân hàng</span> 
+                      }
+                       @if (item.PaymentMethod == 4)
+                      {
+                           <span >Thanh toán tại cửa hàng</span> 
+                      }
+                       @if (item.PaymentMethod == 5)
+                      {
+                           <span >Thanh toán khi nhận hàng</span> 
+                      }
+                   </td>
+                   <td>
+                    @if (item.ShipMethod == 1)
+                      {
+                           <span >Qua shop nhận hàng</span> 
+                      }
+                      @if (item.ShipMethod == 2)
+                      {
+                           <span >Giao hàng tận nơi</span> 
+                      }
+                   </td>
+                   
+                    <td>@item.CreateDate.ToString("dd/MM/yyyy hh:mm:ss tt")</td>
+
+                    <td>@Helper.StringHelper.FormatCurrencyVN(item.TotalPrice)</td>
+                     <td >
+                       @if (item.Status == 1)
+                      {
+                           <span class="orderlabel new-order" >Đơn hàng mới</span> 
+                      }
+                      @if (item.Status == 2)
+                      {
+                           <span class="orderlabel pending-order" >Đang xử lý</span> 
+                      }
+                       @if (item.Status == 3)
+                      {
+                           <span class="orderlabel complete-order" >Hoàn thành</span> 
+                      }
+                       @if (item.Status == 4)
+                      {
+                           <span class="orderlabel paid-order" >Đã thanh toán</span> 
+                      }
+                       @if (item.Status == 5)
+                      {
+                           <span class="orderlabel cancel-order" >Yêu cầu hủy</span> 
+                      }
+                     </td>
+                    <td>
+                     @if (CameraShop.BaseController.Permission.Contains("R"))
+                     {
+                        <a title="Chi tiết" href="@Url.Action("Details", "OrderManagement", new { id = item.ID })" class="icon-eye-open"></a>
+                     }
+                      @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                      {
+                        <a title="Sửa" href="@Url.Action("AddOrUpdate", "OrderManagement", new { id = item.ID })" class="icon-pencil"></a>
+                      }
+                       @if (CameraShop.BaseController.Permission.Contains("D"))
+                       {
+                        <a title="Xóa" href="@Url.Action("Delete", "OrderManagement", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');"></a>
+                       }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="error-text">Không tìm thấy dữ liệu.
+    </h2>
+}

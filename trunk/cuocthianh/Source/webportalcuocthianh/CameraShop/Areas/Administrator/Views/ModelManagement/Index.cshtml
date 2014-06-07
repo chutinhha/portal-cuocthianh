@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Model sản phẩm";
+}
+<div class="head">
+    <div class="isw-grid">
+    </div>
+    <h1>
+        Model sản phẩm</h1>
+    <ul class="buttons">
+        <li><a href="#" class="isw-settings"></a>
+            <ul class="dd-list" style="display: none;">
+                <li><a href="@Url.Action("AddOrUpdate", "ModelManagement")"><span class="isw-plus"></span>Thêm
+                    Model</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="clear">
+    </div>
+</div>
+<div class="block-fluid table-sorting">
+    <div class="row-fluid list">
+        @Html.Action("_ShowAll", "ModelManagement")
+    </div>
+</div>

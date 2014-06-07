@@ -1,0 +1,12 @@
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.dll.config
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.dll
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.pdb
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\obj\Debug\ResolveAssemblyReference.cache
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\obj\Debug\ExternalDatabaseHelper.dll
+E:\WingsGroupProjects\DuAN\KShop\Source\CameraShop\ExternalDatabaseHelper\obj\Debug\ExternalDatabaseHelper.pdb
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.dll.config
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.dll
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\bin\Debug\ExternalDatabaseHelper.pdb
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\obj\Debug\ResolveAssemblyReference.cache
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\obj\Debug\ExternalDatabaseHelper.dll
+E:\WingsGroupProjects\DuAN\PortalWeb\CuocThiAnh\cuocthianh\Source\webportalcuocthianh\ExternalDatabaseHelper\obj\Debug\ExternalDatabaseHelper.pdb

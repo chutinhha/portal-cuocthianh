@@ -1,0 +1,17 @@
+E:\WingsGroupProjects\DuAN\50k\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\ResolveAssemblyReference.cache
+E:\WingsGroupProjects\DuAN\50k\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50k\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.pdb
+E:\WingsGroupProjects\DuAN\50k\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50k\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.pdb
+E:\WingsGroupProjects\DuAN\50kwebsite\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50kwebsite\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.pdb
+E:\WingsGroupProjects\DuAN\50kwebsite\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\ResolveAssemblyReference.cache
+E:\WingsGroupProjects\DuAN\50kwebsite\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50kwebsite\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.pdb
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\ResolveAssemblyReference.cache
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.dll
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.CoreData.pdb
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.Helper.dll
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\bin\Debug\Kyers.50kweb.Helper.pdb
+E:\WingsGroupProjects\DuAN\50kProject\Source\CoreData\Kyers.50kweb.CoreData\obj\Debug\Kyers.50kweb.CoreData.pdb

@@ -1,0 +1,72 @@
+﻿@model CoreData.ProductAttribute
+@{ 
+ 
+}
+
+          @*  @using (Ajax.BeginForm("AddOrUpdate", "ProductAttributeManagement", new AjaxOptions { OnSuccess = "SuccessProductAttribute", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {*@
+                <div class="warning-area">
+                </div>
+
+                     @Html.HiddenFor(model => model.IDExt)
+                 <div class="row-form">
+                        <div class="span2">
+                          Chọn thuộc tính :</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.AttributeID, Model.ListAttributeExt)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+               <div class="row-form valueattribute">
+                        <div class="span2">
+                         Giá trị:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Value)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                <div class="row-form imageattribute">
+                    <div class="span2">
+                        Hình ảnh :</div>
+                    <div class="span8">
+                        <input id="fileuploadproductattribute" type="file" name="file" />
+                            @if (Model != null && Model.Value != null && Model.Value != "")
+                            {
+                                <div id="imageattribute">
+                                   <img src="@Url.Content("~/Media/Model/" + Model.Value)" width="70px" height="70px" alt="@Model.Value" />
+                                </div>
+                          
+                            }
+                            else
+                            {
+                                <div id="imageattribute"> 
+                                 </div>
+                            }
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                
+                <div class="row-form ckactive_row">
+                        <div class="span2">
+                            Kích hoạt :</div>
+                        <div class="span9">
+                         
+                          @Html.CheckBoxFor(c=>c.Active, new {@id="ckactive"})
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+       
+                @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                {
+                <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3 cmdupdateproductattribute" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                }
+           @* }*@
