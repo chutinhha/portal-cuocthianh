@@ -1,0 +1,255 @@
+.bought-block
+{
+    border: 1px dotted #f0f0f0;
+    padding: 0.5em;
+    font-size: 15px;
+    margin-bottom: 0.5em;
+}
+.bought-block ul
+{
+    position: relative;
+    height: 6.4em;
+    overflow: auto;
+}
+
+.bought-block li
+{
+    float: left;
+    width: 6.26%;
+    border: 1px solid #f0f0f0;
+    margin: 0.1% 0.1% 0.5% 0.1%;
+    background: #fff;
+}
+.bought-item img
+{
+    margin: auto;
+    max-height: 100%;
+    _height: 100%;
+    max-width: 100%;
+    _height: 100%;
+}
+.bought-item
+{
+    padding: 0.5em;
+    height: 5em;
+}
+.bought-block li a
+{
+    display: block;
+    margin: auto;
+	font-size: 13px;
+    text-align: center;
+    max-height: 2.7em;
+    overflow: hidden;
+}
+#btn-update-cart
+{
+    clear: both;
+    width: 10em;
+    margin: auto;
+}
+/*--------------------.payment-block-------------------*/
+.payment-block
+{
+    border: 1px dotted #f0f0f0;
+    padding: 0.5em;
+    font-size: 15px;
+    margin-bottom: 0.5em;
+    height: 22.6em;
+}
+.frm-payment
+{
+    height: 100%;
+}
+.payment-block h1
+{
+    font-weight: normal;
+    font-size: 15px;
+}
+.step-ribbon
+{
+    font-size: 13px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+.list-step-bullet {
+    float: left;
+    width: 100%;
+}
+.step-ribbon span
+{
+    display: block;
+    margin-bottom: 0.5em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.list-step-bullet li
+{
+    display: block;
+    float: left;
+    width: 25%;
+    position: relative;
+}
+.list-step-bullet li.active .step-bullet
+{
+    background: #f0f0f0;
+    border: 2px solid #00A695;
+}
+.list-step-bullet li.active span
+{
+    color: #00A695;
+}
+.step-bullet
+{
+    width: 15px;
+    height: 15px;
+    background: #00A695;
+    border: 2px solid #f0f0f0;
+    -webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	position: absolute;
+	z-index: 10;
+	bottom: -9px;
+	right: 0;
+}
+.list-step-bullet li.active .color-slide:hover .step-bullet
+{
+    background: #00A695;
+    border: 2px solid #f0f0f0;
+}
+.color-slide:hover
+{
+    cursor: pointer;
+}
+.color-slide:hover .step-bullet
+{
+    border: 2px solid #00A695;
+    background: #f9f9f9;
+}
+.color-slide
+{
+    background: #f0f0f0;
+}
+.list-step-bullet li.active .color-inside 
+{
+    background: #00A695;
+}
+.color-inside 
+{
+    height: 2px;
+}
+.payment-info
+{
+    position: relative;
+    height: 71%;
+    overflow: hidden;
+    z-index: 0;
+}
+.payment-info li
+{
+    width: 100%;
+    float: left;
+    position: absolute;
+    top: 0;
+    display: none;
+    left: 0;
+    height: 100%;
+}
+.payment-info li.active
+{
+    display: block;
+    background: #f9f9f9;
+}
+.payment-content
+{
+    padding: 5px 0.5% 5px 0.5%;
+    height: 93%;
+}
+.payment-control
+{
+    background: #f9f9f9;
+    height: 3.5em;
+    border-top: 1px solid #00A695;
+}
+.items-control
+{
+    float: right;
+}
+.items-control .btn, .items-control .btn-blue
+{
+    float: left;
+    margin-right: 0.5em;
+    padding: 0 1em;
+    margin-top: 0.4em;
+}
+.items-control .hidden
+{
+    display: none;
+}
+/*Các li con chứa các row*/
+.payment-info li li
+{
+    position: static;
+    display: block;
+    height: auto;
+    padding: 10px 0 5px 0;
+    clear: both;
+}
+.payment-info label
+{
+    float: left;
+    width: 36%;
+}
+.payment-info .txt
+{
+    width: 200px;
+}
+.payment-info .select
+{
+    width: 210px;    
+}
+.payment-item .chk-chose
+{
+    float: left;
+    margin: 0 0.5em 0 0;
+}
+#second-btn-login
+{
+    float: left;
+    margin-right: 1em;
+}
+.payment-list
+{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.payment-complete.payment-content
+{
+    background: url(../imgs/complete-icon.png) no-repeat center 8.5em;
+}
+
+/*----------------------notifypage.css------------------*/
+.pay-success-view
+{
+    border: 1px dotted #ccc;
+    padding: 0.5em;
+    font-size: 15px;
+    margin-bottom: 0.5em;
+    background: url(../imgs/notifyimg.png) no-repeat 90% 80%;
+    min-height: 20em;
+    _height: 20em;
+}
+
+.pay-success-view h3
+{
+    text-align: center;
+    color: #FF6600;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-top: 20px;
+    font-size: 16px;
+}

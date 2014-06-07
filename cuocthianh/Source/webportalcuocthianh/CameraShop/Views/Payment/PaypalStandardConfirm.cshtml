@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "PaypalStandardConfirm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var data = ((string)Model).Split('_');
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/notifypage.css")" rel="stylesheet" type="text/css" />
+}
+<div class="pay-success-view">
+    <h1 class="general-heading">
+        <span>Đặt hàng thành công</span>
+    </h1>
+    <h3>Bạn đã thanh toán đơn hàng này qua paypal. vui lòng xem lại thông tin và bấm xác nhận để hoàn tất thanh toán. Số tiền sẽ được chúng tôi tự động quy đổi sang USD theo tỉ giá mới nhất của ngân hàng.</h3>
+    <p><span>Số lượng đơn hàng:</span> @data[5]</p>
+    <p><span>Số lượng đã mua:</span> @data[3]</p>
+    <p><span>Số tiền:</span> @data[0]</p>
+    <p><span> Đơn vị tiền tệ:</span> @data[1]</p>
+    <span><a title="xác nhận" href="@Url.Action("PayOnlineDone", "Payment", new { PayerID = data[7], Amount = data[0], Currentcy = data[1], type="Paypal" })" >Xác nhận</a>
+    </span>
+</div>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Phân quyền";
+}
+@using Helper
+<script src="@Url.ContentArea("~/Content/javascript/UserRole.js")" type="text/javascript"></script>
+<div class="head">
+    <div class="isw-grid">
+    </div>
+    <h1>
+        Phân quyền</h1>
+    <ul class="buttons">
+    </ul>
+    <div class="clear">
+    </div>
+</div>
+@if (CameraShop.BaseController.Permission.Contains("R"))
+{
+    @Html.Action("_Search", "PermissionManagement")
+    <div class="block-fluid table-sorting">
+        <div class="row-fluid list">
+            @Html.Action("_ShowAll", "PermissionManagement")
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".usermanager").UserChange();
+    });
+</script>

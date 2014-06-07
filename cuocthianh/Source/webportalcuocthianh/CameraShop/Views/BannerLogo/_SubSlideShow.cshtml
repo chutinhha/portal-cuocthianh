@@ -1,0 +1,20 @@
+﻿@using CoreData
+@model IList<Banner_Logo>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="list-connect">
+        <ul>
+            @foreach (var item in Model)
+            {
+                var link = "#";
+                if (item.Link != "")
+                {
+                    link = item.Link;
+                }
+                <li><a href="@link" title="@item.Name">
+                    <img src="../../Media/BannerLogo/@item.Image" alt="@item.Image">
+                </a></li>
+            }
+        </ul>
+    </div>
+}

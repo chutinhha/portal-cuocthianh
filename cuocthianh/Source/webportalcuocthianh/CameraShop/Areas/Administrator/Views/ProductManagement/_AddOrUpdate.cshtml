@@ -1,0 +1,280 @@
+﻿@model CoreData.Product
+@{ 
+    ViewBag.Title = "Cập nhật sản phẩm";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Chi tiết</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            <ul>
+                <li><a href="#tabs-1">Nội dung</a></li>
+                <li><a href="#tabs-2">Quản lý SEO</a></li>
+                @* <li><a href="#tabs-3">Thuộc tính</a></li>*@
+            </ul>
+            @using (Ajax.BeginForm("AddOrUpdate", "ProductManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                <div id="tabs-1">
+                    @Html.HiddenFor(x => x.ID)
+                    <div class="row-form">
+                        <div class="span2">
+                            Mã sản phẩm:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Code, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Tên sản phẩm:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Hình ảnh :</div>
+                        <div class="span8">
+                            <input id="fileuploadproduct" type="file" name="file" />
+                            @if (Model != null && Model.Image != null && Model.Image != "")
+                            {
+                                <div id="imageproduct">
+                                    <img src="@Url.Content("~/Media/Product/" + Model.Image)" width="70px" height="70px" alt="@Model.Image" />
+                                </div>
+                          
+                            }
+                            else
+                            {
+                                <div id="imageproduct">
+                                </div>
+                            }
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Mô tả ngắn</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.ShortDescription, new { @cols = "10", @rows = "10" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Chi tiết</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.FullDescription, new { @cols = "10", @rows = "10" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Loại sản phẩm</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.ProductTypeID, Model.ListProductTypeExt, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Loại máy</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.CateID, Model.ListCategoryExt, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Nhà sản xuất</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.ManufacturerID, Model.ListManufacturerExt, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                   @* <div class="row-form">
+                        <div class="span2">
+                            Model máy</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.ModelID, Model.ListModelExt, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>*@
+                    <div class="row-form">
+                        <div class="span2">
+                            Giá (VNĐ):</div>
+                        <div class="span9">
+                            @*  @Html.TextBoxFor(x => x.Price, new { @class = "validate[required,funcCall[Moneyvalidate[Price]]]" })</div>*@
+                            @Html.TextBoxFor(x => x.Price, new { @class = "validate[required,custom[integer]]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Tồn kho:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Instock, new { @class = "validate[required,custom[integer]]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Sản phẩm mới:</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.New)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Sản phẩm tiêu biểu:</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.Typical)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Đăng lên trang chủ:</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.ShowHomePage)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Kích hoạt :</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.Active)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                     <div class="row-form">
+                        <div class="span2">
+                            Gửi mail cho khách :</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.IsSendMailExt)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Chọn mail template :</div>
+                        <div class="span9">
+                            @Html.DropDownListFor(x => x.EmailTemplateIDExt,Model.ListEmailTemplateExt)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span11">
+                            <a class="btn btn-success span3" id="popup_4">Thêm thuộc tính sản phẩm</a>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                       @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                       {
+                    <div class="row-form">
+                        <div class="span2">
+                        </div>
+                        <div class="span9">
+                            <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                       }
+                </div>
+            
+                <div id="tabs-2">
+                    <div class="row-form">
+                        <div class="span2">
+                            Link :</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Link)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Title :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaTitle)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Keyword :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaKeyword)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Meta Description :</div>
+                        <div class="span9">
+                            @Html.TextAreaFor(x => x.MetaDescription)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                       @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                       {
+                    <div class="row-form">
+                        <div class="span2">
+                        </div>
+                        <div class="span9">
+                            <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                       }
+                </div>
+                 
+            }
+            @* <div id="tabs-3">
+
+              <div class="block-fluid table-sorting">
+                <div class="row-fluid listproductAttribute">
+                    @Html.Action("_ShowAllAttribute", "ProductManagement", new { productID = Model.ID })
+                </div>
+              </div>
+
+              <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+
+              </div>
+                *@
+        </div>
+    </div>
+</div>
+
+<div class="dialog" id="b_popup_4" style="display: none;" title="Thuộc tính sản phẩm">
+    <div class="row-fluid">
+        <div class="span12">
+            @Html.Action("_AddOrUpdate", "ProductAttributeManagement")
+            <div class="block-fluid table-sorting">
+               <div class="listproductattribute">
+                @Html.Action("_ShowAll", "ProductAttributeManagement", new { productid = Model.ID })
+             </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

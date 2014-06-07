@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Thêm hoặc chỉnh sửa";
+}
+@using Helper
+
+<script src="@Url.ContentArea("~/Content/javascript/manufacturer.js")" type="text/javascript"></script>
+@Html.Action("_AddOrUpdate", "ManufacturerManagement", new { id = Model })
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            url: '/Administrator/ManufacturerManagement/UploadFiles?dir=Manufacturer',
+            autoUpload: true,
+            done: function (e, data) {
+                $('#image').html('<img width=\"70px\" height=\"70px\" src="/Media/Manufacturer/' + data.result.name + '" />');
+
+            }
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('.progress .progress-bar').css('width', progress + '%');
+        });
+
+    });
+</script>

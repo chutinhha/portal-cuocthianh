@@ -1,0 +1,259 @@
+﻿@using CoreData
+@model IList<Product>
+@{
+    ViewBag.Title = ViewBag.CatName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int page = 1;
+    int pagesize = 20;
+    int Id = (int)ViewBag.Id;
+    if (!String.IsNullOrEmpty(Request.QueryString["p"]))
+    {
+        page = Convert.ToInt32(Request.QueryString["p"]);
+    }
+    if (!String.IsNullOrEmpty(Request.QueryString["pagesize"]))
+    {
+        pagesize = Convert.ToInt32(Request.QueryString["pagesize"]);
+    }
+    if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
+    {
+        pagesize = Convert.ToInt32(Request.QueryString["Id"]);
+    }
+    
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/plugins/KyersPager/css/css.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/product.css")" rel="stylesheet" type="text/css" />
+}
+<div class="product-container new">
+
+    <h1 class="general-heading">
+        <span>@ViewBag.CatName</span>
+       
+    </h1>
+
+       <div class="search-tool">
+    
+        <div class="search-left-tool">   
+         @using (Html.BeginForm("ListProduct", "Product", FormMethod.Post))
+         {
+            <select id="searchprice" name="searchprice" class="select">
+                <option selected="selected">Mức giá</option>
+                @foreach (var item in (List<SelectListItem>)ViewBag.GetListPrice)
+                {
+                    if (item.Selected)
+                    {
+                     <option selected="@item.Selected" value="@item.Value">@item.Text</option>
+                    }
+                    else
+                    {
+                        <option  value="@item.Value">@item.Text</option> 
+                    }
+
+
+                }
+            </select>
+            <select id="searchmanufac" name="searchmanufac" class="select">
+                <option  selected="selected">Nhà sản xuất</option>
+                @foreach (var item in (List<SelectListItem>)ViewBag.Manufacturer)
+                {
+                    if (item.Selected)
+                    {
+                     <option selected="@item.Selected" value="@item.Value">@item.Text</option>
+                    }
+                    else
+                    {
+                        <option  value="@item.Value">@item.Text</option> 
+                    }
+
+                }
+            </select>
+             <input id="txtname" name="txtname" type="text" placeholder = "Tìm theo tên sản phẩm" class = "txt txtname" />
+            <button type="submit" class="btn-blue">Tìm</button>
+         }
+        </div>
+        <div class="search-right-tool">
+            <select class="select page-count">
+                <option selected="selected">Số hiển thị</option>
+                @if (pagesize == 3)
+                {
+                <option selected value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 3 })">3</option>
+                }
+                else
+                { 
+                    <option  value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 3 })">3</option>
+                }
+                @if (pagesize == 10)
+                {
+                <option selected value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 10 })">10</option>
+                }
+                else
+                { 
+                    <option  value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 10 })">10</option>
+                }
+                @if (pagesize == 15)
+                {
+                <option selected value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 15 })">15</option>
+                }
+                else
+                { 
+                    <option  value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 15 })">15</option>
+                }
+                @if (pagesize == 20)
+                {
+                <option selected value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 20 })">20</option>
+                }
+                else
+                { 
+                    <option  value="@Url.Action("ListProduct", "Product", new { p = page, pagesize = 20 })">20</option>
+                }
+               
+            </select>
+        </div>
+     
+    </div>
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="list-product">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="product-holder">
+                            <a class="product-link-img" href="@Url.RouteUrl("product_details", new { Id = item.ID, Link = item.Link })">
+                                <img src="@Url.Content("~/Media/Product/" + item.Image)" alt="@item.Name" />
+                            </a>
+                            <div class="product-infor">
+                                <h2>
+                                    <a href="@Url.RouteUrl("product_details", new { Id = item.ID, Link = item.Link })" class="product-title">@item.Name</a></h2>
+                                <div class="actions-box">
+                                    <input onclick="window.location='@Url.Action("BuyNow", "ShoppingCart", new { ProductId=item.ID, Qty=1})';" type="button" class="btn-blue btn-buy" title="Mua sản phẩm này" />
+                                    <input ProductId=@item.ID Qty="1" type="button" class="btn btn-add-cart" title="Thêm sản phẩm này vào giỏ hàng" /></div>
+                                <div class="price-box">
+                                    <span>@Helper.StringHelper.ConvertNumberToVietNamCurrency(item.Price.ToString())</span></div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div id="product-pager" class="list-pager">
+            <ul>
+                <li class="bullet-first"><a href="@Url.Action("ListProduct", "Product", new { p = 1, pagesize = pagesize, Id = Id })">
+                    <<</a></li>
+                @if (page > 1)
+                { 
+                    <li class="bullet-prev"><a href="@Url.Action("ListProduct", "Product", new { p = (int)page - 1, pagesize = pagesize, Id = Id })">
+                        <</a></li>
+                
+                }
+                else
+                {
+                    <li class="bullet-prev"><a href="javascript:void(0)"><</a></li>
+                }
+                @pageLinks()
+                @if (page >= 0 && page < ViewBag.TotalPages)
+                { 
+                    <li class="bullet-next"><a href="@Url.Action("ListProduct", "Product", new { p = (int)page + 1, pagesize = pagesize, Id = Id })">
+                        ></a></li>
+                }
+                else
+                {
+                    <li class="bullet-next"><a href="javascript:void(0)">></a></li>
+                }
+                <li class="bullet-last"><a href="@Url.Action("ListProduct", "Product", new { p = (int)ViewBag.TotalPages, pagesize = pagesize, Id = Id })">
+                    >></a></li>
+            </ul>
+        </div>
+        
+    }
+    else
+    { 
+        @: Đang cập nhật sản phẩm.
+    }
+</div>
+@helper buildLinks(int start, int end, string innerContent)
+    {
+        int pagesize = 20;
+        if (!String.IsNullOrEmpty(Request.QueryString["pagesize"]))
+        {
+            pagesize = Convert.ToInt32(Request.QueryString["pagesize"]);
+        }
+        int Id = (int)ViewBag.Id;
+        if (!String.IsNullOrEmpty(Request.QueryString["Id"]))
+        {
+            Id = Convert.ToInt32(Request.QueryString["Id"]);
+        }
+        for (int i = start; i <= end; i++)
+        {
+    <li><a class="@(i == ViewBag.CurrentPage ? "current" : "")" href="@Url.Action("ListProduct", "Product", new { p = i, pagesize = pagesize, Id = Id })">@(innerContent ?? i.ToString())</a>
+    </li>
+        }
+}
+@helper pageLinks()
+    {
+        const int maxPages = 10;
+
+        if (ViewBag.TotalPages <= maxPages)
+        {
+    @buildLinks(1, (int)ViewBag.TotalPages, null)
+            return;
+        }
+
+        int pagesAfter = ViewBag.TotalPages - ViewBag.CurrentPage; // Number of pages after current
+        int pagesBefore = ViewBag.CurrentPage - 1; // Number of pages before current
+
+        if (pagesAfter <= 4)
+        {
+    @buildLinks(1, 1, null) // Show 1st page
+
+            int pageSubset = ViewBag.TotalPages - maxPages - 1 > 1 ? ViewBag.TotalPages - maxPages - 1 : 2;
+    @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
+ 
+    @buildLinks(ViewBag.TotalPages - maxPages + 3, ViewBag.TotalPages, null) // Show last pages
+
+            return; // Exit
+        }
+
+        if (pagesBefore <= 4)
+        {
+    @buildLinks(1, maxPages - 2, null) // Show 1st pages
+
+
+            int pageSubset = maxPages + 2 < ViewBag.TotalPages ? maxPages + 2 : ViewBag.TotalPages - 1;
+    @buildLinks(pageSubset, pageSubset, "...") // Show page subset (...)
+ 
+    @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null) // Show last page
+
+            return; // Exit
+
+        }
+
+        if (pagesAfter > 4)
+        {
+    @buildLinks(1, 1, null) // Show 1st pages
+
+            int pageSubset1 = ViewBag.CurrentPage - 7 > 1 ? ViewBag.CurrentPage - 7 : 2;
+            int pageSubset2 = ViewBag.CurrentPage + 7 < ViewBag.TotalPages ? ViewBag.CurrentPage + 7 : ViewBag.TotalPages - 1;
+ 
+    @buildLinks(pageSubset1, pageSubset1, pageSubset1 == ViewBag.CurrentPage - 4 ? null : "...") // Show 1st page subset (...)
+ 
+    @buildLinks(ViewBag.CurrentPage - 3, ViewBag.CurrentPage + 3, null) // Show middle pages
+
+            // Show 2nd page subset (...)
+            // only show ... if page is contigous to the previous one.
+    @buildLinks(pageSubset2, pageSubset2, pageSubset2 == ViewBag.CurrentPage + 4 ? null : "...")
+    @buildLinks(ViewBag.TotalPages, ViewBag.TotalPages, null) // Show last page
+
+            return; // Exit
+        }    
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("select.page-count").change(function () {
+            var a = $(".page-count option:selected").val();
+            window.location = a;
+        })
+    })
+</script>

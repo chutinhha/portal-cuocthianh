@@ -1,0 +1,65 @@
+﻿@model CoreData.OrderDetail
+@{ 
+    ViewBag.Title = "Cập nhật chi tiết";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Chi tiết</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            @using (Ajax.BeginForm("AddOrUpdateDetail", "OrderManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                @Html.HiddenFor(x => x.ID)
+                 @Html.HiddenFor(x => x.ProductID)
+                 @Html.HiddenFor(x => x.OrderID)
+                <div class="row-form">
+                    <div class="span2">
+                        Mã đơn hàng</div>
+                    <div class="span9">
+                        #@Html.DisplayTextFor(x => x.OrderID)</div>
+                    <div class="clear">
+                    </div>
+                </div>       
+                 <div class="row-form">
+                    <div class="span2">
+                        Số lượng</div>
+                    <div class="span9">
+                        @Html.TextAreaFor(x => x.Amount)</div>
+                    <div class="clear">
+                    </div>
+                </div>                
+                <div class="row-form">
+                    <div class="span2">
+                       Tổng giá</div>
+                    <div class="span9">
+                        @Html.TextBoxFor(x => x.Price, new { @readonly = "true" })</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                
+               
+                if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                {
+                <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                }
+
+          
+            }
+        </div>
+    </div>
+</div>

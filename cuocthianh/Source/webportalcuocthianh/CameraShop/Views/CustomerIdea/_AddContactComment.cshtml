@@ -1,0 +1,26 @@
+﻿@model CoreData.CustomerIdea
+@using (Html.BeginForm("_AddContactComment", "CustomerIdea", FormMethod.Post))
+{
+    <ul class="block-input-wrap">
+        <li>
+            <div class="inside-row">
+                <label for="CustomerEmail">
+                    Email:</label>
+                @Html.TextBoxFor(x => x.Email, new {@class="txt txt-email" })
+            </div>
+            <div class="clearfix">
+            </div>
+        </li>
+        <li>
+            <div class="inside-row">
+                <label for="Content">
+                    Nội dung:</label>
+                    @Html.TextAreaFor(x => x.Content, new { @id = "Content", @cols="20", @row="20" })
+            </div>
+            <div class="inside-row">
+                <input type="submit" class="btn" id="btn-send" value="Gửi" /></div>
+            <div class="clearfix">
+            </div>
+        </li>
+    </ul>
+}

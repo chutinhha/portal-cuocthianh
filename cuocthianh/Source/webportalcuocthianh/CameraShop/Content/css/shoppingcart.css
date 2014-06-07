@@ -1,0 +1,125 @@
+#mainContainer{
+	margin-bottom: 10px;
+}
+.cart-view
+{
+    margin-bottom: 10px;
+}
+.btn-delete
+{
+    background: url('../imgs/icon-recybin.png') no-repeat center;
+}
+.footer-tool
+{
+   padding:  5px 10px;
+   height: 2.5em;
+   background: #f9f9f9;
+   border-left: 1px solid #f0f0f0;
+   border-right: 1px solid #f0f0f0;
+   border-bottom: 1px solid #f0f0f0;
+}
+.checkout-cart-tool
+{
+    float: right;
+}
+.checkout-cart-tool .btn
+{
+    float: right;
+    margin-left: 5px;
+    display: block;
+    padding:  0 10px;
+}
+.footer-tool p
+{
+    float: left;
+    margin-left:  5px;
+    color:  #666;
+    font-size: 14px;
+    margin-top:  5px;
+}
+
+.btn-delete-select
+{
+    float: left;
+    background: url('../imgs/cart-delete.png') no-repeat center;
+    width:  24px;
+    height:  24px;
+}
+.grid-content-item
+{
+    width: 15.6%;
+    margin: 0 0.5%;
+}
+.checkbox-cart
+{
+    text-align: center;
+}
+
+.customer-info
+{
+    border: 1px dotted #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 1px #f0f0f0;
+    -moz-box-shadow: 0 1px 1px #f0f0f0;
+    box-shadow: 0 1px 1px #f0f0f0;
+}
+.customer-info li
+{
+    margin: 5px 0;
+}
+.customer-info label
+{
+    font-style: italic;
+}
+.comment-item label
+{
+    width: 100px;
+    min-width: 0;
+    margin:  5px 0;
+    float: left;
+	
+}
+.comment-item
+{
+    
+}
+#inputComment
+{
+    width: 40em;
+    height: 50px;
+}
+
+.slideProduct
+{
+    position: relative;
+}
+.slideProduct .slide-nav-control .btn-prev-slide {
+    right: 0;
+    background-image: url(../imgs/btn-next-slide.png);
+}
+.slideProduct .slide-nav-control .btn-next-slide {
+    right: 2em;
+    background-image: url(../imgs/btn-prev-slide.png);
+}
+.slideProduct .slide-nav-control .btn {
+    border: 0;
+    top: 0;
+    position: absolute;
+    width: 1.5em;
+    height: 22px;
+    left: auto;
+    background-color: #f9f9f9;
+    background-repeat: no-repeat;
+    background-position: -4px center;
+}
+.slideProduct:hover .slide-nav-control .btn {
+    background-position: -4px center;
+}
+.slideProduct .slide-nav-control .btn:hover {
+    background-position: -31px center;
+    background-color: #00A695;
+}

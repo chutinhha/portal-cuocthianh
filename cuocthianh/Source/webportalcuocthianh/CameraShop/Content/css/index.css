@@ -1,0 +1,238 @@
+/*-----------#mainSlideshow--------------*/
+.slide-set{
+	float: right;
+	width: 82%;
+}
+#mainSlideshow{
+	width: 78%;
+	float: left;
+	height: 357px;
+	position: relative;
+}
+.slide-block-image{
+	height: 100%;
+	width: 100%;
+}
+.slide-block-image ul{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #f9f9f9;
+}
+.slide-block-image li{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	background: #fff;
+}
+.slide-block-image li.active{
+	display: block;
+}
+.slide-block-image li a{
+	display: block;
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 100%;
+	height: 100%;
+}
+
+.slide-block-nav{
+	position: absolute;
+	top: 10px;
+	height: 94%;
+	right: 10px;
+	bottom: 0;
+	width: 16.5em;
+	z-index: 5;
+}
+.slide-block-nav ul{
+	height: 100%;
+	width: 100%;
+}
+.slide-block-nav li{
+	height: 18.7%;
+	width: 100%;
+	float: left;
+	margin-bottom: 5px
+}
+.slide-block-nav li a{
+	display: block;
+	height: 100%;
+	width: 100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	background: #f4f4f4;
+	cursor: pointer;
+	background-image: -webkit-linear-gradient(top, #f9f9f9 0%, #f0f0f0 100%);
+    background-image: linear-gradient(to bottom, #f9f9f9 0%, #f0f0f0 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0', GradientType=0);
+    -webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+    box-shadow: inset 0 1px 0 0 #ffffff;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+.slide-block-nav li a:hover{
+	background: #fff;
+}
+.slide-block-nav li.active a{
+	background: #fff;
+}
+.slide-block-nav li.active p{
+	color: #333;
+}
+.slide-nav-image{
+	width: 2.5em;
+	height: 2.5em;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	z-index: 10;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+.slide-nav-content{
+	float: right;
+	font-size: 14px;
+	width: 14.5em;
+	height: 100%;
+}
+.inner-slide-nav-content{
+	padding: 5px 5px 5px 0;
+	height: 75%;
+}
+.slide-nav-content p{
+	font-weight: bold;
+	color: #666;
+}
+.slide-nav-content span{
+	font-size: 11px;
+	color: #666;
+}
+.slide-nav-image img{
+	height: 100%;
+	width: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+/*--------------.list-connect on right of main SlideShow--------------------*/
+.list-connect{
+	float: right;
+	width: 20.7%;
+	height: 374px;
+}
+.list-connect ul{
+	height: 100%;
+}
+.list-connect li{
+	width: 100%;
+	height: 30%;
+	padding: 0 0 10px 0;
+}
+.list-connect li:last-child{
+	padding-bottom: 0;
+}
+.list-connect li a{
+	display: block;
+	height: 100%;
+	width: 100%;
+	border: 1px solid #f9f9f9;
+	-webkit-box-shadow: 0 1px 1px #f0f0f0;
+    -moz-box-shadow: 0 1px 1px #f0f0f0;
+    box-shadow: 0 1px 1px #f0f0f0;
+}
+.list-connect li img{
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/*----------------------------.left-module .saleSlide---------------------------*/
+.slide-item-infor 
+{
+    position: absolute;
+    z-index: 20;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 20px 5px 10px 5px;
+    color: #fff;
+}
+.slide-item-infor a
+{
+    color: #00a695;
+    font-weight: bold;
+    font-size: 18px;
+}
+.slide-item-infor a:hover
+{
+    color: #FF6600;
+}
+.slide-item-infor .discount-sprice
+{
+    text-align: left;
+    margin-top: 10px;
+    color: #FF6600;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.slide-item-infor .real-sprice
+{
+    text-align: right;
+    margin-top: 10px;
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-decoration: line-through;
+}
+.discount-to
+{
+    display: block;
+	color: #f9f9f9;
+	margin: 0 0 5px 0;
+	background: #00a695;
+	padding: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	clear: both;
+}
+.discount-percent
+{
+    -webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #FF6600;
+	color: #fff;
+	text-align: center;
+	padding: 5px;
+	width: 45px;
+	height: 45px;
+}
+.discount-percent label
+{
+    display: inline;
+    margin-right: auto;
+    color: #fff;
+    text-transform: uppercase;
+}
+.discount-percent span
+{
+    font-size: 20px;
+    color: #fff;
+}

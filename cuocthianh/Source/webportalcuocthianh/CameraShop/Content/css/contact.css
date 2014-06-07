@@ -1,0 +1,72 @@
+#mainContainer {
+	margin-bottom: 10px;
+}
+#map-canvas
+{
+    height: 23.8em;
+}
+.contact-box
+{
+    border: 1px dotted #ddd;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 1px #f0f0f0;
+	-moz-box-shadow: 0 1px 1px #f0f0f0;
+	box-shadow: 0 1px 1px #f0f0f0;
+}
+.contact-box p, .contact-box h3
+{
+    margin-bottom: 10px;
+}
+.map-box
+{
+    border: 1px dotted #ddd;
+    padding: 10px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 1px #f0f0f0;
+	-moz-box-shadow: 0 1px 1px #f0f0f0;
+	box-shadow: 0 1px 1px #f0f0f0;
+}
+li .inside-row
+{
+    float: left;
+    margin-right: 10px;
+}
+.block-input-wrap li
+{
+    padding: 0 0 10px 0;
+}
+.input-contact
+{
+    position: relative;
+}
+.block-input-wrap
+{
+    position: relative;
+    z-index: 10;
+    border: 1px dotted #ddd;
+    margin: 10px auto 0 auto;
+    padding: 10px 10px 0 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 1px #f0f0f0;
+	-moz-box-shadow: 0 1px 1px #f0f0f0;
+	box-shadow: 0 1px 1px #f0f0f0;
+}
+#btn-send
+{
+    clear: both;
+    width: 10em;
+}
+#Content
+{
+    width: 40em;
+}

@@ -1,0 +1,25 @@
+#TopAlertPopup {
+	position: fixed;
+	top: 0;
+	height: 45px;
+	line-height: 45px;
+	color: #fff;
+	text-align: center;
+	width: 100%;
+	background: #ccc;
+	z-index: 1000;
+}
+#TopAlertPopup.error {
+	background: #f63a00 url(../images/error.png) no-repeat; /* Old browsers */
+	background-position: 9px 8px;
+}
+
+#TopAlertPopup.success {
+	background: #0096ff url(../images/success.png) no-repeat;
+	background-position: 9px 8px;
+}
+#TopAlertPopup .text{
+	font-size: 18px;
+	word-break: break-all;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+}

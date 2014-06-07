@@ -1,0 +1,229 @@
+﻿@using CoreData
+@using Helper
+@using System.Text.RegularExpressions
+@model List<ShoppingCart>
+@{
+    ViewBag.Title = "Thanh Toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var toTalProduct = 0;
+    var toTalPrice = 0;
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            toTalProduct = toTalProduct + item.Amount;
+        }
+        foreach (var item in Model)
+        {
+            toTalPrice = toTalPrice + item.TotalPrice;
+        }
+    }
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/payment.css")" rel="stylesheet" type="text/css" />
+}
+@section BottomResource{
+    <script src="@Url.Content("~/Content/js/payment.js")" type="text/javascript"></script>
+}
+@section BreadCrumb{
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="@Url.Action("Index", "Home")">Bello</a> <span class="arrow-to-right"></span>
+            </li>
+            <li><a href="@Url.Action("Index", "Payment")">Thanh toán</a> <span class="arrow-to-right">
+            </span></li>
+        </ul>
+    </div>
+}
+@{
+    var cart = (List<ShoppingCart>)Session["ShoppingCart"];
+    List<ShoppingCart> lstCart = cart;
+}
+<div class="main-content">
+    <div class="grid-row">
+        <div class="module-head">
+            <h4>
+                Sản phẩm đã đặt mua</h4>
+        </div>
+        <div class="bought-block">
+            <ul>
+                @if (cart != null)
+                {
+                    foreach (var item in lstCart)
+                    {
+                    <li>
+                        <div class="bought-item">
+                            <a href="@Url.Action("Details", "product", new { id = @item.Product.ID, link = item.Product.Link })">
+                                <img src="@Url.Content("~/Media/Product/" + item.Product.Image)" alt="@item.Product.Name" />
+                            </a><a href="@Url.Action("Details", "product", new { id = item.Product.ID, link = item.Product.Link })">@item.Product.Name</a>
+                        </div>
+                    </li>
+                    }
+                }
+            </ul>
+            <a class="btn btn-blue" id="btn-update-cart" href="@Url.Action("Index", "ShoppingCart")">
+                Chỉnh sửa giỏ hàng</a>
+        </div>
+        <div class="module-head">
+            <h4>
+                Thực hiện thanh toán</h4>
+        </div>
+        <div class="payment-block">
+            <div class="step-ribbon">
+                <ul class="list-step-bullet">
+                    @if (CameraShop.BaseController.Userid == 0)
+                    {
+                        <li class="active"><span>Đăng nhập</span></li>
+                    }
+                    <li><span>Thông tin người mua</span></li>
+                    <li><span>Thông tin thanh toán</span></li>
+                    <li><span>Hoàn tất thanh toán</span></li>
+                </ul>
+                <div class="clearfix">
+                </div>
+            </div>
+            <ul class="payment-info">
+                @if (CameraShop.BaseController.Userid == 0)
+                {
+                    <li class="payment-item">
+                        <div class="payment-content">
+                            <ul class="payment-list">
+                                <li>
+                                    <label>
+                                        Tên đăng nhập:</label><input class="txt txtusername" type="text" /></li>
+                                <li>
+                                    <label>
+                                        Mật khẩu:</label><input class="txt txtpassword" type="password" /></li>
+                                <li>
+                                    <input type="checkbox" class="chk-chose" id="chk-remember" /><label for="chk-remember">Nhớ
+                                        tài khoản này:</label></li>
+                                <li>
+                                    <input id="second-btn-login" class="btn" type="button" value="Đăng nhập" />
+                                    <input id="second-btn-register" class="btn btn-blue" type="submit" value="Đăng ký" />
+                                </li>
+                                <li><a href="#">Quên mật khẩu?</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+                <li class="payment-item">
+                    <div class="payment-content">
+                        <ul class="payment-list">
+                            <li>
+                                @if (CameraShop.BaseController.Userid != 0)
+                                {
+                                    <input class="chk-chose" id="chk-use-info" type="checkbox" /><label for="chk-use-info">Sử
+                                        dụng thông tin đăng ký?</label>
+                                }
+                            </li>
+                            <li>
+                                <label>
+                                    Họ & Tên:</label><input class="txt txtname" type="text" /></li>
+                            <li>
+                                <label>
+                                    Địa chỉ:</label><input class="txt txtaddress" type="text" /></li>
+                        </ul>
+                        <ul class="payment-list">
+                            <li>
+                                <label>
+                                    Điện thoại:</label><input class="txt txtphone" type="text" /></li>
+                            <li>
+                                <label>
+                                    Email:</label><input class="txt txtemail" type="text" /></li>
+                            @*<li>
+                                <label>
+                                    Phương thức thanh toán:</label>
+                                <select id="payChoose" class="select">
+                                    <option value="3">Chuyển khoản ngân hàng</option>
+                                    <option value="1">Trực tiếp</option>
+                                    <option value="4">Qua cửa hàng thanh toán</option>
+                                </select>
+                            </li>*@
+                            <li>
+                                <div id="waypay">
+                                    <label>
+                                        Hình thức:</label>
+                                    <input type="radio" checked="checked" name="paypal" value="0" />Paypal
+                                    <input type="radio" name="paypal" value="1" />Paypal with credit card
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="payment-item">
+                    <div class="payment-content">
+                        <ul class="payment-list">
+                            <li>
+                                <label>
+                                    Thành tiền:
+                                </label>
+                                <span>@Helper.StringHelper.FormatVND(int.Parse(toTalPrice.ToString()))</span></li>
+                            <li>
+                                <label>
+                                    Giá chuyển phát:</label><span>0 VNĐ</span></li>
+                            <li>
+                                <label>
+                                    Số lượng:</label><span>@toTalProduct</span></li>
+                        </ul>
+                        <ul class="payment-list">
+                            <li>
+                                <label>
+                                    Tổng tiền:
+                                </label>
+                                <span>@Helper.StringHelper.FormatVND(int.Parse(toTalPrice.ToString()))</span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="payment-item">
+                    <div class="payment-content payment-complete">
+                        <ul class="payment-list">
+                            <li>
+                                <label>
+                                    Khách hàng:
+                                </label>
+                                <span class="txtcustomer"></span></li>
+                            <li>
+                                <label>
+                                    Email:
+                                </label>
+                                <span class="txtemailcustomer"></span></li>
+                            <li>
+                                <label>
+                                    Điện thoại:</label><span class="txtphonenumcustomer"></span></li>
+                            <li>
+                                <label>
+                                    Địa chỉ giao hàng:</label><span class="txtaddresscustomer"></span></li>
+                        </ul>
+                        <ul class="payment-list">
+                            <li>
+                                <label>
+                                    Phương thức thanh toán:</label><span class="txtpaymethod"></span></li>
+                            <li>
+                                <label>
+                                    Tổng tiền:
+                                </label>
+                                <span>@Helper.StringHelper.FormatVND(int.Parse(toTalPrice.ToString()))</span></li>
+                            <li>
+                                <div id="imageloading">
+                                    <img src="@Url.Content("~/Content/imgs/loading_big.gif")" height="100px" width="100px" alt="loading image" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="payment-control">
+                <div class="payment-control">
+                    <div class="items-control">
+                        <a class="btn btn-blue btn-preview hidden" href="javascript:void(0)">Trở lại</a>
+                        <a class="btn btn-blue btn-next" href="javascript:void(0)">Tiếp tục</a>
+                        <input type="submit" class="btn btn-finish hidden" value="Hoàn tất" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

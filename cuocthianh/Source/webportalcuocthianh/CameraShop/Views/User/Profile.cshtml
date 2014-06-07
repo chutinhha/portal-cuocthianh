@@ -1,0 +1,58 @@
+﻿@using CoreData
+@model User
+@{
+    ViewBag.Title = "Profile của " + Model.Name + "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/profile.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/kyersTab/css/kyersTab.css")" rel="stylesheet" type="text/css" />
+}
+@section BottomResource{
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/kyersTab/js/kyersTab.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/profile.js")"></script>
+}
+@section BreadCrumb{
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="@Url.Action("Index", "Home")">Bello</a> <span class="arrow-to-right"></span></li>
+            <li><a href="@Url.Action("Profile", "User")">Thông tin tài khoản</a> <span class="arrow-to-right"></span></li>
+        </ul>
+    </div>
+}
+<div class="main-content">
+    <div class="grid-row">
+        <div class="profile-view">
+            <div class="tab-detail-content">
+                <ul class="tab-head">
+                    <li><a href="#">Thông tin tài khoản</a></li>
+                    <li><a href="#">Đơn hàng</a></li>
+                </ul>
+                <ul class="tab-content">
+                    <li class="tab-item">
+                        @Html.Action("_ProfileInfor", "User")
+                        
+                    </li>
+                    <li class="tab-item">
+                        @Html.Action("_OrderList", "Order")
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            $(".tab-link").kyersTab();
+            $(".qty").change(function (e) {
+                e.preventDefault();
+                var productId = $(this).attr("data-id");
+                var data = productId + "," + $(this).val();
+                $(this).parent().children("#item_Product_ID").attr("value", data);
+            })
+        });
+    } (jQuery));
+</script>*@

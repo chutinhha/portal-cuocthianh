@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Quản lý người dùng";
+}
+@using Helper
+<script src="@Url.ContentArea("~/Content/javascript/User.js")" type="text/javascript"></script>
+<div class="head">
+    <div class="isw-grid">
+    </div>
+    <h1>
+        danh mục người dùng</h1>
+    <ul class="buttons">
+        <li><a href="#" class="isw-settings"></a>
+            <ul class="dd-list" style="display: none;">
+             @if (CameraShop.BaseController.Permission.Contains("C"))
+             {
+                <li><a href="@Url.Action("AddOrUpdate", "UserManagement")"><span class="isw-plus"></span>Thêm người dùng</a>
+                <a id="search" href="#"><span class="isw-zoom"></span>Tìm kiếm</a>
+                
+                </li>
+             }
+            </ul>
+        </li>
+    </ul>
+    <div class="clear">
+    </div>
+</div>
+
+
+ @if(CameraShop.BaseController.Permission.Contains("R"))
+ {
+
+<div class="block-fluid tabs">
+    <ul>
+        <li><a href="#tabs-1">Khách</a></li>
+        <li><a href="#tabs-2">Quản lý</a></li>
+        <li><a href="#tabs-3">Quản trị</a></li>
+    </ul>
+    <div class="warning-area">
+    </div>
+    <div class="clear">
+    </div>
+    @Html.Action("_Search", "UserManagement")
+    <div id="tabs-1">
+        <div class="block-fluid table-sorting">
+            <div class="row-fluid listcus">
+                @Html.Action("_ShowAll", "UserManagement", new { _groupid = 1 })
+            </div>
+
+    </div>
+    </div>
+    <div id="tabs-2">
+        <div class="block-fluid table-sorting">
+            <div class="row-fluid listmanager">
+                @Html.Action("_ShowAll", "UserManagement", new { _groupid = 2 })
+            </div>
+        </div>
+    </div>
+    <div id="tabs-3">
+        <div class="block-fluid table-sorting">
+            <div class="row-fluid listadmin">
+                @Html.Action("_ShowAll", "UserManagement", new { _groupid = 3 })
+            </div>
+        </div>
+    </div>
+</div>
+
+   }
+ else
+ {
+     <span>Bạn không có quyền truy cập trang này</span> 
+ }
+ 
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+        reloadGrid(1);
+        reloadGrid(2);
+        reloadGrid(3);
+        jQuery(".formsearch").hide();
+        jQuery("#search").ShowSearchForm();
+        jQuery("#closesearchform").CloseSearchForm();
+        jQuery("#searchaction").Search();
+    });
+</script>

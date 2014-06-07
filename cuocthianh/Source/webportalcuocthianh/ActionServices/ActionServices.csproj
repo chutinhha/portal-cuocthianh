@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1B771C2F-D6A7-4AA2-B9AF-CC926163D842}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ActionServices</RootNamespace>
+    <AssemblyName>ActionServices</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Ref\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleActionService.cs" />
+    <Compile Include="AttributeActionService.cs" />
+    <Compile Include="Banner_LogoActionService.cs" />
+    <Compile Include="CategoryActionService.cs" />
+    <Compile Include="ConfigurationActionService.cs" />
+    <Compile Include="CustomerIdeaActionService.cs" />
+    <Compile Include="DistrictActionService.cs" />
+    <Compile Include="EmailListActionService.cs" />
+    <Compile Include="EmailTemplateActionService.cs" />
+    <Compile Include="GroupActionService.cs" />
+    <Compile Include="Group_Role_ModuleActionService.cs" />
+    <Compile Include="ManufacturerActionService.cs" />
+    <Compile Include="ModelActionService.cs" />
+    <Compile Include="ModuleActionService.cs" />
+    <Compile Include="OrderActionService.cs" />
+    <Compile Include="OrderDetailActionService.cs" />
+    <Compile Include="ProductActionService.cs" />
+    <Compile Include="ProductAttributeActionService.cs" />
+    <Compile Include="ProductTypeActionService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceActionService.cs" />
+    <Compile Include="SearchActionService.cs" />
+    <Compile Include="ShoppingCartActionService.cs" />
+    <Compile Include="UserActionService.cs" />
+    <Compile Include="User_GroupActionService.cs" />
+    <Compile Include="User_Role_ModuleActionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreData\CoreData\CoreData.csproj">
+      <Project>{F1FCDD7C-FA6A-46FD-9C41-308BFA4C3EDA}</Project>
+      <Name>CoreData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper\Helper\Helper.csproj">
+      <Project>{2268F283-38B0-49D7-A609-79D63396FB29}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services\Services.csproj">
+      <Project>{DCF8F3E2-02BE-412F-A030-8DA0117F1D2A}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

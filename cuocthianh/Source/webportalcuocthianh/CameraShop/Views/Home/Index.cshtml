@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Bello Shop Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/index.css")" />
+}
+@section BottomResource{
+    <script src="@Url.Content("~/Content/plugins/belloSlideShow/js/belloSlideShow.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/index.js")"></script>
+}
+@section MainBanner{
+    @Html.Action("_MainSlideShow", "BannerLogo")
+}
+@Html.Action("_ShowProductByCategory", "Product", new { CatId = 1})
+@Html.Action("_ShowProductByCategory", "Product", new { CatId = 2 })
+@Html.Action("_ShowProductByCategory", "Product", new { CatId = 10 })

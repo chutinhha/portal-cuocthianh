@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+@using CoreData
+@model User
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Areas/Administrator/Content/css/login.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Areas/Administrator/Content/css/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Areas/Administrator/Content/css/bootstrap-responsive.css")" rel="stylesheet" type="text/css" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="loginBox">
+        <div class="loginHead">
+            <img src="@Url.Content("~/Areas/Administrator/Content/img/logo.png")" alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel" />
+        </div>
+        <div>@Html.ValidationSummary()</div>
+        @using (Html.BeginForm("Login", "Management", FormMethod.Post, new {@class="form-horizontal"})){
+        <div class="control-group">
+            <label for="inputUserName">
+                Tên đăng nhập</label>
+        @Html.TextBoxFor(m => m.UserName, new { @class="inputUserName"})
+            @*<input type="text" id="inputEmail" />*@
+        </div>
+        <div class="control-group">
+            <label for="inputPassword">
+                Mật khẩu</label>
+            @Html.PasswordFor(m => m.Password, new { @class = "inputPassword" })
+            @*<input type="password" id="inputPassword" />*@
+        </div>
+        <div class="control-group" style="margin-bottom: 5px;margin-left: 20px">
+            <label class="checkbox">
+                <input type="checkbox">
+                Ghi nhớ lần sau</label>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-block">
+                Đăng nhập</button>
+        </div>
+        }
+    </div>
+</body>
+</html>

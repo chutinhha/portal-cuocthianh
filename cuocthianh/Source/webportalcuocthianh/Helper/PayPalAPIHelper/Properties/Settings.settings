@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PayPalAPIHelper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PayPalAPIHelper_PayPalWS_PayPalAPIInterfaceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.paypal.com/2.0/</Value>
+    </Setting>
+    <Setting Name="PayPalAPIHelper_PayPalSandboxWS_PayPalAPIInterfaceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.sandbox.paypal.com/2.0/</Value>
+    </Setting>
+    <Setting Name="Logic_PayPalSandboxWS_PayPalAPIInterfaceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.sandbox.paypal.com/2.0/</Value>
+    </Setting>
+    <Setting Name="Logic_PayPalWS_PayPalAPIInterfaceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.paypal.com/2.0/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

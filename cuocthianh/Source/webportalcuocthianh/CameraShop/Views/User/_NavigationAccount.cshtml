@@ -1,0 +1,63 @@
+﻿<div class="nav-account">
+    @if (Session["UserID"] == null)
+    {
+        <a class="link-avatar" href="@Url.Action("LoginHome", "Home")" target="_blank">
+            <img src="../../Content/source/user-profile.png" alt="avatar.png" />
+        </a>
+        <a class="link-account-infor" href="#"><em class="inner-link-account">
+            <p>
+                @{
+        var UrlPath = Request.Path.Split('/');
+        if (UrlPath.Length > 2)
+        {
+            if (UrlPath[2].ToLower() == "login" || UrlPath[2].ToLower() == "loginhome")
+            {
+                    
+                    <span>Tạo tài khoản mới</span>           
+            }
+            else
+            {
+                    <span>Đăng nhập</span>
+            }
+        }
+        else
+        { 
+                    <span>Đăng nhập</span>
+                                            
+        }
+                }
+            </p>
+            <i>Tài khoản, đơn hàng</i> </em><em class="account-arrow"></em></a>
+        <div class="account-dropdown">
+            <ul>
+                <li><a href="@Url.Action("Index", "ShoppingCart")"><span class="lu-icon lu-icon-cart-16">
+                </span><span>Giỏ hàng</span> </a></li>
+                <li><a href="@Url.Action("LoginHome", "Home")"><span class="lu-icon lu-icon-account-16">
+                </span><span>Đăng nhập</span> </a></li>
+                <li><a href="@Url.Action("Register", "Home")"><span class="lu-icon lu-icon-account-16">
+                </span><span>Đăng ký</span> </a></li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <a class="link-avatar" href="@Url.Action("Profile", "User")"  target="_blank">
+            <img src="../../Content/source/user-profile.png" alt="avatar.png" />
+        </a><a class="link-account-infor" href="#"><em class="inner-link-account">
+            <p>
+                Xin chào, <span>@Session["UserName"]</span></p>
+            <i>Thông tin tài khoản</i> </em><span class="account-arrow"></span></a>
+        <div class="account-dropdown">
+            <ul>
+                <li><a href="@Url.Action("Index", "ShoppingCart")"><span class="lu-icon lu-icon-cart-16">
+                </span><span>Giỏ hàng</span> </a></li>
+                <li><a href="@Url.Action("Profile", "User")"><span class="lu-icon lu-icon-account-16">
+                </span><span>Thông tin tài khoản</span> </a></li>
+                <li><a href="@Url.Action("LogOffHome", "Home")"><span class="lu-icon lu-icon-exit-16">
+                </span><span>Thoát</span> </a></li>
+                
+
+            </ul>
+        </div>
+    }
+</div>

@@ -1,0 +1,175 @@
+<%-- 
+Name: Generator coredata
+Author: Pham duy linh
+Description: 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="" Inherits="" Debug="False" CompilerVersion="v3.5" Description="Template description here." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the object is based on." %>
+<%@ Property Name="NameSpace" Type="String" Category="Context" Description="Current namespace of the application" %>
+<%@ Assembly Name ="SchemaExplorer" %>
+<%@ Import NameSpace="SchemaExplorer" %>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using Helper;
+namespace CoreData
+{
+    public class <%=SourceTable.Name%>
+    {
+        <Script runat="Template">
+        string GetAtt(string name)
+        {
+            string str = ((char)(name[0] + 'a' - 'A')).ToString();
+            str += name.Substring(1);
+            return str;
+        }
+        string GetPrimitiveDataType(DbType type)
+        {
+            string strType = type.ToString();
+            if(strType=="Guid")
+             return "string";
+            if(type== DbType.AnsiString)
+            {
+                return "string";
+            }
+            if(type== DbType.String)
+            {
+                return "string";
+            }
+            if(type== DbType.Int16)
+            {
+                return "int";
+            }
+            if(type== DbType.Int32)
+            {
+                return "int";
+            }
+            if(type== DbType.Int64)
+            {
+                return "long";
+            }
+            if(type== DbType.AnsiStringFixedLength)
+            {
+                return "string";
+            }
+            if(type== DbType.UInt64)
+            {
+                return "long";
+            }
+            if(type== DbType.DateTime)
+            {
+                return "DateTime";
+            }
+            if(type== DbType.DateTime2)
+            {
+                return "DateTime";
+            }
+            if(type== DbType.Boolean)
+            {
+                return "bool";
+            }
+           if(type== DbType.Decimal)
+            {
+                return "Decimal";
+            }
+            if(type== DbType.Double)
+            {
+                return "float";
+            }
+            if(type== DbType.Single)
+            {
+                return "float";
+            }
+           
+            return "string";
+        }
+        </Script>
+        <% 
+        foreach(ColumnSchema col in SourceTable.Columns)
+        {
+          string primitiveType = GetPrimitiveDataType(col.DataType);
+          {%>      
+            public <%=primitiveType%> <%=col.Name%>{get;set;}
+          <%}
+        }%>
+         
+        public <%=SourceTable.Name%>()
+        {       
+            <% foreach(ColumnSchema col in SourceTable.Columns){%>
+            <% string primitiveType = GetPrimitiveDataType(col.DataType);%>    
+                <%if(primitiveType=="string")%>
+                 <%{%>
+                    <%=col.Name %> ="";   
+                 <%}%> 
+            <%}%>       
+        }
+        
+       static <%=SourceTable.Name%> DynamicCast<T>(object row_data, object row_header) where T : <%=SourceTable.Name%>
+       {
+           // row_data : DataRow
+           // row_header : DataColumnCollection
+           <%=SourceTable.Name%> ret = new <%=SourceTable.Name%>();
+           DataRow dt = (DataRow)row_data;
+
+           foreach (DataColumn column in (DataColumnCollection)row_header)
+           {
+               switch (column.ColumnName)
+               {
+                 <% foreach(ColumnSchema col in SourceTable.Columns){%>
+                  <% string primitiveType = GetPrimitiveDataType(col.DataType);%>    
+                  <%if(primitiveType=="long")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToLong(dt[column]);
+                       break;
+                 <%}%>                 
+                 <%if(primitiveType=="int")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToInt(dt[column]);
+                       break;
+                 <%}%> 
+                <%if(primitiveType=="float")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToFloat(dt[column]);
+                       break;
+                 <%}%> 
+                 <%if(primitiveType=="Double")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToDouble(dt[column]);
+                       break;
+                 <%}%>  
+                <%if(primitiveType=="string")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToString(dt[column]);
+                       break;
+                 <%}%>  
+                <%if(primitiveType=="DateTime")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToDateTime(dt[column]);
+                       break;
+                 <%}%> 
+                <%if(primitiveType=="bool")%>
+                 <%{%>
+                      case  "<%=col.Name %>":
+                        ret.<%=col.Name %> = ConvertObject.ToBool(dt[column]);
+                       break;
+                 <%}%>  
+                 <%}%>          
+                
+                   default:
+                       break;
+               }
+           }
+
+           return ret;
+       }
+        
+    }
+}

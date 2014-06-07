@@ -1,0 +1,65 @@
+﻿@using CoreData
+@model List<ShoppingCart>
+@{
+    var toTalProduct = 0;
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            toTalProduct = toTalProduct + item.Amount;
+        }
+    }
+    ViewBag.Title = String.Format("Giỏ hàng ({0})", toTalProduct);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/shoppingcart.css")" rel="stylesheet" type="text/css" />
+}
+@section BottomResource{
+    <script src="@Url.Content("~/Content/js/shoppingcart.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/plugins/belloSlideShow/js/belloSlideShow.js")" type="text/javascript"></script>
+}
+@section BreadCrumb{
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="@Url.Action("Index", "Home")">Bello</a> <span class="arrow-to-right"></span>
+            </li>
+            <li><a href="@Url.Action("Index", "ShoppingCart")">Giỏ hàng</a> <span class="arrow-to-right">
+            </span></li>
+        </ul>
+    </div>
+}
+<div class="main-content">
+    <div class="grid-row">
+        <div class="module-head">
+            <h4>
+                Giỏ hàng</h4>
+        </div>
+        <div class="cart-view">
+            @Html.Action("_ListCart", "ShoppingCart")
+        </div>
+        <div class="relation-product">
+            <div class="grid-row">
+                <div class="grid-content-row">
+                    <div class="attach-with-product slideProduct">
+                        <div class="module-head">
+                            <h4 class="active">
+                                Bạn có muốn mua thêm</h4>
+                        </div>
+                        <div class="slide-overflow-hide">
+                            @if (Model != null && Model.Count > 0 )
+                            {
+                                @Html.Action("RelatedProduct", "Product", new { @Id = Model.First().Product.CateID })
+                            }
+                            else
+                            { 
+                                @Html.Action("RelatedProduct", "Product", new { @Id = 0 })
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

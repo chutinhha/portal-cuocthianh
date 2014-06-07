@@ -1,0 +1,52 @@
+﻿@using CoreData
+@model IList<Banner_Logo>
+<div class="slide-set">
+    @if (Model != null && Model.Count() > 0)
+    { 
+        <div id="mainSlideshow" class="belloSlideShow">
+            <div class="slide-block-image">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        var link = "#";
+                        if (item.Link != "")
+                        {
+                            link = item.Link;
+                        }
+                        <li><a style="background-image: url(../../Media/BannerLogo/@item.Image);" href="@link">
+                        </a></li>
+                    }
+                </ul>
+            </div>
+            <div class="slide-block-nav">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        var link = "#";
+                        if (item.Link != "")
+                        {
+                            link = item.Link;
+                        }
+                        <li><a href="@link" title="@item.Note">
+                            <div class="slide-nav-image">
+                                <img src="../../Media/BannerLogo/@item.Image" alt="@item.Image" />
+                            </div>
+                            <div class="slide-nav-content">
+                                <div class="inner-slide-nav-content">
+                                    @if (item.Note.Length >= 65)
+                                    {
+                                        item.Note = item.Note.Substring(0, 65) + "...";
+                                    }
+                                    <p>
+                                        @item.Name</p>
+                                    <span>@item.Note</span>
+                                </div>
+                            </div>
+                        </a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    @Html.Action("_SubSlideShow", "BannerLogo")
+</div>

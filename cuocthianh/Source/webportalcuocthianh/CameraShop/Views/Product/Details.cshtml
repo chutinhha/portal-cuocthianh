@@ -1,0 +1,163 @@
+﻿@using CoreData
+@model Product
+@{
+    ViewBag.Title = Model.Name;
+}
+
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/plugins/kyersTab/css/kyersTab.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/product.css")">
+}
+@section BottomResource{
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/kyersTab/js/kyersTab.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/belloSlideShow/js/belloSlideShow.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/product.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/plugins/elevatezoom-master/jquery.elevatezoom.js")"></script>
+}
+@section BreadCrumb{
+    @Html.Action("_BreadCrumb", "Product", new { @Id = Model.CateID, @name = Model.Name })
+}
+<div class="left-attr-product">
+    <div class="bello-zoom-box" id="belloZoomBox">
+        <div class="zoom-nav">
+            <div class="z-nav-inner">
+                <ul>
+                    <li>
+                        <div class="zoom-nav-item">
+                            <a href="@Url.Content("~/Media/Product/" + @Model.Image + "")">
+                                <img src="@Url.Content("~/Media/Product/" + @Model.Image + "")" /></a></div>
+                    </li>
+                    @foreach (var item in Model.ProductAttributeExt.Where(x => x.AttributeNameExt.Contains("Hình ảnh")))
+                    { 
+                        <li>
+                            <div class="zoom-nav-item">
+                                <a href="@Url.Content("~/Media/ProductAttribute/" + item.Value)">
+                                    <img src="@Url.Content("~/Media/ProductAttribute/" + item.Value)" /></a></div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="zoom-images-box">
+            <div class="zoom-wrap">
+                <a href="#">
+                    <img id="imgZoomMain" src="@Url.Content("~/Media/Product/" + @Model.Image + "")"  alt="@Model.Image
+"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-view">
+    <div class="content-product">
+        <div class="product-head">
+            <div class="module-head">
+                <h4 class="active">
+                    @Model.Name</h4>
+                <span class="code-inf"><span class="viewer">Lượt xem:
+                    <label>
+                        @Model.View</label></span> <span class="date-post">Ngày đăng:
+                            <label>
+                                @System.DateTime.Now.Subtract(@Model.UpdateDate).Days ngày</label></span>
+                </span>
+            </div>
+        </div>
+        <div class="product-detail">
+            <div class="shop-provider">
+                <a class="link-shop-provider" href="#">
+                    <img src="@Url.Content("~/Media/Manufacturer/" + @Model.ManufactuerExt.Image + "")" alt="@Model.ManufactuerExt.Image"/>
+                    <div class="name-provider">
+                        <p>
+                            Hãng</p>
+                        <span>@Model.ManufactuerExt.Name</span>
+                    </div>
+                </a>
+            </div>
+            <div class="product-sprice">
+                <ul>
+                    <li class="shop-sprice">
+                        <label>
+                            Giá:
+                        </label>
+                        <span class="single-price">@Helper.StringHelper.ConvertNumberToVietNamCurrency(@Model.Price.ToString())</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-detail-infor">
+                <div class="product-status">
+                    <label>
+                        Trạng thái:
+                    </label>
+                    <span>@Model.Instock</span></div>
+                <p>
+                    @Model.ShortDescription
+                </p>
+            </div>
+            <div class="product-add-box">
+                <div class="quantity">
+                    <div class="count-total">
+                        <label>
+                            Số lượng</label>
+                        <input type="text" class="txt txt-count" value="1" />
+                    </div>
+                    <span class="total-sprice">
+                        <label>
+                            Tổng tiền:
+                        </label>
+                        <span class="total-price">@Helper.StringHelper.ConvertNumberToVietNamCurrency(@Model.Price.ToString())</span></span>
+                </div>
+                <div class="add-to-box">
+                    <a href="@Url.Action("BuyNow", "ShoppingCart", new { ProductId = Model.ID, Qty = 1 })" class="btn btn-detail-pay btn-pay">
+                        Mua ngay</a>
+                    <input ProductId=@Model.ID Qty="1" type="button" class="btn btn-blue btn-detail-add-cart btn-add-cart" value="Thêm vào giỏ hàng" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+<div class="tab-detail-content">
+    <ul class="tab-head">
+        <li><a href="#">Thông tin chi tiết</a></li>
+        <li><a href="#">Phương thức thanh toán</a></li>
+        <li><a href="#">Bình luận</a></li>
+    </ul>
+    <ul class="tab-content">
+        <li class="tab-item">
+            <div class="tab-inner">
+                <p>
+                    @MvcHtmlString.Create(@Model.FullDescription)</p>
+            </div>
+        </li>
+        <li class="tab-item">
+            <div class="tab-inner">
+                Tab phương thức thanh toán</div>
+        </li>
+        <li class="tab-item">
+            <div class="tab-inner">
+                Tab bình luận</div>
+        </li>
+    </ul>
+</div>
+<div class="relation-product">
+    <div class="grid-row">
+        <div class="grid-content-row">
+            <div class="center-module slideProduct">
+                <div class="module-head">
+                    <h4 class="active">
+                        Sản phẩm liên quan</h4>
+                </div>
+                @Html.Action("RelatedProduct", "Product", new { @Id = Model.CateID })
+            </div>
+            <div class="center-module attach-with-product slideProduct">
+                <div class="module-head">
+                    <h4 class="active">
+                        Thường được mua kèm với "@Model.Name"</h4>
+                </div>
+                @Html.Action("RelatedProduct", "Product", new { @Id = Model.CateID })
+            </div>
+        </div>
+    </div>
+</div>

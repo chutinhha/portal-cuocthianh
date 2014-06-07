@@ -1,0 +1,61 @@
+﻿@using CoreData
+@model Product
+@helper ShowBreadCrumb(long CatId)
+    {
+        //Lấy category hiện tại
+        var category = Model.CategoryListExt.Where(x => x.ID == CatId);
+        //Lấy ParentId của Category hiện tại
+        var ParentId = category.First().ParentID;
+        //Tìm thằng Category cha là thằng có Id = ParentId hiện tại
+        var CatParent = Model.CategoryListExt.Where(x => x.ID == ParentId);
+        if (category != null && CatParent.Count() > 0)
+        {
+    @ShowBreadCrumb(@CatParent.First().ID);
+    <li><a href="@Url.RouteUrl("category_details", new { Id = @CatParent.First().ID })">@CatParent.First().Name</a>
+        <span class="arrow-to-right"></span>
+        @{
+            var CatChild = Model.CategoryListExt.Where(x => x.ParentID == @CatParent.First().ID);
+                                          if (CatChild.Count() > 0)
+                                          {
+            <ul class="bread-crumb-child">
+                @foreach (var item in CatChild)
+                {
+                    <li><a href="@Url.RouteUrl("category_details", new { Id = item.ID })">@item.Name</a>
+                    </li>
+                }
+            </ul>
+                                          }
+        }
+    </li>
+        }
+        if (CatId == Model.CateID)
+        {
+    <li><a href="@Url.RouteUrl("category_details", new { Id = Model.CateID })">@Model.CategoryNameExt</a>
+        <span class="arrow-to-right"></span>
+        @{
+            var CatChild = Model.CategoryListExt.Where(x => x.ParentID == Model.CateID);
+            if (CatChild.Count() > 0)
+            {
+            <ul class="bread-crumb-child">
+                @foreach (var item in CatChild)
+                {
+                    <li><a href="@Url.RouteUrl("category_details", new { Id = item.ID })">@item.Name</a>
+                    </li>
+                }
+            </ul>
+            }
+        }
+    </li>
+        }
+}
+<div class="breadcrumbs">
+    <ul>
+        <li><a href="@Url.Action("Index", "Home")">Bello</a> <span class="arrow-to-right"></span>
+        </li>
+        @ShowBreadCrumb(Model.CateID)
+        @if (@Model.Name != "")
+        {
+            <li><span>@Model.Name</span> </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,63 @@
+﻿@using CoreData
+@model IEnumerable<Manufacturer>
+@if (Model!=null&&Model.Count() > 0)
+{
+    int i = 0;
+    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+        <thead>
+            <tr>
+                <th width="20px">STT
+                </th>
+                <th>Tên nhà sản xuất
+                </th>
+                <th width="70px">Hình ảnh</th>
+                <th>Mô tả
+                </th>
+                <th width="60px">Trạng thái
+                </th>
+                <th width="60px">Chức năng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        <span class="SpanId" style="display: none;">@item.ID</span>
+                        <span class="SpanName" style="display: none;">@item.Name</span>
+                        @item.Name
+                    </td>
+                    <td>
+                      <img src="@Url.Content("~/Media/Manufacturer/" + item.Image)" width="70px" height="70px" alt="@item.Name" /></td>
+
+                    <td>
+                        @item.Note
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(x => item.Active, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                     @if (CameraShop.BaseController.Permission.Contains("U"))
+                     {
+                        <a title="Sửa" href="@Url.Action("AddOrUpdate", "ManufacturerManagement", new { id = item.ID })" class="icon-pencil"></a>
+                     }
+                      @if (CameraShop.BaseController.Permission.Contains("D"))
+                      {
+                        <a title="Xóa" href="@Url.Action("Delete", "ManufacturerManagement", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');"></a>
+                      }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="error-text">Không tìm thấy dữ liệu.
+    </h2>
+}

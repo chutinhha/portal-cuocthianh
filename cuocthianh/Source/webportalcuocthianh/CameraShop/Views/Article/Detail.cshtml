@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using CoreData
+@model Article
+@section HeadResource{
+    <title>@Model.Title</title>
+    <link href="@Url.Content("~/Content/css/article.css")" rel="stylesheet" type="text/css" />
+}
+<div class="article-view">
+    <div class="article-essential">
+        <h1>@Model.Title</h1>
+        <div class="infor-article">
+            <span>Viết bởi: <a href="@Url.Action("index", "article", new { @username=""+@Model.UserNameExt+""})">@Model.UserNameExt</a></span>
+            <span>Đăng ngày: @Model.UpdateDate.ToString()</span>
+            <span>Danh mục: <a href="@Url.Action("index", "article", new { @catid= "" + @Model.CateID + "" })">@Model.CategoryNameExt</a></span>
+            <span>Lượt xem: @Model.View</span>
+        </div>
+        <div class="summary-article">@Model.ShortDescription</div>
+        <div class="article-content">
+            <a href="../../Media/article/@Model.Image"><img src="../../Media/article/@Model.Image" width="500px" alt="book"/></a>
+            @MvcHtmlString.Create(Model.Content)
+        </div>
+    </div>
+    @if (@Model.ListSameArticleExt.Count != 0)
+    {
+    <div class="article-connect">
+        <h1 class="general-heading">
+            <span>Bài viết liên quan</span>
+        </h1>
+        <ul>
+        @foreach (var item in @Model.ListSameArticleExt)
+        {
+         
+            <li><a href="@Url.Action("detail", "article", new { @id = "" + @item.ID + "" })">@item.Title</a></li>
+        }
+        </ul>
+    </div>
+    }
+    else { 
+        <div class="article-connect"></div>
+    }
+</div>

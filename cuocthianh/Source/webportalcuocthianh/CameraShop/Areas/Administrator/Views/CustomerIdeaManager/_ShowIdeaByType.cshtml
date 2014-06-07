@@ -1,0 +1,81 @@
+﻿@using CoreData
+@model IEnumerable<CoreData.CustomerIdea>
+@if (Model!=null && Model.Count() > 0)
+{
+    var htmlid = "tSortablecustomeridea" + Model.First().Type;
+    var i = 0;
+    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="@htmlid">
+        <thead>
+            <tr>
+                <th width="20px">
+                    STT
+                </th>
+                <th width="70px">
+                    Người gửi
+                </th>
+                <th width="70px">
+                    Mã đơn hàng
+                </th>
+                <th width="75px">
+                    Attachment
+                </th>
+                <th width="60px">
+                    Email
+                </th>
+                <th width="60px">
+                    Ngày gửi
+                </th>
+                <th width="60px">
+                    Chức năng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td width="20px">
+                        @i
+                        <span class="SpanId" style="display: none;">@item.ID</span>
+                    </td>
+                    <td width="70px">
+                        @item.UserNameExt
+                    </td>
+                    <td width="75px">
+                       <a class="link-popup" onclick="open('@Url.Action("AddOrUpdate", "OrderManagement", new { id = @item.OrderID })', 'MsgWindow')" href="#">@item.OrderID</a>
+                    </td>
+                    <td width="60px">
+                        @item.Attachment
+                    </td>
+                    <td width="60px">
+                        @item.Email
+                    </td>
+                    <td width="60px">
+                        @item.DateCreate
+                    </td>
+                    <td width="60px">
+                       @if (CameraShop.BaseController.Permission.Contains("D"))
+                       {
+                        <a title="Xóa" href="@Url.Action("Delete", "CustomerIdeaManager", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');">
+                        
+                        </a>
+                       }
+                          @if (CameraShop.BaseController.Permission.Contains("R"))
+                          {
+                        <a title="Chi tiết ý kiến" href="@Url.Action("Detail", "CustomerIdeaManager", new { id = item.ID })" class="icon-eye-open">
+                        
+                        </a>
+                          }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="error-text">
+        Không tìm thấy dữ liệu.
+    </h2>
+}

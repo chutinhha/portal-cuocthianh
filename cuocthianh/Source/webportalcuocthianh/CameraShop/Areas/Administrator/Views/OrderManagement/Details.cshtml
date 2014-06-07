@@ -1,0 +1,123 @@
+﻿@using CoreData
+@model IEnumerable<OrderDetail>
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+}
+<div class="head">
+    <div class="isw-documents">
+    </div>
+    <h1>
+        Chi tiết đơn hàng</h1>
+    <div class="clear">
+    </div>
+</div>
+<div class="block-fluid table-sorting">
+    <div class="row-fluid list">
+     @if (CameraShop.BaseController.Permission.Contains("R"))
+     {
+        <div class="span12">
+            @if (Model != null && Model.Count() > 0)
+            {
+                <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã đơn hàng
+                            </th>
+                            <th>
+                                Mã sản phẩm
+                            </th>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <th>
+                                Đơn giá
+                            </th>
+                            <th>
+                                Số lượng
+                            </th>
+                            <th>
+                                Tổng cộng
+                            </th>
+                            @* <th>
+                                Cập nhật
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    #@item.OrderID
+                                </td>
+                                <td>@item.ProductID
+                                </td>
+                                <td>
+                                    @item.ProductNameExt
+                                </td>
+                                <td>@Helper.StringHelper.FormatCurrencyVN(item.Price)
+                                </td>
+                                <td>@Html.TextBoxFor(x => item.Amount, new { @class = "qty", data_Id = item.ID, data_orderId = item.OrderID })
+                                </td>
+                                <td>@Helper.StringHelper.FormatCurrencyVN(item.Total)
+                                </td>
+                                @* <td>
+                                    <a title="Sửa" href="@Url.Action("AddOrUpdateDetail", "OrderManagement", new { id = item.ID })" class="icon-pencil">
+                                    </a><a title="Xóa" href="@Url.Action("DeleteDetail", "OrderManagement", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');">
+                                    </a>
+                                </td>*@
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h2 class="error-text">
+                    Không tìm thấy dữ liệu.
+                </h2>
+            }
+        </div>
+     }
+    </div>
+</div>
+<script type="text/javascript">
+    $(".qty").live("change",function () {
+        var qty = $(this).val();
+        var Id = $(this).attr('data-id');
+        var orderId = $(this).attr('data-orderid');
+        load_data(Id, orderId, qty);
+
+    })
+    function load_data(Id,orderId,qty) {
+        var result = null;
+        var scriptUrl = '/Administrator/OrderManagement/UpdateQty';
+        $.ajax({
+            url: scriptUrl,
+            data: {
+                ID: Id,
+                OrderID: orderId,
+                Amount: qty
+            },
+            type: 'post',
+            dataType: 'html',
+            async: false,
+            success: function (data) {
+                $.get('/Administrator/OrderManagement/_PartialDetails/?id=' + orderId, function (data) {
+                    $(".list").html('');
+                    $(".list").html(data);
+                    // Sortable table
+                    if ($("#tSortable").length > 0) {
+                        $('#tSortable').dataTable({
+                            "aLengthMenu": [5, 10, 25, 50, 100],
+                            "sPaginationType": "full_numbers"
+                        });
+                    }
+                })
+            }
+        });
+
+        return result;
+    }
+</script>

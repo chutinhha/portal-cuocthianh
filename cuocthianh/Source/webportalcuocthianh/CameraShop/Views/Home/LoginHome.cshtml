@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using CoreData
+@model User
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/login.css")" rel="stylesheet" type="text/css" />
+}
+@section BottomResource{
+    <script src="@Url.Content("~/Content/js/login.js")" type="text/javascript"></script>
+}
+<div class="main-content">
+    <div class="grid-row">
+        @using (Html.BeginForm("LoginHome", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <div class="login-view">
+                <div class="intro-box">
+                    <div class="box-inner">
+                        <div class="content-login">
+                            <div class="module-head">
+                                <h4>
+                                    Khách hàng mới</h4>
+                            </div>
+                            <div class="intro-to-register">
+                                <p>
+                                    Bạn là khách hàng mới và chưa có tài khoản tại Bello.vn? Vui lòng bỏ ra vài phút
+                                    để đăng ký và trải nghiệm mua sắm online cùng Bello
+                                </p>
+                            </div>
+                        </div>
+                        <div class="control-register">
+                            <a href="@Url.Action("Register", "Home")" class="btn btn-blue btn-register">Tạo tài khoản</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-box">
+                    <div class="box-inner">
+                        <div class="content-login">
+                            <div class="module-head">
+                                <h4>
+                                    Đã có tài khoản</h4>
+                            </div>
+                            @Html.ValidationSummary()
+                            <ul>
+                                <li>
+                                    <label>
+                                        Email</label>
+                                    @Html.TextBoxFor(x => x.UserName, new { @class = "txt", @id = "UserName" })
+                                </li>
+                                <li>
+                                    <label>
+                                        Mật khẩu</label>
+                                    @Html.PasswordFor(x => x.Password, new { @class = "txt", @id = "txt-Password" })
+                                </li>
+                                <li class="remember-acc">
+                                    <label class="lbl-remember">
+                                        Nhớ tài khoản</label>
+                                    <input id="chk-remember" class="chk" type="checkbox" />
+                                </li>
+                                <li class="forgot-password"><a href="@Url.Action("ForgotPassword", "Home")">Quên mật khẩu ?</a></li>
+                                <li class="control-register">
+                                    <input id="btn-login" class="btn btn-login" type="submit" value="Đăng nhập" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

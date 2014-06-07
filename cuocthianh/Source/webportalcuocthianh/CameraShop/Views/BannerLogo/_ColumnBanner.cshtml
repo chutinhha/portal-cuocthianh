@@ -1,0 +1,22 @@
+﻿@using CoreData
+@using Helper
+@model IList<Banner_Logo>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        var link = "#";
+        if (item.Link != "")
+        {
+            link = item.Link;
+        }
+    <li class="slide-item"><a href="@link" title="@item.Name">
+        <img src="../../Media/BannerLogo/@item.Image" alt="@item.Image">
+    </a></li>
+    }
+}
+else { 
+    <li class="slide-item"><a href="#" title="Đăng ký đăng Banner">
+        <img src="../../Content/Source/contactqc.png" alt="Set Banner">
+    </a></li>
+}

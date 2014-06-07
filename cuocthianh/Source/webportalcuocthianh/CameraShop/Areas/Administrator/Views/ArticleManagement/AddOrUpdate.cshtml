@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Thêm hoặc chỉnh sửa bài viết";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Helper
+
+<script src="@Url.ContentArea("~/Content/javascript/Article.js")" type="text/javascript"></script>
+@Html.Action("_AddOrUpdate", "ArticleManagement", new { id = Model })
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+
+        $('#fileuploadarticle').fileupload({
+            dataType: 'json',
+            url: '/Administrator/ArticleManagement/UploadFiles?dir=Article',
+            autoUpload: true,
+            done: function (e, data) {
+                $('#imagearticle').html('<img width=\"70px\" height=\"70px\" src="/Media/article/' + data.result.name + '" />');
+
+            }
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('.progress .progress-bar').css('width', progress + '%');
+        });
+
+        CKEDITOR.replace("Content", { filebrowserBrowseUrl: '/Areas/Administrator/Content/ckeditor/plugins/filemanager/index.html' });
+
+
+        $(".showedit").live("click", function (e) {
+            var $this = $(this);
+            ShowEdit(e, $this);
+        });
+
+        $(".delete").live("click", function (e) {
+            var $this = $(this);
+            DeleteProductAttribute(e, $this);
+        });
+
+        //********END*****************
+
+    });
+</script>

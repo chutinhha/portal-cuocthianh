@@ -1,0 +1,72 @@
+﻿@using CoreData
+@model User
+@using (Html.BeginForm("UpdateInfor", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    
+    <div class="tab-inner">
+        <div class="grid-data detail-grid">
+            <div class="profile-area">
+                <div class="std">
+                    <ul>
+                        <li>
+                            <h2>
+                                Xin chào, @Model.UserName</h2>
+                        </li>
+                        <li>
+                            <label>
+                                Mật khẩu cũ:</label>
+                            @Html.PasswordFor(m => m.TempPassWordExt, new { @class = "txt", @id = "txtPassWord" })
+                        </li>
+                        <li>
+                            <label>
+                                Mật khẩu mới:</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "txt", @id = "txtNewPassWord" })
+                        </li>
+                        <li>
+                            <label>
+                                Nhập lại mật khẩu mới:</label>
+                            <input class="txt" id="txtReNewPassWord" type="password" /></li>
+                    </ul>
+                    <div class="control-apply">
+                        <input id="btn-change-pass" class="btn btn-blue btn-change-pass" type="button" value="Sửa thông tin" />
+                    </div>
+                </div>
+            </div>
+            <div class="profile-area">
+                <div class="module-head">
+                    <h4>
+                        Thông tin cá nhân</h4>
+                </div>
+                <div class="std">
+                    <ul>
+                        <li>
+                            <label>
+                                Họ tên:</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "txt" })</li>
+                        <li>
+                            <label>
+                                Email:</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "txt" })</li>
+                        <li>
+                            <label>
+                                Điện thoại:</label>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "txt" })</li>
+                        <li>
+                            <label>
+                                Địa chỉ:</label>
+                            @Html.TextBoxFor(m => m.Address, new { @class = "txt" })</li>
+                        <li>
+                            <label>
+                                Tỉnh/Thành Phố:</label>
+                            @Html.DropDownListFor(m => m.ProvinceIDExt, Model.ListProvinceExt, new { @id = "provinceID", @class = "select" })
+                        </li>
+                    </ul>
+                    <div class="control-apply">
+                        <input id="btn-change-infor" class="btn btn-change-infor" type="submit" value="Chấp nhận">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

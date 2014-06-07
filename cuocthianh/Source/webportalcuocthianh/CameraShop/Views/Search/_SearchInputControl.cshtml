@@ -1,0 +1,17 @@
+﻿@using CoreData
+@model Search
+@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+{
+    <div class="search-box">
+        @if (Model != null)
+        {
+            <div class="data-nav-search">
+                @Html.DropDownListFor(x => x.CatID, Model.ListCategoryExt, new { @id = "selectSearch" })
+            </div>
+        }
+        <div class="search-control kyer-autocomplete">
+            @Html.TextBoxFor(x => x.Name, new { @class = "txt txt-nav-search", @id = "txtNavSearch", @autocomplete = "off" })
+            <input type="submit" class="btn" id="btnNavSearch" value="Tìm" />
+        </div>
+    </div>
+}

@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CameraDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CameraDBModelStoreContainer">
+          <EntitySet Name="Configuration" EntityType="CameraDBModel.Store.Configuration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="CameraDBModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetail" EntityType="CameraDBModel.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="CameraDBModel.Store.Product" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="TotalPrice" Type="int" />
+          <Property Name="Ship_Fee" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="DateCompleted" Type="datetime" />
+          <Property Name="PaymentMethod" Type="smallint" />
+          <Property Name="ShipMethod" Type="smallint" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="bigint" />
+          <Property Name="OrderID" Type="bigint" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="CateID" Type="bigint" />
+          <Property Name="ModelID" Type="bigint" />
+          <Property Name="ManufacturerID" Type="bigint" />
+          <Property Name="ProductTypeID" Type="bigint" />
+          <Property Name="ProductComponenID" Type="bigint" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FullDescription" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="DiscountFrom" Type="datetime" />
+          <Property Name="DiscountTo" Type="datetime" />
+          <Property Name="Instock" Type="int" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="View" Type="int" />
+          <Property Name="Like" Type="int" />
+          <Property Name="SoleAmout" Type="int" />
+          <Property Name="New" Type="bit" />
+          <Property Name="Typical" Type="bit" />
+          <Property Name="Link" Type="nvarchar" MaxLength="150" />
+          <Property Name="ShowHomePage" Type="bit" />
+          <Property Name="Image" Type="nvarchar" MaxLength="150" />
+          <Property Name="MetaTitle" Type="nvarchar(max)" />
+          <Property Name="MetaKeyword" Type="nvarchar(max)" />
+          <Property Name="MetaDescription" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CameraDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CameraDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Configurations" EntityType="CameraDBModel.Configuration" />
+          <EntitySet Name="Orders" EntityType="CameraDBModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="CameraDBModel.OrderDetail" />
+          <EntitySet Name="Products" EntityType="CameraDBModel.Product" />
+        </EntityContainer>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <Property Name="Ship_Fee" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="DateCompleted" Type="DateTime" />
+          <Property Name="PaymentMethod" Type="Int16" />
+          <Property Name="ShipMethod" Type="Int16" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="OrderID" Type="Int64" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CateID" Type="Int64" />
+          <Property Name="ModelID" Type="Int64" />
+          <Property Name="ManufacturerID" Type="Int64" />
+          <Property Name="ProductTypeID" Type="Int64" />
+          <Property Name="ProductComponenID" Type="Int64" />
+          <Property Name="ShortDescription" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="DiscountFrom" Type="DateTime" />
+          <Property Name="DiscountTo" Type="DateTime" />
+          <Property Name="Instock" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="Like" Type="Int32" />
+          <Property Name="SoleAmout" Type="Int32" />
+          <Property Name="New" Type="Boolean" />
+          <Property Name="Typical" Type="Boolean" />
+          <Property Name="Link" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ShowHomePage" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetaKeyword" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CameraDBModelStoreContainer" CdmEntityContainer="CameraDBEntities">
+          <EntitySetMapping Name="Configurations"><EntityTypeMapping TypeName="CameraDBModel.Configuration"><MappingFragment StoreEntitySet="Configuration">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Orders"><EntityTypeMapping TypeName="CameraDBModel.Order"><MappingFragment StoreEntitySet="Order">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+            <ScalarProperty Name="Ship_Fee" ColumnName="Ship_Fee" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+            <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+            <ScalarProperty Name="ShipMethod" ColumnName="ShipMethod" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails"><EntityTypeMapping TypeName="CameraDBModel.OrderDetail"><MappingFragment StoreEntitySet="OrderDetail">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="Amount" ColumnName="Amount" />
+            <ScalarProperty Name="Total" ColumnName="Total" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Products"><EntityTypeMapping TypeName="CameraDBModel.Product"><MappingFragment StoreEntitySet="Product">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Code" ColumnName="Code" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="CateID" ColumnName="CateID" />
+            <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+            <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+            <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+            <ScalarProperty Name="ProductComponenID" ColumnName="ProductComponenID" />
+            <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+            <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+            <ScalarProperty Name="Discount" ColumnName="Discount" />
+            <ScalarProperty Name="DiscountFrom" ColumnName="DiscountFrom" />
+            <ScalarProperty Name="DiscountTo" ColumnName="DiscountTo" />
+            <ScalarProperty Name="Instock" ColumnName="Instock" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+            <ScalarProperty Name="View" ColumnName="View" />
+            <ScalarProperty Name="Like" ColumnName="Like" />
+            <ScalarProperty Name="SoleAmout" ColumnName="SoleAmout" />
+            <ScalarProperty Name="New" ColumnName="New" />
+            <ScalarProperty Name="Typical" ColumnName="Typical" />
+            <ScalarProperty Name="Link" ColumnName="Link" />
+            <ScalarProperty Name="ShowHomePage" ColumnName="ShowHomePage" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+            <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+            <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="CameraDBModel.Configuration" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="CameraDBModel.Order" Width="1.5" PointX="2.75" PointY="0.75" Height="3.7109993489583326" IsExpanded="true" />
+        <EntityTypeShape EntityType="CameraDBModel.OrderDetail" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CameraDBModel.Product" Width="1.5" PointX="4.75" PointY="3.75" Height="6.4032194010416656" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

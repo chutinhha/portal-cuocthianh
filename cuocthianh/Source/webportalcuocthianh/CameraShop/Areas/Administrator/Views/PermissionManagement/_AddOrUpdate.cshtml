@@ -1,0 +1,75 @@
+﻿@model CoreData.User_Role_Module
+@{ 
+    ViewBag.Title = "Thêm phân quyền";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents">
+            </div>
+            <h1>
+                Chi tiết</h1>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="block-fluid tabs">
+            <ul>
+                <li><a href="#tabs-1">Nội dung trang</a></li>
+
+            </ul>
+            @using (Ajax.BeginForm("AddOrUpdate", "PermissionManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+            {
+                <div class="warning-area">
+                </div>
+                <div id="tabs-1">
+                     @Html.HiddenFor(model => model.ID)
+                     <div class="row-form">
+                    <div class="span2">
+                        Chọn tài khoản:</div>
+                    <div class="span9">
+                      @*  @Html.TextBoxFor(x => x.Name, new { @class = "validate[required,funcCall[ExistCategoryName[this]]]" })</div>*@
+                          @Html.DropDownListFor(x => x.UserID, Model.listUserExt)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        Chọn Module:</div>
+                    <div class="span9">
+                      @*  @Html.TextBoxFor(x => x.Name, new { @class = "validate[required,funcCall[ExistCategoryName[this]]]" })</div>*@
+                          @Html.DropDownListFor(x => x.ModuleID, Model.listmoduleExt)</div>
+                    <div class="clear">
+                    </div>
+                </div>
+              
+                <div class="row-form">
+                    <div class="span2">
+                      Quyền</div>
+                    <div class="span9">
+                        @Html.CheckBoxFor(x => x.RExt) Xem
+                        @Html.CheckBoxFor(x => x.CExt) Thêm
+                        @Html.CheckBoxFor(x => x.DExt) Xóa
+                        @Html.CheckBoxFor(x => x.UExt) Cập nhật
+                     </div>
+                    <div class="clear">
+                    </div>
+                </div>
+
+                </div>
+                
+               
+                if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                {
+                <div class="row-form">
+                    <div class="span2">
+                    </div>
+                    <div class="span9">
+                        <input type="submit" class="btn btn-info span3" value="Cập nhật" /></div>
+                    <div class="clear">
+                    </div>
+                </div>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@using CoreData
+@model IEnumerable<Product>
+@if (Model!=null&&Model.Count() > 0)
+{
+    int i = 0;
+    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortableproduct">
+        <thead>
+            <tr>
+                <th width="20px">STT
+                </th>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                 <th>Nhà sản xuất</th>
+                
+                <th>Loại sản phẩm
+                </th>
+                <th>Loại máy ảnh
+                </th>
+                <th width="70px">Hình ảnh</th>
+                
+                <th width="60px">Trạng thái
+                </th>
+                <th width="60px">Chức năng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        <span class="SpanId" style="display: none;">@item.ID</span>
+                        <span class="SpanName" style="display: none;">@item.Code</span>
+                        @item.Code
+                    </td>
+                    <td>
+                      @item.Name
+                    </td>
+                    <td>
+                      @Helper.StringHelper.ConvertNumberToVietNamCurrency(item.Price.ToString())
+                    </td>
+                     <td>
+                      @item.ManufacturerNameExt
+                    </td>
+                    
+                    <td>
+                      @item.ProductTypeNameExt
+                    </td>
+                     <td>
+                      @item.CategoryNameExt
+                    </td>
+                    <td>
+                       
+                        <img src="@Url.Content("~/Media/Product/"+item.Image)" width="70px" height="70px" alt="@item.Name" /></td>
+                    <td>
+                        @Html.CheckBoxFor(x => item.Active, new { @disabled = "disabled" })
+                    </td>
+                    <td>
+                       @if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                       {
+                        <a title="Sửa" href="@Url.Action("AddOrUpdate", "ProductManagement", new { id = item.ID })" class="icon-pencil"></a>
+                       }
+                          @if (CameraShop.BaseController.Permission.Contains("D"))
+                          {
+                        <a title="Xóa" href="@Url.Action("Delete", "ProductManagement", new { id = item.ID })" class="icon-trash" onclick="return confirm('Có chắc bạn muốn xóa ?');"></a>
+                          }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="error-text">Không tìm thấy dữ liệu.
+    </h2>
+}

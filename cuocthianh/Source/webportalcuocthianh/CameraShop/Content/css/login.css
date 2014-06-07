@@ -1,0 +1,54 @@
+#mainContainer{
+	margin-bottom: 10px;
+}
+.box-inner{
+	border: 1px dotted #ddd;
+	padding: 10px;
+	font-size: 15px;
+	margin-bottom: 10px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 1px #f0f0f0;
+	-moz-box-shadow: 0 1px 1px #f0f0f0;
+	box-shadow: 0 1px 1px #f0f0f0;
+	min-height: 20em;
+}
+.login-box{
+	float: left;
+	width: 49.5%;
+}
+.content-login .txt{
+	width: 200px;
+}
+.content-login ul li{
+	margin: 10px 0;
+}
+.remember-acc{
+	clear: both;
+	margin: 10px 0 0 10%;
+}
+
+.forgot-password{
+	margin: 10px 0;
+	font-size: 14px;
+}
+.forgot-password a{
+	color: #00AC6B;
+}
+
+.intro-box{
+	float: right;
+	width: 49.5%;
+}
+.intro-to-register{
+	height: 9em;
+	padding: 10px 0 0 0;
+}
+.control-register .btn-register{
+	width: 130px;
+}
+.intro-to-register p{
+	font-size: 14px;
+	color: #666;
+}
