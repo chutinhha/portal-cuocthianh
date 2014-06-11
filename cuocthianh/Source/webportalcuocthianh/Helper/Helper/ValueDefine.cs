@@ -90,5 +90,6 @@ namespace Helper
         public const string PERMISSION = "PERMISSION";
         public const string CUSTOMERIDEA = "CUSTOMERIDEA";
         public const string BANNERLOGO = "BANNERLOGO";
+        public const string CATEGOPRYARTICLE = "CATEGOPRYARTICLE";
     }
 }

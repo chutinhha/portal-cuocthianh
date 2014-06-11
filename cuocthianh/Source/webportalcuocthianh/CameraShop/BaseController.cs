@@ -45,6 +45,9 @@ namespace CameraShop
         public readonly ICustomerIdeaActionService CustomerIdeaService;
         public readonly IEmailListActionService EmailListService;
         public readonly IShoppingCartActionService ShoppingCartService;
+        public readonly ICategoryArticleActionService CategoryArticleService;
+        public readonly IExamineeActionService ExamineeService;
+        public readonly IPictureExamActionService PictureExamineeService;
 
         public BaseController() { }
 
@@ -73,11 +76,22 @@ namespace CameraShop
             this.ModuleService = module;
         }
 
-        public BaseController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist) {
+        public BaseController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist,
+            IExamineeActionService _examinee) {
             this.UserService = _user;
             this.ProvinceService = _province;
             this.EmailListService =_emaillist;
+            this.ExamineeService = _examinee;
         }
+
+        public BaseController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist)
+        {
+            this.UserService = _user;
+            this.ProvinceService = _province;
+            this.EmailListService = _emaillist;
+           // this.ExamineeService = _examinee;
+        }
+
         public BaseController(IUserActionService _user, IGroupActionService _group, ISearchActionService _search, IUser_Role_ModuleActionService _userrole)
         { 
             this.UserService = _user; this.GroupService = _group;
@@ -206,6 +220,18 @@ namespace CameraShop
         }
 
 
+        public BaseController(ICategoryArticleActionService _categoryarticle)
+        {
+            this.CategoryArticleService = _categoryarticle;
+           
+        }
+
+        public BaseController(IPictureExamActionService _pictureexaminee)
+        {
+            this.PictureExamineeService = _pictureexaminee;
+        }
+
+
         public ActionResult SetUpSecurity()
         {
             if (Session["UserName"] != null)
@@ -299,6 +325,14 @@ namespace CameraShop
                     //   var value = ConfigurationService.GetOneByLINQ(c => c.Code.Equals("CustomerIdeaimg")).Value;
                     var path = Server.MapPath("~/Media/BannerLogo/" + Path.GetFileNameWithoutExtension(_file) + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(_file));
                     var _name = Server.MapPath("~/Media/BannerLogo/" + _file);
+                    _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
+                }
+                if (dir.Contains("CateContent"))
+                {
+                    _file = FileHelper.FileUpload(hpf, "Media/CateContent");
+                    //   var value = ConfigurationService.GetOneByLINQ(c => c.Code.Equals("CustomerIdeaimg")).Value;
+                    var path = Server.MapPath("~/Media/CateContent/" + Path.GetFileNameWithoutExtension(_file) + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(_file));
+                    var _name = Server.MapPath("~/Media/CateContent/" + _file);
                     _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
                 }
                 PathUpload = _file;

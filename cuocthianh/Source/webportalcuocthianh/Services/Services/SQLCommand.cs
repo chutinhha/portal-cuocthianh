@@ -128,5 +128,15 @@ left join [Order] O on O.ID=D.OrderID left join Product P on P.ID=D.ProductID wh
 
        #endregion
 
+
+
+       #region PictureExaminee
+
+       public const string GetPictureExamByUserID = @"select PictureExam.* from PictureExam, Examinee
+                                                              where PictureExam.ExamineeID = Examinee.ID and Examinee.UserID ={0}";
+
+       #endregion
+
+
    }
 }

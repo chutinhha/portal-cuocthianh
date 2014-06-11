@@ -104,6 +104,20 @@ namespace RegisterService
            
            container.RegisterType<IShoppingCartActionService, ShoppingCartActionService>(new HttpContextLifetimeManager<IShoppingCartActionService>());
 
+           container.RegisterType<ICategoryArticleEntity, CategoryArticleEntity>(new HttpContextLifetimeManager<ICategoryArticleEntity>());
+           container.RegisterType<ICategoryArticleActionService, CategoryArticleActionService>(new HttpContextLifetimeManager<ICategoryArticleActionService>());
+
+           container.RegisterType<IExamineeEntity, ExamineeEntity>(new HttpContextLifetimeManager<IExamineeEntity>());
+           container.RegisterType<IExamineeActionService, ExamineeActionService>(new HttpContextLifetimeManager<IExamineeActionService>());
+
+           container.RegisterType<IPictureExamEntity, PictureExamEntity>(new HttpContextLifetimeManager<IPictureExamEntity>());
+           container.RegisterType<IPictureExamActionService, PictureExamActionService>(new HttpContextLifetimeManager<IPictureExamActionService>());
+
+
+           container.RegisterType<ICommentEntity, CommentEntity>(new HttpContextLifetimeManager<ICommentEntity>());
+           container.RegisterType<ICommentActionService, CommentActionService>(new HttpContextLifetimeManager<ICommentActionService>());
+
+
            System.Web.Mvc.DependencyResolver.SetResolver(new DependencyResolver(container));
        }
     }

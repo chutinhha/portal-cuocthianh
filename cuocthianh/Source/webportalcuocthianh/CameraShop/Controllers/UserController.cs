@@ -11,8 +11,8 @@ namespace CameraShop.Controllers
 {
     public class UserController : BaseController
     {
-        public UserController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService emaillist)
-            : base(_user, _province,emaillist)
+        public UserController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService emaillist, IExamineeActionService examinee)
+            : base(_user, _province,emaillist,examinee)
         { }
         //
         // GET: /User/
@@ -59,6 +59,7 @@ namespace CameraShop.Controllers
                     else if(_model.Password == "" || _model.TempPassWordExt==""){
                         this.UserService.Save(_model);
                     }
+                    ExamineeService.Save(_model.ExamineeExt);
                 }
                 return RedirectToAction("Profile", "User");
             }
@@ -75,5 +76,10 @@ namespace CameraShop.Controllers
             return PartialView();
 
         }
+
+
+
+       
+
     }
 }

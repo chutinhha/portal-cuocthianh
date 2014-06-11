@@ -15,13 +15,16 @@ namespace Services
        readonly IUser_GroupEntity Group;
        readonly IProvinceEntity menuprovince;
        readonly IUser_Role_ModuleEntity userrole;
-       
-       public UserService(IUserEntity entity, IUser_GroupEntity group, IProvinceEntity province, IUser_Role_ModuleEntity user)
+       readonly IExamineeEntity examinee;
+
+       public UserService(IUserEntity entity, IUser_GroupEntity group, IProvinceEntity province, IUser_Role_ModuleEntity user,
+           IExamineeEntity examinee)
        {
            this.entity = entity;
            this.Group = group;
            this.menuprovince = province;
            this.userrole = user ;
+           this.examinee = examinee;
        }
 
        #region Main Method
@@ -189,7 +192,9 @@ namespace Services
        {
            try
            {
-               return entity.GetByCusTomSQL(string.Format(SQLCommand.GetUserByUserName, username)).ToList().First();
+               var userdata = entity.GetByCusTomSQL(string.Format(SQLCommand.GetUserByUserName, username)).ToList().First();
+                userdata.ExamineeExt = examinee.Get(c=>c.UserID.Equals(userdata.ID),Table.Examinee.ToString());
+                return userdata;
            }
            catch { return null; }
        }

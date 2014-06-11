@@ -199,6 +199,10 @@ namespace Services
        #endregion
 
 
+        void aaaa(int id)
+       {
+           GetListByLINQ(c => c.CateID.Equals(id));
+        }
 
         #region Other Method
         public List<SelectListItem> GetListCategory(int id)
