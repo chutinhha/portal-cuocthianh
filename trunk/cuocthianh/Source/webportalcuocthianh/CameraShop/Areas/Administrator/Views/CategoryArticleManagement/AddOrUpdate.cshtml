@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Thêm hoặc chỉnh sửa";
+}
+@using Helper
+
+<script src="@Url.ContentArea("~/Content/javascript/categoryarticle.js")" type="text/javascript"></script>
+@Html.Action("_AddOrUpdate", "CategoryArticleManagement", new { id = Model })
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            url: '/Administrator/CategoryArticleManagement/UploadFiles?dir=CateContent',
+            autoUpload: true,
+            done: function (e, data) {
+                $('#image').html('<img width=\"70px\" height=\"70px\" src="/Media/CateContent/' + data.result.name + '" />');
+
+            }
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('.progress .progress-bar').css('width', progress + '%');
+        });
+
+    });
+</script>

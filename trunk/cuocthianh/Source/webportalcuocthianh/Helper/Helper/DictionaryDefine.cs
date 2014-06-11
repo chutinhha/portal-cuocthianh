@@ -7,6 +7,7 @@ namespace Helper
 {
     public class DictionaryDefine
     {
+        //danh mục
         public Dictionary<int, string> DicArticleCategory = new Dictionary<int, string>()
         {
             {1, "Hướng dẫn"},

@@ -29,6 +29,10 @@ namespace CoreData
       User_Group,
       User_Role_Module,
       EmailTemplate,
-      EmailList
+      EmailList,
+      Examinee,
+      CategoryArticle,
+      PictureExam,
+      Comment
     }
 }

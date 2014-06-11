@@ -26,6 +26,7 @@ namespace CoreData
             public List<SelectListItem> ListProvinceExt;
             public List<SelectListItem> ListDictrictExt;
             public List<SelectListItem> ListUserManegerExt;
+            public Examinee ExamineeExt { get; set; }
         public User()
         {       
                     UserName ="";   

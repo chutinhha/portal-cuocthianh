@@ -25,6 +25,7 @@ namespace ActionServices
         CoreData.User GetByUserName(string username);
         List<SelectListItem> GetListUserManger(int id);
         CoreData.User GetByEmail(string email);
+       
     }
 
     public partial class UserActionService:IUserActionService

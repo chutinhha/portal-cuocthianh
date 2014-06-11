@@ -151,5 +151,6 @@ namespace BaseEntity
           return  GetAll(TableName);
        }
 
+
     }
 }
