@@ -38,6 +38,27 @@ namespace CameraShop.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Return json object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ActionResult CommentBoxJson(int id, int type)
+        {
+            if (type == 1)
+            {
+                // return Json(data, JsonRequestBehavior.AllowGet);
+                return PartialView(); //comment picture
+            }
+            else
+            {
+                // return Json(data, JsonRequestBehavior.AllowGet);
+                return PartialView(); //comment article
+            }
+        }
+
         /// <summary>
         /// Action
         /// </summary>
