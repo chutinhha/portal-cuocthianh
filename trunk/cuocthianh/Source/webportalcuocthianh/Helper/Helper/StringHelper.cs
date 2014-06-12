@@ -188,5 +188,15 @@ namespace Helper
            return "http://" + HttpContext.Current.Request.Url.Host +":"+ HttpContext.Current.Request.Url.Port;
        }
 
+       /// <summary>
+       /// Tạo số báo danh
+       /// </summary>
+       public static string GenerateCode(int num)
+       {
+           if (num < 10)
+               return "0" + num;
+           return num.ToString();
+       }
+
     }
 }

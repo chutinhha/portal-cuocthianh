@@ -48,6 +48,9 @@ namespace CameraShop
         public readonly ICategoryArticleActionService CategoryArticleService;
         public readonly IExamineeActionService ExamineeService;
         public readonly IPictureExamActionService PictureExamineeService;
+        public readonly ICommentActionService CommentService;
+
+        #region Contructor
 
         public BaseController() { }
 
@@ -231,6 +234,13 @@ namespace CameraShop
             this.PictureExamineeService = _pictureexaminee;
         }
 
+        public BaseController(ICommentActionService _comment)
+        {
+            this.CommentService = _comment;
+        }
+
+
+        #endregion
 
         public ActionResult SetUpSecurity()
         {
@@ -335,6 +345,25 @@ namespace CameraShop
                     var _name = Server.MapPath("~/Media/CateContent/" + _file);
                     _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
                 }
+
+                if (dir.Contains("ProfileAvatar"))
+                {
+                    _file = FileHelper.FileUpload(hpf, "Media/ProfileAvatar");
+                    //   var value = ConfigurationService.GetOneByLINQ(c => c.Code.Equals("CustomerIdeaimg")).Value;
+                    var path = Server.MapPath("~/Media/ProfileAvatar/" + Path.GetFileNameWithoutExtension(_file) + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(_file));
+                    var _name = Server.MapPath("~/Media/ProfileAvatar/" + _file);
+                    _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
+                }
+
+                if (dir.Contains("PictureExam"))
+                {
+                    _file = FileHelper.FileUpload(hpf, "Media/PictureExam");
+                    //   var value = ConfigurationService.GetOneByLINQ(c => c.Code.Equals("CustomerIdeaimg")).Value;
+                    var path = Server.MapPath("~/Media/PictureExam/" + Path.GetFileNameWithoutExtension(_file) + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(_file));
+                    var _name = Server.MapPath("~/Media/PictureExam/" + _file);
+                    _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
+                }
+
                 PathUpload = _file;
                 r.Add(new ViewDataUploadFilesResult()
                 {
@@ -414,6 +443,7 @@ namespace CameraShop
             }
             return View(model);
         }
+
         public ActionResult CanView(object model = null)
         {
             Groupid = SessionManagement.GetSessionReturnInt("UserGroup");

@@ -131,7 +131,45 @@ namespace Services
 
 
         #region Other Method
+        /// <summary>
+        /// Get comment list by type and referenceID
+        /// Type define: 0 is Artice, 1 is PictureExam
+        /// ReferenceID define: It's id of record into article table or PictureExam table
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="referenceid"></param>
+        /// <returns></returns>
+        public virtual IList<Comment> GetCommentsByTypeAndReferenceID(int type, int referenceid)
+        {
+            try
+            {
+                return entity.GetMany(c => c.CommentType.Equals(type) && c.ReferenceID.Equals(referenceid), Table.Comment.ToString()).ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        /// <summary>
+        /// Generate comment box for picture exam with html code
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GenerateCommentBoxPictureExam(int referenceid)
+        {
+            var data = GetCommentsByTypeAndReferenceID(1, referenceid);
+            return "";
+        }
+
+        /// <summary>
+        /// Generate comment box for article with html code
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GenerateCommentBoxArticle(int referenceid)
+        {
+            var data = GetCommentsByTypeAndReferenceID(0, referenceid);
+            return "";
+        }
 
 
         #endregion 
