@@ -17,6 +17,9 @@ namespace ActionServices
         CoreData.Comment GetOneByLINQ(Func<CoreData.Comment, Boolean> _where);
         IList<CoreData.Comment> GetList(string _searchstring);
         bool Delete(object _model);
+        string GenerateCommentBoxPictureExam(int referenceid);
+        string GenerateCommentBoxArticle(int referenceid);
+       
     }
 
     public partial class CommentActionService:ICommentActionService
@@ -68,7 +71,28 @@ namespace ActionServices
        #endregion
 
 
-        #region Other Method
+       #region Other Method
+
+       /// <summary>
+       /// Generate comment box for picture exam with html code
+       /// </summary>
+       /// <returns></returns>
+       public virtual string GenerateCommentBoxPictureExam(int referenceid)
+       {
+           var data = Service.GetCommentsByTypeAndReferenceID(1, referenceid);
+           return "";
+       }
+
+       /// <summary>
+       /// Generate comment box for article with html code
+       /// </summary>
+       /// <returns></returns>
+       public virtual string GenerateCommentBoxArticle(int referenceid)
+       {
+           var data = Service.GetCommentsByTypeAndReferenceID(0, referenceid);
+           return "";
+       }
+
         #endregion
 
     }

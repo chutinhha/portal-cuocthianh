@@ -52,11 +52,12 @@ namespace ActionServices
            var id = Service.Save(_model);
            if (id > 0)
            {
+               var user =(User)_model;
                User_Group g = new User_Group();
-               g.GroupID = ((User)_model).GroupIDExt;
+               g.GroupID = user.GroupIDExt;
                g.UserID = id;
                GroupService.Save(g);
-               EmailService.Save(((User)_model).Email);
+               EmailService.Save((user).Email);
                var module = ModuleService.GetList();
                var check = RoleService.GetListByLINQ(c => c.UserID.Equals(id));
                if (check == null||check.Count==0)

@@ -59,6 +59,7 @@ namespace CameraShop.Controllers
                     else if(_model.Password == "" || _model.TempPassWordExt==""){
                         this.UserService.Save(_model);
                     }
+                    //trong profile thêm các html control để luu lại thông tin người dự thi
                     ExamineeService.Save(_model.ExamineeExt);
                 }
                 return RedirectToAction("Profile", "User");

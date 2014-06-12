@@ -15,7 +15,7 @@ namespace CoreData
             public string Address{get;set;}
             public string Comment{get;set;}
             public long ReferenceID{get;set;}
-            public string CommentType{get;set;}
+            public int CommentType{get;set;}
             public long ParentID{get;set;}
             public DateTime PostDate{get;set;}
             public bool Active{get;set;}
@@ -27,7 +27,7 @@ namespace CoreData
                     Phone ="";   
                     Address ="";   
                     Comment ="";   
-                    CommentType ="";   
+                    //CommentType ="";   
         }
         
        static Comment DynamicCast<T>(object row_data, object row_header) where T : Comment
@@ -63,7 +63,7 @@ namespace CoreData
                         ret.ReferenceID = ConvertObject.ToLong(dt[column]);
                        break;
                       case  "CommentType":
-                        ret.CommentType = ConvertObject.ToString(dt[column]);
+                        ret.CommentType = ConvertObject.ToInt(dt[column]);
                        break;
                       case  "ParentID":
                         ret.ParentID = ConvertObject.ToLong(dt[column]);
