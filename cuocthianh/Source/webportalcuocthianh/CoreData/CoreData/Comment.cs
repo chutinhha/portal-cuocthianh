@@ -13,7 +13,7 @@ namespace CoreData
             public string Email{get;set;}
             public string Phone{get;set;}
             public string Address{get;set;}
-            public string Comment{get;set;}
+            public string CommentContent{get;set;}
             public long ReferenceID{get;set;}
             public int CommentType{get;set;}
             public long ParentID{get;set;}
@@ -25,8 +25,8 @@ namespace CoreData
                     Name ="";   
                     Email ="";   
                     Phone ="";   
-                    Address ="";   
-                    Comment ="";   
+                    Address ="";
+                    CommentContent = "";   
                     //CommentType ="";   
         }
         
@@ -56,8 +56,8 @@ namespace CoreData
                       case  "Address":
                         ret.Address = ConvertObject.ToString(dt[column]);
                        break;
-                      case  "Comment":
-                        ret.Comment = ConvertObject.ToString(dt[column]);
+                      case "CommentContent":
+                       ret.CommentContent = ConvertObject.ToString(dt[column]);
                        break;
                       case  "ReferenceID":
                         ret.ReferenceID = ConvertObject.ToLong(dt[column]);
