@@ -23,15 +23,16 @@ namespace CameraShop.Controllers
         }
 
         public ActionResult Profile() {
-            if (Session["UserName"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else {
-                var username = Session["UserName"].ToString();
-                var data = UserService.GetByUserName(username);
-                return View(data);
-            }
+            //if (Session["UserName"] == null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //else {
+            //    var username = Session["UserName"].ToString();
+            //    var data = UserService.GetByUserName(username);
+            //    return View(data);
+            //}
+            return View();
         }
 
         public ActionResult _ProfileInfor() {

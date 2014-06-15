@@ -36,6 +36,7 @@ namespace Helper
         {
             Order = 1,
             Contact = 2,
+            Article = 3
         }
         public enum Paymethod
         {

@@ -46,6 +46,13 @@ namespace CameraShop.Controllers
             var data = PictureExamineeService.GetListByUserID(userid);
             return PartialView(data);
         }
+        /// <summary>
+        /// Album Picture
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult _AlbumPicture() {
+            return View();
+        }
 
     }
 }
