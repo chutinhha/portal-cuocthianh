@@ -1,0 +1,8 @@
+﻿@using CoreData
+@model Search
+@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.Name, new { @class = "txt", @value="Search",  @id = "txtNavSearch", @autocomplete = "off" })
+    @*<input type="text" name="s" value="Search" />*@
+    <input type="submit" value="Search" />
+}
