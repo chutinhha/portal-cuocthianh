@@ -87,7 +87,7 @@ Description: RTL version
 \*====================================*/
 
 body {
-	direction: rtl;
+	direction: ltr;
 	unicode-bidi: embed;
 }
 
@@ -422,13 +422,12 @@ ul.menu ul ul ul ul li a:hover {
 /*	nav buttons */
 .navbtns li {
 	float: right;
-	border-right: none;
-	border-left: 2px solid #394264;
+	border-left: none;
+	border-right: 2px solid #394264;
 }
 .navbtns.navprofile li {
 	float: left;
-	border-right: 2px solid #394264;
-	border-left: none;
+	
 }
 
 /*	textbox
