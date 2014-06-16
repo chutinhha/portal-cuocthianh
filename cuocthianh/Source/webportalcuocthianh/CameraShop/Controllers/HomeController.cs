@@ -128,17 +128,17 @@ namespace CameraShop.Controllers
             return PartialView();
         }
 
-        public ActionResult LoginHome(string returnurl)
-        {
-            if (Userid == 0)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
+        //public ActionResult LoginHome(string returnurl)
+        //{
+        //    if (Userid == 0)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult LoginHome(User _user, string returnurl)
