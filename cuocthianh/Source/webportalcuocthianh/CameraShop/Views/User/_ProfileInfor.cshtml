@@ -2,8 +2,6 @@
 @model User
 @using (Html.BeginForm("UpdateInfor", "User", FormMethod.Post, new { @class = "form-horizontal" }))
 {
-
-    
     <div class="tab-inner">
         <div class="grid-data detail-grid">
             <div class="profile-area">
@@ -57,11 +55,11 @@
                             <label>
                                 Địa chỉ:</label>
                             @Html.TextBoxFor(m => m.Address, new { @class = "txt" })</li>
-                        <li>
+                        @*<li>
                             <label>
                                 Tỉnh/Thành Phố:</label>
                             @Html.DropDownListFor(m => m.ProvinceIDExt, Model.ListProvinceExt, new { @id = "provinceID", @class = "select" })
-                        </li>
+                        </li>*@
                     </ul>
                     <div class="control-apply">
                         <input id="btn-change-infor" class="btn btn-change-infor" type="submit" value="Chấp nhận">
