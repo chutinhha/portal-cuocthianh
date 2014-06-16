@@ -1,0 +1,115 @@
+﻿@using CoreData
+@using Helper
+@model IList<Search>
+@{
+    var TitleName = @ViewBag.TitleName;
+    ViewBag.Title = "Tìm kiếm cho từ khóa " + '"' + @TitleName + '"';
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@helper pagerHelper()
+    {
+        var TitleName = @ViewBag.TitleName;
+        int totalPage = Model.FirstOrDefault().TotalPageExt;
+        int currentPage = (int)Model.First().PageExt;
+        int i = 0;
+        var catId = Model.FirstOrDefault().CatID;
+    <ul>
+        <li class="bullet-first"><a href="@Url.Action("Index", "Search", new { @page = 1, @catid = catId, @value = TitleName })">
+            <<</a></li>
+        @if (currentPage > 1)
+        {
+            <li class="bullet-prev"><a href="@Url.Action("Index", "Search", new { @page = currentPage - 1, @catid = catId, @value = TitleName })">
+                <</a></li>
+        }
+        @if (totalPage > 0)
+        {
+            var startPage = currentPage - 2;
+            var endPage = currentPage + 2;
+            if (startPage < 1) { startPage = 1; }
+            if (endPage > totalPage) { endPage = totalPage; }
+
+            if (currentPage >= 4)
+            {
+            <li>...</li>
+            }
+            for (i = startPage; i <= endPage; i++)
+            {
+                if (currentPage == i)
+                {
+            <li class="current-page"><a href="@Url.Action("Index", "Search", new { @page = i, @catid = catId, @value = TitleName })">@i</a></li>
+                }
+                else
+                {
+            <li><a href="@Url.Action("Index", "Search", new { @page = i, @catid = catId, @value = TitleName })">@i</a></li>
+                }
+            }
+            if (currentPage <= totalPage - 2)
+            {
+            <li>...</li>
+            }
+        }
+        @if (currentPage < totalPage)
+        {
+            <li class="bullet-next"><a href="@Url.Action("Index", "Search", new { @page = currentPage + 1, @catid = catId, @value = TitleName })">
+                ></a></li>
+        }
+        <li class="bullet-last"><a href="@Url.Action("Index", "Search", new { @page = totalPage, @catid = catId, @value = TitleName })">
+            >></a></li>
+    </ul>
+}
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+}
+<div class="container fluid">
+    <div class="boxcontainer">
+        @foreach (var item in Model)
+        {
+            var Description = item.Description;
+            if (item.Description.Length > 170)
+            {
+                Description = item.Description.Substring(0, 120) + "...";
+            }
+            <article class="pinbox">
+                <div class="post-122 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-landscapes tag-dummy tag-industry tag-ipsum tag-lorem tag-printing tag-simply tag-text tag-typesetting">
+                    <span class="ribbon">Sticky</span>
+                    <div class="preview">
+                        <p class="thumb">
+                            <a href="@item.Link" title="Donec euismod fermentum">
+                                <img src="@item.Image" width="236"
+                                            height="208" alt="Donec euismod fermentum">
+                            </a>
+                        </p>
+                    </div>
+                    <div class="title">
+                        <h2 class="title-2">
+                            <a href="@item.Link">@item.Name</a></h2>
+                    </div>
+                    <div class="excerpt">
+                        @Description
+                    </div>
+                    <div class="meta-data">
+                        <ul class="clearfix">
+                            <li class="border-color-1 tooltip " title="Total comments"><span class="icon-total-comments">
+                                2</span> </li>
+                            <li class="border-color-2 tooltip " title="Post date"><span class="icon-post-date">12.02.14</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+    @*<aside class="sidebar">
+        @if (Model.Count() > 0)
+        {
+            <div class="contentbox">
+                <h4 class="title-1 border-color-2">
+                    أحدث المقالات</h4>
+                @Html.Action("_GetChildCategory", "Category", new { @CatId = Model.First().CatID })
+            </div>
+        }
+    </aside>*@
+</div>
+@section BottomResource{
+    <script src="@Url.Content("~/Content/js/search.js")" type="text/javascript"></script>
+}

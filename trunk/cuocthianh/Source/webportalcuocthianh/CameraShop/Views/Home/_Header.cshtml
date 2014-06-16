@@ -2,24 +2,19 @@
     <div class="container clearfix">
         <div class="left-part">
             <nav class="menu-categories dropel">
-                <a href="http://pinthis-rtl.pixelbeautify.com/#" onclick="return false;" class="icon-menu-categories tooltip"
+                <a href="#" onclick="return false;" class="icon-menu-categories tooltip"
                     title="Categories">Categories</a>
                 <div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-left">
                         <ul class="categories-list">
-                            <li class="cat-item cat-item-2"><a href="http://pinthis-rtl.pixelbeautify.com/category/beauty/"
-                                title="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.">
-                                Beauty</a> </li>
-                            <li class="cat-item cat-item-13"><a href="http://pinthis-rtl.pixelbeautify.com/category/celebrities/"
-                                title="شاهد جميع المقالات في تصنيف Celebrities">Celebrities</a> </li>
-                            <li class="cat-item cat-item-1"><a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"
-                                title="شاهد جميع المقالات في تصنيف Commercial">Commercial</a> </li>
-                            <li class="cat-item cat-item-14"><a href="http://pinthis-rtl.pixelbeautify.com/category/landscapes/"
-                                title="شاهد جميع المقالات في تصنيف Landscapes">Landscapes</a> </li>
-                            <li class="cat-item cat-item-19"><a href="http://pinthis-rtl.pixelbeautify.com/category/sport/"
-                                title="شاهد جميع المقالات في تصنيف Sport">Sport</a> </li>
-                            <li class="cat-item cat-item-9"><a href="http://pinthis-rtl.pixelbeautify.com/category/wildlife/"
-                                title="شاهد جميع المقالات في تصنيف Wildlife">Wildlife</a> </li>
+                            <li class="cat-item cat-item-13"><a href="#"
+                                title="شاهد جميع المقالات في تصنيف Celebrities">Make up</a> </li>
+                            <li class="cat-item cat-item-1"><a href="#"
+                                title="شاهد جميع المقالات في تصنيف Commercial">Hair</a> </li>
+                            <li class="cat-item cat-item-14"><a href="#"
+                                title="شاهد جميع المقالات في تصنيف Landscapes">Esthetics</a> </li>
+                            <li class="cat-item cat-item-19"><a href="#"
+                                title="شاهد جميع المقالات في تصنيف Sport">Nails</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -29,10 +24,7 @@
                     Search</a>
                 <div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-left">
-                        <form action="http://pinthis-rtl.pixelbeautify.com/" method="get">
-                        <input type="text" name="s" value="Search">
-                        <input type="submit" value="Search">
-                        </form>
+                        @Html.Action("_SearchInputControl", "Search")
                     </div>
                 </div>
             </div>
