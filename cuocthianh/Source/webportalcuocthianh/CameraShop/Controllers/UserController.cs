@@ -32,11 +32,14 @@ namespace CameraShop.Controllers
             //    var data = UserService.GetByUserName(username);
             //    return View(data);
             //}
-            return View();
+
+            var data = UserService.GetByUserName("admin");
+             return View(data);
+          //  return View();
         }
 
         public ActionResult _ProfileInfor() {
-            var username = Session["UserName"].ToString();
+            var username = "admin";// Session["UserName"].ToString();
             var data = UserService.GetByUserName(username);
             if (data == null)
                 data = new User();
