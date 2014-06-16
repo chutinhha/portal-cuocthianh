@@ -4,26 +4,52 @@
     ViewBag.Title = "User Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section HeadResource{
+    <title>@ViewBag.Title</title>
+    <link href="../../Content/plugins/KyersTab/css/kyersTab.css" rel="stylesheet" type="text/css" />
+}
+@section BottomResource{
+    <script src="../../Content/plugins/KyersTab/js/kyersTab.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function (e) {
+                $(".topbar").find("li").find("a").kyersTab({ "tabItem": ".tab-item" });
+            });
+        })(jQuery);
+    </script>
+}
 <div class="container clearfix">
     <div class="postWrap">
         <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
             <div class="contentbox">
                 <div class="topbar">
-                    <ul class="navbtns">
-                        <li><a href="http://pinthis-rtl.pixelbeautify.com/post-format-audio/" rel="prev">Previous
-                            post</a> </li>
-                        <li><span class="no-link">Next post</span> </li>
-                    </ul>
                     <p class="space border-color-5">
                         &nbsp;</p>
+                    <ul class="navbtns navprofile">
+                        <li><a href="#">Album Ảnh post</a> </li>
+                        <li><a href="#">User Profile</a></li>
+                    </ul>
                 </div>
-                <p class="featured-image">
-                    <img src="postpinthis_files/dfgdfgd-.jpg" alt="Post Format: Standart">
-                </p>
-                <h3 class="title-3 ">
-                    <a href="http://pinthis-rtl.pixelbeautify.com/post-format-standart/">Post Format: Standart</a>
-                </h3>
-                
+                <div class="tab-content">
+                    <ul class="tab-list">
+                        <li class="tab-item">
+                            <p class="featured-image">
+                                <img src="postpinthis_files/dfgdfgd-.jpg" alt="Post Format: Standart">
+                            </p>
+                        </li>
+                        <li class="tab-item">
+                            <ul>
+                                @for (int i = 0; i < 9; i++)
+                                {
+                                    <li><a class="tooltip" href="http://pinthis-rtl.pixelbeautify.com/post-format-standart/"
+                                        title="Post Format: Standart">
+                                        <img src="postpinthis_files/dfgdfgd0.jpg" width="68" height="68" alt="Post Format: Standart">
+                                    </a></li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

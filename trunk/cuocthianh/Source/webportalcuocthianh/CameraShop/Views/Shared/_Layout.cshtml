@@ -28,7 +28,7 @@
         type="text/css" media="all">
     <script type="text/javascript" src="../../Content/js/jquery00.js"></script>
     <script type="text/javascript" src="../../Content/js/jquery-m.js"></script>
-   
+    <script src="../../Content/js/jquery-1.9.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../../Content/css/rtl00000.css"
         type="text/css" media="screen">
     <meta name="generator" content="WordPress 3.9.1">
@@ -40,6 +40,7 @@
             margin: 0 !important;
         }
     </style>
+    @RenderSection("HeadResource", required: false)
 </head>
 <body class="rtl home blog with-header-nav-menu" id="totop">
     @Html.Action("_Header", "Home")
@@ -49,5 +50,7 @@
     </section>
     <input type="checkbox" id="toggle-footer" class="hide">
     @Html.Action("_Footer", "Home")
+    @RenderSection("BottomResource", required: false)
+
 </body>
 </html>
