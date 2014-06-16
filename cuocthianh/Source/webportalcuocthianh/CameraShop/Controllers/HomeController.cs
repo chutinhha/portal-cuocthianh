@@ -127,20 +127,45 @@ namespace CameraShop.Controllers
         public ActionResult _TopInforContact() {
             return PartialView();
         }
-
-        //public ActionResult LoginHome(string returnurl)
-        //{
-        //    if (Userid == 0)
-        //    {
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
-
         [HttpPost]
+        public ActionResult LoginHome(string Username="",string Password="")
+        {
+            User _user = new User();
+            _user.UserName = Username;
+            _user.Password = Password;
+            if (string.IsNullOrEmpty(_user.UserName))
+            {
+                ModelState.AddModelError("", ErrorCode.UserNameNull);
+            }
+            if (string.IsNullOrEmpty(_user.Password))
+            {
+                ModelState.AddModelError("", ErrorCode.PasswordNull);
+            }
+            foreach (var item in ModelState.Values)
+            {
+                if (item.Errors.Count() != 0)
+                {
+                    return View(_user);
+                }
+            }
+            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid) == true)
+            {
+                Session["UserName"] = Username;
+                Session["UserID"] = Userid;
+                Session["UserGroup"] = Groupid;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                Session["UserName"] = null;
+                Session["UserGroup"] = null;
+                Session["UserID"] = null;
+                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
+                return View(_user);
+            }
+        }
+
+        
         public ActionResult LoginHome(User _user, string returnurl)
         {
             if (string.IsNullOrEmpty(_user.UserName))
