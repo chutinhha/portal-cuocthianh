@@ -149,12 +149,12 @@ header .log-in-out + .member {
 	margin-left: 17px;
 }
 .postWrap .topbar .navbtns li:first-child a, .postWrap .topbar .navbtns li:first-child span.no-link {
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
+	border-radius: 0 0 0 0;
+	-webkit-border-radius: 0 0 0 0;
 }
 .postWrap .topbar .space {
-	border-radius: 5px 0 0 0;
-	webkit-border-radius: 5px 0 0 0;
+	border-radius: 0 0 0 0;
+	webkit-border-radius: 0 0 0 0;
 }
 
 /*	posts navigation */
@@ -424,6 +424,11 @@ ul.menu ul ul ul ul li a:hover {
 	float: right;
 	border-right: none;
 	border-left: 2px solid #394264;
+}
+.navbtns.navprofile li {
+	float: right;
+	border-right: 2px solid #394264;
+	border-left: none;
 }
 
 /*	textbox
