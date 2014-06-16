@@ -1845,6 +1845,10 @@ li:active .dropdown,
 	background-color: #394264;
 	color: #fff;
 }
+.navbtns li.active a {
+	background-color: #394264;
+	color: #fff;
+}
 .navbtns li span.no-link {
 	color: #394264;
 }
