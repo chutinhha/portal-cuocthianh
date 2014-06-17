@@ -229,6 +229,10 @@ namespace CameraShop
            
         }
 
+        public BaseController(IExamineeActionService _examinee) {
+            this.ExamineeService = _examinee;
+        }
+
         public BaseController(IPictureExamActionService _pictureexaminee)
         {
             this.PictureExamineeService = _pictureexaminee;

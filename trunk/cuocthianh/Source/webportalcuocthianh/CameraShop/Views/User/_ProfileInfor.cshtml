@@ -26,9 +26,6 @@
                                 Nhập lại mật khẩu mới:</label>
                             <input class="txt" id="txtReNewPassWord" type="password" /></li>
                     </ul>
-                    <div class="control-apply">
-                        <input id="btn-change-pass" class="btn btn-blue btn-change-pass" type="button" value="Sửa thông tin" />
-                    </div>
                 </div>
             </div>
             <div class="profile-area">
@@ -38,33 +35,29 @@
                 </div>
                 <div class="std">
                     <ul>
-                       
                         <li>
-                           <label>Số báo danh</label>
-                           @Html.HiddenFor(m=>m.ExamineeIDExt)
-                           @Html.HiddenFor(m=>m.ExamineeCodeExt)
-                           @Html.DisplayFor(m=>m.ExamineeCodeExt)
+                            <label>
+                                Số báo danh</label>
+                            @Html.HiddenFor(m => m.ExamineeIDExt)
+                            @Html.HiddenFor(m => m.ExamineeCodeExt)
+                            @Html.DisplayFor(m => m.ExamineeCodeExt)
                         </li>
-
                         <li>
                             <label>
                                 Ảnh đại diện:</label>
-
-                                  <input id="fileuploadprofile" type="file" name="file" />
-                        @if (Model != null && Model.ImageExt != null && Model.ImageExt != "")
-                        {
-                                   <div id="imageprofile">
+                            <input id="fileuploadprofile" type="file" name="file" />
+                            @if (Model != null && Model.ImageExt != null && Model.ImageExt != "")
+                            {
+                                <div id="imageprofile">
                                     <img src="@Url.Content("~/Media/ProfileAvatar/" + Model.ImageExt)" width="120px" height="120px" alt="@Model.ImageExt" />
-                                    </div>
-                        }
-                        else
-                        {
-                               <div id="imageprofile"> 
                                 </div>
-                        }
-
+                            }
+                            else
+                            {
+                                <div id="imageprofile">
+                                </div>
+                            }
                         </li>
-
                         <li>
                             <label>
                                 Họ tên:</label>
@@ -88,19 +81,13 @@
                         </li>*@
                     </ul>
                     <div class="control-apply">
-                        <input id="btn-change-infor" class="btn btn-change-infor" type="submit" value="Chấp nhận">
+                        <input id="btn-change-infor" class="button button-color-1" type="submit" value="Chấp nhận">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 }
-
-
-
-
-
-
 <script type="text/javascript">
     ///Document Ready jQuery
     $(document).ready(function () {

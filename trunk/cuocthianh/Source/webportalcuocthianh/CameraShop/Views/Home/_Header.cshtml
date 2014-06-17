@@ -4,7 +4,7 @@
             <nav class="menu-categories dropel">
                 <a href="#" onclick="return false;" class="icon-menu-categories tooltip"
                     title="Categories">Categories</a>
-                <div class="dropdown">
+                @*<div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-left">
                         <ul class="categories-list">
                             <li class="cat-item cat-item-13"><a href="#"
@@ -17,7 +17,7 @@
                                 title="شاهد جميع المقالات في تصنيف Sport">Nails</a> </li>
                         </ul>
                     </div>
-                </div>
+                </div>*@
             </nav>
             <div class="search-box clearfix dropel">
                 <a href="http://pinthis-rtl.pixelbeautify.com/#" onclick="return false;" class="icon-zoom">
@@ -37,8 +37,7 @@
         <div class="right-part">
             <div class="log-in-out dropel">
                 @if(Session["UserID"]==null || Session["UserID"]==""){
-                <a href="#" onclick="return false;" title="Đăng Nhập" class="icon-login tooltip">Đăng
-                    Nhập</a>
+                <a href="#" onclick="return false;" title="Đăng Nhập" class="icon-login tooltip"></a>
                 <div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-right">
                         <div id="login-form">

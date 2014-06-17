@@ -1,0 +1,43 @@
+﻿@using CoreData
+@model List<Comment>
+@if (Model != null && Model.Count() > 0)
+{
+    <ul>
+        @{
+    var ListParent = Model.Where(x => x.ParentID == 0);
+    foreach (var item in ListParent)
+    {
+            <li>
+                <div class="comment-row">
+                    <span>@item.ID - @item.CommentContent</span>
+                    <div class="reply-row">
+                        <a parid="@item.ID" class="reply-link" href="#">Trả lời</a>
+                    </div>
+                </div>
+                @LoadChild(item.ID)
+            </li>
+    }   
+        }
+    </ul>
+}
+@helper LoadChild(long parentid)
+    {
+        var listChild = Model.Where(x => x.ParentID == parentid);
+        if (listChild.Count() > 0)
+        {
+    <ul>
+        @foreach (var item in listChild)
+        {
+            <li>
+                <div class="comment-row">
+                    <span>@item.ID - @item.CommentContent</span>
+                    <div class="reply-row">
+                        <a parid="@item.ID" class="reply-link" href="#">Trả lời</a>
+                    </div>
+                </div>
+                @LoadChild(item.ID)
+            </li>
+        }
+    </ul>
+        }    
+}

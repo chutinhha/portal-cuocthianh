@@ -1,0 +1,8 @@
+﻿@using CoreData
+@model Comment
+<div class="comment-row">
+    <span>@Model.ID - @Model.CommentContent</span>
+    <div class="reply-row">
+        <a parid="@Model.ID" class="reply-link" href="#">Trả lời</a>
+    </div>
+</div>

@@ -1,48 +1,19 @@
 ﻿@using CoreData
 @model IList<Banner_Logo>
-<div class="slider">
-    <ul>
-        <li class="post-267 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-2.jpg">
-            <div class="flick-title">
-                Amazing Eyes</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-        <li class="post-260 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-1.jpg">
-            <div class="flick-title">
-                Beautiful Sunsets</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-        <li class="post-268 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-3.jpg">
-            <div class="flick-title">
-                Fashion Models</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-        <li class="post-269 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-4.jpg">
-            <div class="flick-title">
-                Studio Photography</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-        <li class="post-270 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-5.jpg">
-            <div class="flick-title">
-                Sport Equipment</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-        <li class="post-271 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
-            data-rel="http://pixelbeautify.com" data-background="http://pinthis-rtl.pixelbeautify.com/wp-content/uploads/2014/05/slide-6.jpg">
-            <div class="flick-title">
-                Club Extreme</div>
-            <div class="flick-sub-text">
-                Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
-        </li>
-    </ul>
-</div>
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="slider">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="post-267 pinthis_slider type-pinthis_slider status-publish has-post-thumbnail hentry"
+                    data-rel="@item.Link" data-background="/Media/BannerLogo/@item.Image">
+                    <div class="flick-title">
+                        @item.Name</div>
+                    <div class="flick-sub-text">
+                        Lorem Ipsum is simply dummy text of the printing simply dummy text of the printing</div>
+                </li>
+            }
+        </ul>
+    </div>
+}
