@@ -11,7 +11,7 @@ namespace CameraShop.Controllers
 {
     public class PictureExamController : BaseController
     {
-
+        //xu ly up anh/ hien thi anh 
         public PictureExamController(IPictureExamActionService pictureexaminee) : base(pictureexaminee) { }
 
         //
@@ -25,11 +25,9 @@ namespace CameraShop.Controllers
         }
 
 
-        /*
-        * Action and view for Picture Exam 
-        * 
-        * */
 
+        #region Hinh anh
+        
         //Picture Exam
         //action
         public ActionResult PictureExam(PictureExam _model)
@@ -42,17 +40,36 @@ namespace CameraShop.Controllers
         //view
         public ActionResult _PictureExam()
         {
-            var userid = Convert.ToInt32(Session["UserID"]);
-            var data = PictureExamineeService.GetListByUserID(userid);
-            return PartialView(data);
+            return PartialView();
         }
-        /// <summary>
-        /// Album Picture
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult _AlbumPicture() {
-            return View();
+        //Picture Exam
+        //view
+        public ActionResult _ListPictureExam()
+        {
+            var userid = 1;// Convert.ToInt32(Session["UserID"]);
+             var data = PictureExamineeService.GetListByUserID(userid);
+             return PartialView(data);
         }
+
+
+                    #region upload control
+
+                    //uoload control
+                    public ActionResult UploadPicture(PictureExam model, HttpPostedFileBase file)
+                    {
+           
+                        model.Image = PathUpload;
+                        model.ExamineeID = 1;
+                        var id = this.PictureExamineeService.Save(model);
+                        PathUpload = "";
+                        return Json(id, JsonRequestBehavior.AllowGet);
+                    }
+                    
+
+                    #endregion
+
+
+        #endregion
 
     }
 }

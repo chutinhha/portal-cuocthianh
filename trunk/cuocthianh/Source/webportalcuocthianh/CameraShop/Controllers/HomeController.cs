@@ -145,7 +145,8 @@ namespace CameraShop.Controllers
             {
                 if (item.Errors.Count() != 0)
                 {
-                    return View(_user);
+                    return Content("Tài khoản hoặc mật khẩu bị trống");
+                 //   return View(_user);
                 }
             }
             if (UserService.Login(_user, ref Username, ref Userid, ref Groupid) == true)
@@ -153,7 +154,8 @@ namespace CameraShop.Controllers
                 Session["UserName"] = Username;
                 Session["UserID"] = Userid;
                 Session["UserGroup"] = Groupid;
-                return RedirectToAction("Index", "Home");
+                return Content("OK");
+               // return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -161,7 +163,8 @@ namespace CameraShop.Controllers
                 Session["UserGroup"] = null;
                 Session["UserID"] = null;
                 ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
-                return View(_user);
+                return Content("Tài khoản hoặc mật khẩu không đúng");
+                // return View(_user);
             }
         }
 

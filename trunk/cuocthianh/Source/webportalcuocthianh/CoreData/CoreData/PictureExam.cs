@@ -13,6 +13,7 @@ namespace CoreData
             public string Title{get;set;}
             public string Image{get;set;}
             public string Link{get;set;}
+            public DateTime PostDate { get; set; }
             public bool Active{get;set;}
          
         public PictureExam()
@@ -51,7 +52,9 @@ namespace CoreData
                       case  "Active":
                         ret.Active = ConvertObject.ToBool(dt[column]);
                        break;
-                
+                      case "PostDate":
+                       ret.PostDate = ConvertObject.ToDateTime(dt[column]);
+                       break;
                    default:
                        break;
                }

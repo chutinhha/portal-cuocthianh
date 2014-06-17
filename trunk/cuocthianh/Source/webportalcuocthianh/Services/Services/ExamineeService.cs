@@ -29,14 +29,20 @@ namespace Services
        {
            try
            {
-               var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
+               var obj = ((Examinee)_model);
+               var id = obj.ID;
+              // var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
                if (id == 0)
                {
-                   return entity.Save((CoreData.Examinee)_model, Table.Examinee.ToString());
+                   return entity.Save(obj, Table.Examinee.ToString());
                }
                else
                {
-                   return entity.Update((CoreData.Examinee)_model, Table.Examinee.ToString());
+                   if (obj.Image == null || obj.Image == "")
+                   {
+                       obj.Image = GetByID(obj.ID).Image;
+                   }
+                   return entity.Update(obj, Table.Examinee.ToString());
                }
            }
            catch { return -1; }

@@ -30,13 +30,21 @@ namespace Services
            try
            {
                var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
+               var data = (PictureExam)_model;
                if (id == 0)
                {
+                   data.Active = true;
+                   data.PostDate = DateTime.Today;
                    return entity.Save((CoreData.PictureExam)_model, Table.PictureExam.ToString());
                }
                else
                {
-                   return entity.Update((CoreData.PictureExam)_model, Table.PictureExam.ToString());
+                   if (data.Image == null || data.Image == "")
+                   {
+                       data.Image = GetByID(data.ID).Image;
+                   }
+                   data.PostDate = GetByID(data.ID).PostDate;
+                   return entity.Update(data, Table.PictureExam.ToString());
                }
            }
            catch { return -1; }
