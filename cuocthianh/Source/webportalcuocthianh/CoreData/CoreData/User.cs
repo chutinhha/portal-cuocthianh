@@ -27,6 +27,9 @@ namespace CoreData
             public List<SelectListItem> ListDictrictExt;
             public List<SelectListItem> ListUserManegerExt;
             public Examinee ExamineeExt { get; set; }
+            public string ImageExt { get; set; }
+            public string ExamineeCodeExt { get; set; }
+            public long ExamineeIDExt { get; set; }
         public User()
         {       
                     UserName ="";   

@@ -1,0 +1,71 @@
+﻿@model CoreData.PictureExam
+
+
+
+ @using (Ajax.BeginForm("UploadPicture", "PictureExam", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
+ {
+              
+
+                 @Html.HiddenFor(model => model.ID)
+
+
+                   <div class="std">
+                    <ul>
+                       
+                      
+                        <li>
+                            <label>
+                               Tiêu đề:</label>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "txt" })</li>
+                        <li>
+                          <input id="fileupload" type="file" name="file" />
+                        @if (Model != null && Model.Image != null && Model.Image != "")
+                        {
+                                   <div id="image">
+                                        <img src="@Url.Content("~/Media/PictureExam/" + Model.Image)" width="120px" height="120px" alt="@Model.Image" />
+                                    </div>
+                        }
+                        else
+                        {
+                               <div id="image"> 
+                                </div>
+                        }
+                            
+                         </li>
+                        
+                    </ul>
+                    <div class="control-apply">
+                        <input id="btn-change-infor" class="btn btn-change-infor" type="submit" value="Thêm ảnh">
+                    </div>
+                </div>
+     
+     
+     
+     
+ }
+
+
+
+  
+ 
+
+
+<script type="text/javascript">
+    ///Document Ready jQuery
+    $(document).ready(function () {
+
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            url: '/PictureExam/UploadFiles?dir=PictureExam',
+            autoUpload: true,
+            done: function (e, data) {
+                $('#image').html('<img width=\"120px\" height=\"120px\" src="/Media/PictureExam/' + data.result.name + '" />');
+
+            }
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('.progress .progress-bar').css('width', progress + '%');
+        });
+
+    });
+</script>

@@ -198,7 +198,13 @@ namespace Services
            try
            {
                var userdata = entity.GetByCusTomSQL(string.Format(SQLCommand.GetUserByUserName, username)).ToList().First();
+
                 userdata.ExamineeExt = examinee.Get(c=>c.UserID.Equals(userdata.ID),Table.Examinee.ToString());
+                userdata.ExamineeCodeExt = userdata.ExamineeExt.Code;
+                userdata.ImageExt = userdata.ExamineeExt.Image;
+                userdata.ExamineeIDExt = userdata.ExamineeExt.ID;
+                if (userdata.ExamineeExt == null)
+                    userdata.ExamineeExt = new Examinee();
                 return userdata;
            }
            catch { return null; }

@@ -7,6 +7,9 @@
         @Html.Action("_MainSlideShow", "BannerLogo")
     </section>
 }
+@section HeadResource{
+      <script type="text/javascript" src="@Url.Content("~/Content/js/login.js")"></script>
+}
 <div class="container fluid">
     <div class="boxcontainer">
     @for (int i = 0; i < 20; i++)

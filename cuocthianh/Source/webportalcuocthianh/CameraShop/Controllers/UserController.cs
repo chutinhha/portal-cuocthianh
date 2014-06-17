@@ -50,20 +50,31 @@ namespace CameraShop.Controllers
         public ActionResult UpdateInfor(User _model) {
             try
             {
-                var userid = Convert.ToInt32(Session["UserID"]);
+                var userid = 1;// Convert.ToInt32(Session["UserID"]);
                 var data = UserService.GetByID(userid);
                 
                 if (data != null)
                 {
                     _model.ID = userid;
-                    if (Security.EncryptString(_model.TempPassWordExt) == data.Password)
+                    if((_model.TempPassWordExt!=null))
+                    {
+                        if (Security.EncryptString(_model.TempPassWordExt) == data.Password)
+                        {
+                            this.UserService.Save(_model);
+                        }
+                    }
+                    else if (String.IsNullOrEmpty(_model.Password) || String.IsNullOrEmpty(_model.TempPassWordExt))
                     {
                         this.UserService.Save(_model);
                     }
-                    else if(_model.Password == "" || _model.TempPassWordExt==""){
-                        this.UserService.Save(_model);
-                    }
                     //trong profile thêm các html control để luu lại thông tin người dự thi
+                  
+                    _model.ExamineeExt = new Examinee();
+                    _model.ExamineeExt.ID = _model.ExamineeIDExt;
+                    _model.ExamineeExt.Code = _model.ExamineeCodeExt;
+                    _model.ExamineeExt.Image = PathUpload;
+                    _model.ExamineeExt.UserID = _model.ID;
+                    PathUpload = "";
                     ExamineeService.Save(_model.ExamineeExt);
                 }
                 return RedirectToAction("Profile", "User");
