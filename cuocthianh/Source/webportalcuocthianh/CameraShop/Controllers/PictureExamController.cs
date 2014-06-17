@@ -27,12 +27,19 @@ namespace CameraShop.Controllers
 
 
         #region Hinh anh
-        
+        /// <summary>
+        /// Get detail by UserID
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Detail(int userid=0) {
+            var data = PictureExamineeService;
+            return View(data);
+        }
+
         //Picture Exam
         //action
         public ActionResult PictureExam(PictureExam _model)
         {
-
             return View();
         }
 
@@ -44,9 +51,9 @@ namespace CameraShop.Controllers
         }
         //Picture Exam
         //view
-        public ActionResult _ListPictureExam()
+        public ActionResult _ListPictureExam(int userid=0)
         {
-            var userid = 1;// Convert.ToInt32(Session["UserID"]);
+            //var userid = 1;// Convert.ToInt32(Session["UserID"]);
              var data = PictureExamineeService.GetListByUserID(userid);
              return PartialView(data);
         }

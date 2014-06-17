@@ -35,8 +35,8 @@
             <div class="contentbox">
                 <div class="topbar">
                     <ul class="navbtns navprofile">
-                        <li><a href="#">Album Ảnh</a> </li>
                         <li><a href="#">User Profile</a></li>
+                        <li><a href="#">Album Ảnh</a> </li>
                     </ul>
                     <p class="space border-color-5">
                         &nbsp;</p>
@@ -44,7 +44,9 @@
                 <div class="tab-content">
                     <ul class="tab-list">
                         <li class="tab-item">
-
+                             @Html.Action("_ProfileInfor", "User")
+                        </li>
+                        <li class="tab-item">
                             <div>
                              @Html.Action("_PictureExam", "PictureExam")
                             </div>
@@ -58,10 +60,6 @@
                                 }
                             </ul>
                         </li>
-                        <li class="tab-item">
-                             @Html.Action("_ProfileInfor", "User")
-                        </li>
-                        
                     </ul>
                 </div>
             </div>

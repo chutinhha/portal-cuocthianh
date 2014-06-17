@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using CoreData
-@model Article
+@model Examinee
 <div class="container clearfix">
     <div class="postWrap">
         <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
@@ -12,52 +12,35 @@
                         &nbsp;</p>
                 </div>
                 <p class="featured-image">
-                    <img src="postpinthis_files/dfgdfgd-.jpg" alt="Post Format: Standart">
+                    <img src="/Media/PictureExam/@Model.Image" alt="Post Format: Standart">
                 </p>
                 <div class="textbox clearfix">
-                    <h1>
-                        Gallery – Link to media file with Popup</h1>
-                    <h1>
-                        Heading 1</h1>
-                    <p>
-                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t
-                        anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators
-                        on the Internet tend to repeat predefined chunks as necessary, making this the first
-                        true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-                        with a handful of model sentence structures, to generate Lorem Ipsum which looks
-                        reasonable. The generated Lorem Ipsum is therefore always free from repetition,
-                        injected humour, or non-characteristic.</p>
+                    @Model.Description
                 </div>
-                <p class="categories">
+                @*<p class="categories">
                     Categories: &nbsp; <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"
-                        title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>
+                        title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>*@
                 <div class="metabar clearfix">
                     <h4 class="title-5">
                         Comments</h4>
                 </div>
                 <!-- <div class="comment-respond-wrapper "> -->
+                <div class="comments" id="mainComment">
+                    @Html.Action("_ListComment", "Comment", new { @articleid = 1 })
+                </div>
                 <div id="respond" class="comment-respond">
                     <h3 id="reply-title" class="comment-reply-title">
                         <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://pinthis-rtl.pixelbeautify.com/post-format-standart/#respond"
                             style="display: none;">انقر هنا لإلغاء الرد.</a></small></h3>
                     <form action="http://pinthis-rtl.pixelbeautify.com/wp-comments-post.php" method="post"
                     id="commentform" class="comment-form">
-                    <p class="icon">
-                        <img alt src="http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=40"
-                            class="avatar avatar-40 photo avatar-default" height="40" width="40">
-                    </p>
-                    <p class="comment-form-author">
-                        <input id="author" placeholder="Name *" name="author" type="text" value aria-required="true"></p>
-                    <p class="comment-form-email">
-                        <input id="email" placeholder="Email *" name="email" type="text" value aria-required="true"></p>
+                    
                     <p class="comment-form-url">
-                        <input id="url" name="url" placeholder="Website " type="text" value></p>
+                        <input id="url" name="url" placeholder="Name " type="text" value></p>
                     <p class="comment-form-comment">
                         <textarea id="comment" name="comment" placeholder="Comment " aria-required="true"></textarea></p>
                     <p class="form-submit">
-                        <input name="submit" type="submit" id="submit" value="إرســال التعليق">
-                        <input type="hidden" name="comment_post_ID" value="292" id="comment_post_ID">
-                        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+                        <input name="submit" type="submit" id="submit" value="Comment">
                     </p>
                     </form>
                 </div>
@@ -72,7 +55,7 @@
                 Thumbnailer</h4>
             <div class="widgetwrapper">
                 <ul class="recentposts clearfix">
-                    @Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })
+                    @*@Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })*@
                 </ul>
             </div>
         </div>

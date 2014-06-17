@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using CoreData
-@model Article
+@model Examinee
 <div class="container clearfix">
     <div class="postWrap">
         <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
@@ -12,25 +12,14 @@
                         &nbsp;</p>
                 </div>
                 <p class="featured-image">
-                    <img src="postpinthis_files/dfgdfgd-.jpg" alt="Post Format: Standart">
+                    <img src="/Media/PictureExam/@Model.Image" alt="Post Format: Standart">
                 </p>
                 <div class="textbox clearfix">
-                    <h1>
-                        Gallery – Link to media file with Popup</h1>
-                    <h1>
-                        Heading 1</h1>
-                    <p>
-                        If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t
-                        anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators
-                        on the Internet tend to repeat predefined chunks as necessary, making this the first
-                        true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-                        with a handful of model sentence structures, to generate Lorem Ipsum which looks
-                        reasonable. The generated Lorem Ipsum is therefore always free from repetition,
-                        injected humour, or non-characteristic.</p>
+                    @Model.Description
                 </div>
-                <p class="categories">
+                @*<p class="categories">
                     Categories: &nbsp; <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"
-                        title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>
+                        title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>*@
                 <div class="metabar clearfix">
                     <h4 class="title-5">
                         Comments</h4>
@@ -72,7 +61,7 @@
                 Thumbnailer</h4>
             <div class="widgetwrapper">
                 <ul class="recentposts clearfix">
-                    @Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })
+                    @*@Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })*@
                 </ul>
             </div>
         </div>

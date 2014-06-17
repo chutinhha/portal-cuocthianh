@@ -76,3 +76,13 @@ div.wpcf7 div.ajax-error {
 div.wpcf7 .placeheld {
 	color: #888;
 }
+
+.std li
+{
+    margin: 5px;
+}
+.std li label
+{
+    display: inline-block;
+	min-width: 200px;
+}

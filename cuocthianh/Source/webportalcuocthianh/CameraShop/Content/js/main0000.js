@@ -1,4 +1,4 @@
-(function($){
+﻿(function($){
 	/*	main loader */
 	main_loader = $('<div />').attr('class', 'main-loader').prependTo('body').spin({
 		lines: 9, // The number of lines to draw
@@ -23,27 +23,6 @@
 })(jQuery)
 
 jQuery(document).ready(function ($) {
-
-    /*	footer spinner */
-    //	var footer_spinner = $('<div />').attr('class', 'footer-spinner').prependTo('footer').spin({
-    //		lines: 9, // The number of lines to draw
-    //		length: 0, // The length of each line
-    //		width: 6, // The line thickness
-    //		radius: 9, // The radius of the inner circle
-    //		corners: 1, // Corner roundness (0..1)
-    //		rotate: 0, // The rotation offset
-    //		direction: 1, // 1: clockwise, -1: counterclockwise
-    //		color: '#fff', // #rgb or #rrggbb or array of colors
-    //		speed: 1.3, // Rounds per second
-    //		trail: 50, // Afterglow percentage
-    //		opacity: 1 / 4, // Opacity of the lines
-    //		shadow: false, // Whether to render a shadow
-    //		hwaccel: false, // Whether to use hardware acceleration
-    //		className: 'loader', // The CSS class to assign to the spinner
-    //		zIndex: 10000, // The z-index (defaults to 2000000000)
-    //		top: 0, // Top position relative to parent in px
-    //		left: 0 // Left position relative to parent in px
-    //	});
     $("#wp-submit").on("click", function () {
         var Username = $("#user_login").val();
         var Password = $("#user_pass").val();
@@ -56,7 +35,7 @@ jQuery(document).ready(function ($) {
             },
             traditional: true,
             dataType: 'json',
-            success: function (edata) {
+            complete: function (edata) {
                 location.href = "/";
             }
         });
@@ -273,4 +252,91 @@ jQuery(window).load(function($) {
 	jQuery(document.body).css({
 		"visibility": "visible"
 	});
+});
+
+
+$.fn.replyComment = function () {
+    var parentid = null;
+    $(this).each(function () {
+        $(this).on("click", function (e) {
+            $(this).addClass("no-load");
+            parentid = null;
+            e.preventDefault() ? e.preventDefault() : e.returnValue;
+            parentid = $(this).attr("parid");
+            $(".reply-area").add(".btn-reply").remove();
+            $(this).after("<textarea class='reply-area'></textarea>");
+            $(".reply-area").after("<input type='button' class='btn-reply' value='Trả lời' />");
+            $.fn.clickToPost = function () {
+                $(".btn-reply").on("click", function (e) {
+                    var btnReply = $(this);
+                    e.preventDefault() ? e.preventDefault() : e.returnValue;
+                    if (parentid !== null && $(".reply-area").val !== "") {
+                        $.ajax({
+                            type: "POST",
+                            url: '/Comment/_AddComment/',
+                            data: {
+                                parentid: parentid,
+                                content: $(".reply-area").val()
+                            },
+                            traditional: true,
+                            dataType: 'json',
+                            complete: function (edata) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '/Comment/_ListComment/',
+                                    data: {
+                                        parentid: 1
+                                    },
+                                    traditional: true,
+                                    dataType: 'json',
+                                    complete: function (edata) {
+                                        $("#mainComment").html(edata.responseText);
+                                        $(".reply-link").replyComment();
+                                        $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
+                                        $(".loader-main").remove();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+            $(".btn-reply").clickToPost();
+        });
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest($(".reply-row")).length) {
+                $(".reply-link").removeClass("no-load");
+            }
+        });
+        setInterval(function () {
+            if (!$(".reply-link").hasClass("no-load")) {
+                if ($(".loader-main").length === 0) {
+                    $("body").append("<div class='loader-main'></div>");
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '/Comment/_ListComment/',
+                    data: {
+                        parentid: 1
+                    },
+                    traditional: true,
+                    dataType: 'json',
+                    complete: function (edata) {
+                        $("#mainComment").html(edata.responseText);
+                        $(".reply-link").replyComment();
+                        $(".loader-main").remove();
+                    }
+                });
+            }
+
+        }, 600000);
+    });
+    $.fn.hideReply = function () {
+        $(this).remove();
+    }
+}
+
+$(document).ready(function () {
+    $(".reply-link").replyComment();
+    $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
 });
