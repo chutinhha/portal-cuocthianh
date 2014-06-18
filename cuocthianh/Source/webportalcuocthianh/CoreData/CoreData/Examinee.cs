@@ -15,8 +15,13 @@ namespace CoreData
         public string Link { get; set; }
         public DateTime DayOfBirth { get; set; }
         public string Description { get; set; }
+        public int ViewCount { get; set; }
         public string UserNameExt { get; set; }
-        public int View { get; set; }
+
+        public DateTime PostDateExt { get; set; }
+
+       
+
         public Examinee()
         {
             Code = "";
@@ -57,8 +62,8 @@ namespace CoreData
                     case "Description":
                         ret.Description = ConvertObject.ToString(dt[column]);
                         break;
-                    case "View":
-                        ret.View = ConvertObject.ToInt(dt[column]);
+                    case "ViewCount":
+                        ret.ViewCount = ConvertObject.ToInt(dt[column]);
                         break;
                     default:
                         break;

@@ -64,5 +64,9 @@ namespace CameraShop.Controllers
             var article = ArticleService.GetListByLINQ(x=> x.ShowHomePage && x.Active).OrderByDescending(x=>x.UpdateDate).Take(5);
             return PartialView("_NewArticles", article);
         }
+
+
+
+
     }
 }

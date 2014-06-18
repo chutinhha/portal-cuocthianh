@@ -35,7 +35,7 @@ namespace Services
               // var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
                if (id == 0)
                {
-
+                   obj.DayOfBirth = DateTime.Now;
                    return entity.Save(obj, Table.Examinee.ToString());
                }
                else
@@ -80,6 +80,7 @@ namespace Services
                {
                    var users = user.Get(c => c.ID.Equals(i.UserID), Table.Users.ToString());
                    i.UserNameExt = users.Name;
+                   
                }
                return a;
            }

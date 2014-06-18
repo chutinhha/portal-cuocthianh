@@ -47,6 +47,7 @@ namespace Services
                    id = entity.Save(obj, Table.Users.ToString());
 
                    //luu thong tin nguoi du thi
+                   obj.ExamineeExt = new Examinee();
                    obj.ExamineeExt.Code = StringHelper.GenerateCode((int)id);
                    obj.ExamineeExt.UserID = id;
                    examinee.Save(obj.ExamineeExt,Table.Examinee.ToString());

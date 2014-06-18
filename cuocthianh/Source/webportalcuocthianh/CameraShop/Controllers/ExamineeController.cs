@@ -28,7 +28,7 @@ namespace CameraShop.Controllers
 
         public ActionResult Detail(int id, string username="") {
             var data = ExamineeService.GetByID((id));
-            data.View += 1;
+            data.ViewCount += 1;
             ExamineeService.Save(data);
             return View(data);
         }
