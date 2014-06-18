@@ -7,34 +7,33 @@
     <div class="postWrap">
         <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
             <div class="contentbox">
-               
-               
-                <div>@Html.Raw(Model.Title)</div>
-               
-               <div>@Html.Raw(Model.Content)</div>
-              
+                <div class="topbar">
+                    <p class="space border-color-5">@Model.Title</p>
+                    <p class="space border-color-5">
+                        &nbsp;</p>
+                </div>
+                <div class="textbox clearfix">
+                    @Html.Raw(Model.Content)
+                </div>
             </div>
         </div>
     </div>
     <aside class="sidebar">
-          <div class="contentbox">
+        <div class="contentbox">
             <h4 class="title-1 border-color-2">
                 Bài viết</h4>
-         <ul id="menu-menu-1" class="header-menu-list">
-                    <li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-241">
-                        <a href="/">Trang chủ</a>
-                       
-                    </li>
-                    <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
-                        <a href="@Url.Action("Detail", "Article", new { @id = "" + 12 + "" })">Giới thiệu</a></li>
-                    <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 13 + "" })">Thể lệ cuộc thi</a></li>
-                   <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 15 + "" })">Nội dung thi</a></li>
-                    <li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 14 + "" })">Giải thưởng</a></li>
-                   
-                </ul>
+            <ul id="menu-menu-1" class="header-menu-list">
+                <li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-241">
+                    <a href="/">Trang chủ</a> </li>
+                <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
+                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 12 + "" })">Giới thiệu</a></li>
+                <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
+                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 13 + "" })">Thể lệ cuộc thi</a></li>
+                <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
+                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 15 + "" })">Nội dung thi</a></li>
+                <li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244">
+                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 14 + "" })">Giải thưởng</a></li>
+            </ul>
         </div>
         <div class="contentbox">
             <h4 class="title-1 border-color-2">
