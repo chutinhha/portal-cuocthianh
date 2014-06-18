@@ -389,7 +389,8 @@ namespace CameraShop
         [HttpPost]
         public ActionResult Login(User _user, string returnurl)
         {
-            if (UserService.Login(_user,ref Username,ref Userid,ref Groupid) == true)
+            int exmineeid = 0;
+            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid,ref exmineeid) == true)
             {
                 ListPermission = new List<CoreData.Permission>();
                 var permiss = UserRoleModuleService.GetListByLINQ(c => c.UserID == Userid);
@@ -405,6 +406,7 @@ namespace CameraShop
                 Session["UserName"] = Username;
                 Session["UserID"] = Userid;
                 Session["UserGroup"] = Groupid;
+                Session["ExamineeID"] = exmineeid;
                 string decodedUrl = "";
                 if(Session["url"]!=null)
                 {
@@ -419,6 +421,7 @@ namespace CameraShop
                 ListPermission = null;
                 Session["UserName"] = null;
                 Session["UserGroup"] = null;
+                Session["ExamineeID"] = null;
                 Session["UserID"] = null;
                 ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
                 return View(_user);
@@ -432,6 +435,7 @@ namespace CameraShop
             Session["UserName"] = null;
             Session["UserGroup"] = null;
             Session["UserID"] = null;
+            Session["ExamineeID"] = null;
             return RedirectToAction("Login", "Management", new { returnurl = Request.Url.AbsoluteUri });
             
         }

@@ -145,6 +145,7 @@ namespace CameraShop.Controllers
             User _user = new User();
             _user.UserName = Username;
             _user.Password = Password;
+            int exmineeid = 0;
             if (string.IsNullOrEmpty(_user.UserName))
             {
                 ModelState.AddModelError("", ErrorCode.UserNameNull);
@@ -161,11 +162,12 @@ namespace CameraShop.Controllers
                  //   return View(_user);
                 }
             }
-            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid) == true)
+            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid, ref exmineeid) == true)
             {
                 Session["UserName"] = Username;
                 Session["UserID"] = Userid;
                 Session["UserGroup"] = Groupid;
+                Session["ExamineeID"] = exmineeid;
                 return Content("OK");
                // return RedirectToAction("Index", "Home");
             }
@@ -174,6 +176,7 @@ namespace CameraShop.Controllers
                 Session["UserName"] = null;
                 Session["UserGroup"] = null;
                 Session["UserID"] = null;
+                Session["ExamineeID"] = null;
                 ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
                 return Content("Tài khoản hoặc mật khẩu không đúng");
                 // return View(_user);
@@ -183,6 +186,7 @@ namespace CameraShop.Controllers
         
         public ActionResult LoginHome(User _user, string returnurl)
         {
+            int exmineeid = 0;
             if (string.IsNullOrEmpty(_user.UserName))
             {
                 ModelState.AddModelError("", ErrorCode.UserNameNull);
@@ -198,18 +202,18 @@ namespace CameraShop.Controllers
                     return View(_user);
                 }
             }
-            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid) == true)
+            if (UserService.Login(_user, ref Username, ref Userid, ref Groupid, ref exmineeid) == true)
             {
                 Session["UserName"] = Username;
                 Session["UserID"] = Userid;
-                Session["UserGroup"] = Groupid;
+                Session["UserGroup"] = Groupid; Session["ExamineeID"] = exmineeid;
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 Session["UserName"] = null;
                 Session["UserGroup"] = null;
-                Session["UserID"] = null;
+                Session["UserID"] = null; Session["ExamineeID"] = null;
                 ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
                 return View(_user);
             }

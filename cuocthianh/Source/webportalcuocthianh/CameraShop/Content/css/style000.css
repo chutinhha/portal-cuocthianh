@@ -4214,3 +4214,13 @@ input[type=text], input[type=password], input[type=email], input[type=url], text
 x:-o-prefocus, input[type=text], input[type=password], input[type=email], input[type=url], textarea {
 	padding: 9px 15px 11px;
 }
+
+
+
+#navlist li
+{
+display: inline;
+list-style-type: none;
+
+
+}
