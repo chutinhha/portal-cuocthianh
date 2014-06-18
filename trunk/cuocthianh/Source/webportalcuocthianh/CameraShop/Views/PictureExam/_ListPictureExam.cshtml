@@ -1,10 +1,11 @@
 ﻿@model List<CoreData.PictureExam>
 @if (Model != null && Model.Count() > 0)
-{
-    foreach (var item in Model)
+{<ul id="navlist">
+    @foreach (var item in Model)
     {
-    <li><a class="tooltip" href="#" title="">
-        <img src="/Media/PictureExam/@item.Image" width="68" height="68" alt="">
-    </a></li>
+        <li><a class="tooltip picture-small" href="/Media/PictureExam/@item.Image" title="@item.Title">
+            <img src="/Media/PictureExam/@item.Image" width="68" height="68" alt="">
+        </a></li>
     }
+    </ul>
 }
