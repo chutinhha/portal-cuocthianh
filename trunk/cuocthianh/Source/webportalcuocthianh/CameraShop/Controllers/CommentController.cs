@@ -12,7 +12,7 @@ namespace CameraShop.Controllers
     {
 
         public CommentController(ICommentActionService Comment) : base(Comment) { }
-        public static List<Comment> ListComment;
+     //   public static List<Comment> ListComment;
         //
         // GET: /Comment/
 
@@ -73,51 +73,45 @@ namespace CameraShop.Controllers
 
         public ActionResult _ListComment(int articleid = 0)
         {
-            GetComment();
+           // GetComment(articleid);
             //List<Comment> ListComment = GetComment().Where(x => x.ArticleID == articleid).ToList();
-            List<Comment> ListComment = (List<Comment>)Session["SSComment"];
+            List<Comment> ListComment = GetComment(articleid);
             return PartialView(ListComment);
         }
 
-        public List<Comment> GetComment()
+        public List<Comment> GetComment(int examid)
         {
+            List<Comment> ListComment = new List<Comment>();
             if (Session["SSComment"] == null)
             {
-                ListComment = new List<Comment>();
-                //Comment c = new Comment(ID, ArticleID, UserID, Type, Content, DateTime.Now, ParentID);
-                Comment c = new Comment(1, 1, 1, 1, "Quisque dapibus rhoncus tortor quis", DateTime.Now, 0);
-                ListComment.Add(c);
-                c = new Comment(2, 1, 2, 1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", DateTime.Now, 1);
-                ListComment.Add(c);
-                c = new Comment(3, 1, 2, 1, "Suspendisse potenti. Vivamus ultricies", DateTime.Now, 2);
-                ListComment.Add(c);
-                c = new Comment(4, 1, 3, 1, "quis consectetur nunc turpis in nisl. Duis sit amet semper felis.", DateTime.Now, 2);
-                ListComment.Add(c);
-                c = new Comment(5, 1, 2, 1, "Nunc congue nisl nec nibh tincidunt blandit. Nam iaculis nisi nec cursus facilisis.", DateTime.Now, 0);
-                ListComment.Add(c);
-                c = new Comment(6, 1, 2, 1, "Phasellus neque risus, cursus sed orci vel, vehicula euismod justo. ", DateTime.Now, 0);
-                ListComment.Add(c);
-                c = new Comment(7, 1, 1, 1, "Integer tellus mi, congue et eleifend vel, blandit vitae felis. Nam quis condimentum nisi, et malesuada dui", DateTime.Now, 6);
-                ListComment.Add(c);
-                c = new Comment(8, 1, 2, 1, " Donec lobortis convallis viverra. Aenean rhoncus non est non accumsan. ", DateTime.Now, 6);
-                ListComment.Add(c);
-                c = new Comment(9, 1, 2, 1, " Donec lobortis convallis viverra. Aenean rhoncus non est non accumsan. ", DateTime.Now, 8);
-                ListComment.Add(c);
-                c = new Comment(10, 1, 2, 1, " Donec lobortis convallis viverra. Aenean rhoncus non est non accumsan. ", DateTime.Now, 9);
-                ListComment.Add(c);
-                c = new Comment(11, 1, 2, 1, " Donec lobortis convallis viverra. Aenean rhoncus non est non accumsan. ", DateTime.Now, 9);
-                ListComment.Add(c);
-                Session["SSComment"] = ListComment;
+               Session["SSComment"] = CommentService.GetListByLINQ(c => c.CommentType == 1 && c.ReferenceID == examid);
+               ListComment = (List<Comment>)Session["SSComment"];
+              
             }
+
             return ListComment;
         }
 
-        public ActionResult _AddComment(int parentid = 0, string content = "")
+        public ActionResult _AddComment(int parentid = 0,int articleid=0, string content = "", string name="")
         {
-            var idlast = ListComment.OrderBy(x => x.ID).LastOrDefault().ID;
-            idlast += 1;
-            Comment c = new Comment(idlast, 1, 1, 1, content, DateTime.Now, parentid);
-            ListComment.Add(c);
+
+            Comment c = new Comment();
+            c.ReferenceID = articleid;
+            c.ParentID = parentid;
+            if (Session["Username"] != null)
+            {
+                c.Name = Session["Username"].ToString();
+            }
+            else
+            {
+                c.Name = name;
+            }
+            c.CommentContent = content;
+            c.PostDate = DateTime.Now;
+           // c.UserID = 
+           var ListComment = (List<Comment>)Session["SSComment"];
+           ListComment.Add(c);
+           CommentService.Save(c);
             Session["SSComment"] = ListComment;
             return PartialView(c);
         }

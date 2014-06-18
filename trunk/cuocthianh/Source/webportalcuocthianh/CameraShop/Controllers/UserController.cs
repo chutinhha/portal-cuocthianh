@@ -23,13 +23,21 @@ namespace CameraShop.Controllers
         }
 
         public ActionResult Profile() {
-           var data = UserService.GetByUserName("admin");
-             return View(data);
+            var user = Session["UserName"];
+            if (user == null)
+            {
+              return  RedirectToAction("Index", "Home");
+            }
+
+            var data = UserService.GetByUserName(user.ToString());
+               
+            
+            return View(data);
           //  return View();
         }
 
         public ActionResult _ProfileInfor() {
-            var username = "admin";// Session["UserName"].ToString();
+            var username =  Session["UserName"].ToString();
             var data = UserService.GetByUserName(username);
             if (data == null)
                 data = new User();
@@ -40,7 +48,7 @@ namespace CameraShop.Controllers
         public ActionResult UpdateInfor(User _model) {
             try
             {
-                var userid = 1;// Convert.ToInt32(Session["UserID"]);
+                var userid =  Convert.ToInt32(Session["UserID"]);
                 var data = UserService.GetByID(userid);
                 
                 if (data != null)

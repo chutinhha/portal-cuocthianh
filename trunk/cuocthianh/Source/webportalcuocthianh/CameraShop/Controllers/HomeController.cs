@@ -16,8 +16,8 @@ namespace CameraShop.Controllers
         // GET: /Home/
 
 
-        public HomeController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist)
-            : base(_user, _province, _emaillist)
+        public HomeController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist, IExamineeActionService examinee)
+            : base(_user, _province, _emaillist, examinee)
         { }
         public ActionResult Index()
         {
@@ -54,6 +54,10 @@ namespace CameraShop.Controllers
                 {
                     ModelState.AddModelError("", ErrorCode.UserNameNull);
                 }
+                if (string.IsNullOrEmpty(_model.Name))
+                {
+                    ModelState.AddModelError("", "Chưa nhập tên");
+                }
                 if (string.IsNullOrEmpty(_model.Password))
                 {
                     ModelState.AddModelError("", ErrorCode.PasswordNull);
@@ -78,7 +82,7 @@ namespace CameraShop.Controllers
                 {
                     ModelState.AddModelError("", ErrorCode.NotValidEmail);
                 }
-                if (_model.Phone != null && Regex.IsMatch(_model.Phone, @"0\d{9,10}") == false)
+                if (_model.Phone != null && Regex.IsMatch(_model.Phone, @"\d+") == false)
                 {
                     ModelState.AddModelError("", ErrorCode.NotValidPhoneNumber);
                 }
@@ -90,9 +94,17 @@ namespace CameraShop.Controllers
                     }
                 }
                 _model.Active = true;
-
-                if (this.UserService.Save(_model) != -1)
+                long userid =this.UserService.Save(_model);
+                if (userid != -1)
+                {
+                    Examinee c = new Examinee();
+                    c.UserID = userid;
+                    c.Image="";
+                    c.Description ="";
+                    ExamineeService.Save(c);
                     return RedirectToAction("LoginHome", "Home");
+                }
+
                 ModelState.AddModelError("", ErrorCode.Error);
                 return View(_model);
             }

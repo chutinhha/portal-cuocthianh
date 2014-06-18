@@ -92,7 +92,7 @@ namespace CameraShop
             this.UserService = _user;
             this.ProvinceService = _province;
             this.EmailListService = _emaillist;
-           // this.ExamineeService = _examinee;
+            //this.ExamineeService = ex;
         }
 
         public BaseController(IUserActionService _user, IGroupActionService _group, ISearchActionService _search, IUser_Role_ModuleActionService _userrole)

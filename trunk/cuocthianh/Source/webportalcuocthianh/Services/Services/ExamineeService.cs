@@ -11,10 +11,11 @@ namespace Services
     public partial class ExamineeService
     {
        readonly IExamineeEntity entity;
-
-       public ExamineeService(IExamineeEntity entity)
+       readonly IUserEntity user;
+       public ExamineeService(IExamineeEntity entity,IUserEntity user)
        {
            this.entity = entity;
+           this.user = user;
 
        }
 
@@ -34,6 +35,7 @@ namespace Services
               // var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
                if (id == 0)
                {
+
                    return entity.Save(obj, Table.Examinee.ToString());
                }
                else
@@ -57,7 +59,10 @@ namespace Services
        {
            try
            {
-               return entity.GetById(_id, Table.Examinee.ToString());
+               var data = entity.GetById(_id, Table.Examinee.ToString());
+               var users = user.Get(c => c.ID.Equals(data.UserID), Table.Users.ToString());
+               data.UserNameExt = users.Name;
+               return data;
            }
            catch { return null; }
        }
@@ -70,7 +75,13 @@ namespace Services
        {
            try
            {
-               return entity.GetAll(Table.Examinee.ToString()).ToList();
+               var a = entity.GetAll(Table.Examinee.ToString()).ToList();
+               foreach(var i in a)
+               {
+                   var users = user.Get(c => c.ID.Equals(i.UserID), Table.Users.ToString());
+                   i.UserNameExt = users.Name;
+               }
+               return a;
            }
            catch { return null; }
 
