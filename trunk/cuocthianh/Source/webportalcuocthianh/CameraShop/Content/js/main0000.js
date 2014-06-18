@@ -1,25 +1,25 @@
-﻿(function($){
-	/*	main loader */
-	main_loader = $('<div />').attr('class', 'main-loader').prependTo('body').spin({
-		lines: 9, // The number of lines to draw
-		length: 0, // The length of each line
-		width: 6, // The line thickness
-		radius: 9, // The radius of the inner circle
-		corners: 1, // Corner roundness (0..1)
-		rotate: 0, // The rotation offset
-		direction: 1, // 1: clockwise, -1: counterclockwise
-		color: '#fff', // #rgb or #rrggbb or array of colors
-		speed: 1.3, // Rounds per second
-		trail: 50, // Afterglow percentage
-		opacity: 1 / 4, // Opacity of the lines
-		shadow: false, // Whether to render a shadow
-		hwaccel: false, // Whether to use hardware acceleration
-		className: 'loader', // The CSS class to assign to the spinner
-		zIndex: 10000, // The z-index (defaults to 2000000000)
-		top: 0, // Top position relative to parent in px
-		left: 0 // Left position relative to parent in px
-	});
-	main_loader.fadeIn(250);
+﻿(function ($) {
+    /*	main loader */
+    main_loader = $('<div />').attr('class', 'main-loader').prependTo('body').spin({
+        lines: 9, // The number of lines to draw
+        length: 0, // The length of each line
+        width: 6, // The line thickness
+        radius: 9, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#fff', // #rgb or #rrggbb or array of colors
+        speed: 1.3, // Rounds per second
+        trail: 50, // Afterglow percentage
+        opacity: 1 / 4, // Opacity of the lines
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'loader', // The CSS class to assign to the spinner
+        zIndex: 10000, // The z-index (defaults to 2000000000)
+        top: 0, // Top position relative to parent in px
+        left: 0 // Left position relative to parent in px
+    });
+    main_loader.fadeIn(250);
 })(jQuery)
 
 jQuery(document).ready(function ($) {
@@ -246,14 +246,13 @@ jQuery(document).ready(function ($) {
     }
 
 });
-jQuery(window).load(function($) {
-	main_loader.fadeOut(250);
-	/*	hide everything on dom until everything is loaded */
-	jQuery(document.body).css({
-		"visibility": "visible"
-	});
+jQuery(window).load(function ($) {
+    main_loader.fadeOut(250);
+    /*	hide everything on dom until everything is loaded */
+    jQuery(document.body).css({
+        "visibility": "visible"
+    });
 });
-
 
 $.fn.replyComment = function () {
     var parentid = null;
@@ -276,6 +275,7 @@ $.fn.replyComment = function () {
                             type: "POST",
                             url: '/Comment/_AddComment/',
                             data: {
+                                articleid: $("#txtid").val(),
                                 parentid: parentid,
                                 content: $(".reply-area").val(),
                                 name: $(".txtusername").val()
@@ -338,41 +338,41 @@ $.fn.replyComment = function () {
     }
 
 
-    function addcomment() {
-        var content = $("#txtname").val();
-        var name = $("#commentcontent").value();
-        var id = $("#txtid").value();
-        var Qty = $(this).attr("Qty");
+    $.fn.AddComment = function () {
+        $(this).click(function () {
+            var content = $("#txtname").val();
+            var name = $("#commentcontent").val();
+            var id = $("#txtid").val();
+            var Qty = $(this).attr("Qty");
 
-        $.ajax({
-            type: "POST",
-            url: '/Comment/_AddComment/',
-            data: {
-                parentid: 0,
-                articleid: id,
-                content: content,
-                name: name
-            },
-            traditional: true,
-            dataType: 'json',
-            complete: function (edata) {
-                $("#mainComment").html(edata.responseText);
-                $(".reply-link").replyComment();
-                $(".loader-main").remove();
-            }
+            $.ajax({
+                type: "POST",
+                url: '/Comment/_AddComment/',
+                data: {
+                    parentid: 0,
+                    articleid: id,
+                    content: content,
+                    name: name
+                },
+                traditional: true,
+                dataType: 'json',
+                complete: function (edata) {
+                    $("#mainComment").html(edata.responseText);
+                    $(".reply-link").replyComment();
+                    $(".loader-main").remove();
+                }
+            });
         });
     }
 
 }
 
 $(document).ready(function () {
-  
+
     $(".reply-link").replyComment();
 
     $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
 
 
-    $("#submitcomment").click(function () {
-        addcomment();
-    });
+    $("#submitcomment").AddComment();
 });

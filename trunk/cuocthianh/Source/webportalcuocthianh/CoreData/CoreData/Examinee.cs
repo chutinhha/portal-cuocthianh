@@ -16,6 +16,7 @@ namespace CoreData
         public DateTime DayOfBirth { get; set; }
         public string Description { get; set; }
         public string UserNameExt { get; set; }
+        public int View { get; set; }
         public Examinee()
         {
             Code = "";
@@ -56,7 +57,9 @@ namespace CoreData
                     case "Description":
                         ret.Description = ConvertObject.ToString(dt[column]);
                         break;
-
+                    case "View":
+                        ret.View = ConvertObject.ToInt(dt[column]);
+                        break;
                     default:
                         break;
                 }

@@ -82,17 +82,17 @@ namespace CameraShop.Controllers
         public List<Comment> GetComment(int examid)
         {
             List<Comment> ListComment = new List<Comment>();
-            if (Session["SSComment"] == null)
-            {
-               Session["SSComment"] = CommentService.GetListByLINQ(c => c.CommentType == 1 && c.ReferenceID == examid);
-               ListComment = (List<Comment>)Session["SSComment"];
+            //if (Session["SSComment"] == null)
+            //{
+            //   Session["SSComment"] = CommentService.GetListByLINQ(c => c.CommentType == 1 && c.ReferenceID == examid);
+            //   ListComment = (List<Comment>)Session["SSComment"];
               
-            }
-
+            //}
+            ListComment = CommentService.GetListByLINQ(x => x.CommentType == 1 && x.ReferenceID == examid).ToList();
             return ListComment;
         }
 
-        public ActionResult _AddComment(int parentid = 0,int articleid=0, string content = "", string name="")
+        public ActionResult _AddComment(int parentid = 0, int articleid = 0, string content = "", string name = "")
         {
 
             Comment c = new Comment();
@@ -108,11 +108,11 @@ namespace CameraShop.Controllers
             }
             c.CommentContent = content;
             c.PostDate = DateTime.Now;
-           // c.UserID = 
-           var ListComment = (List<Comment>)Session["SSComment"];
-           ListComment.Add(c);
-           CommentService.Save(c);
-            Session["SSComment"] = ListComment;
+            // c.UserID = 
+            //var ListComment = (List<Comment>)Session["SSComment"];
+            //ListComment.Add(c);
+            CommentService.Save(c);
+            //Session["SSComment"] = ListComment;
             return PartialView(c);
         }
     }

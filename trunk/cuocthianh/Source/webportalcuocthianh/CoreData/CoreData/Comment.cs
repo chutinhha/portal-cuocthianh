@@ -19,18 +19,8 @@ namespace CoreData
         public long ParentID { get; set; }
         public DateTime PostDate { get; set; }
         public bool Active { get; set; }
-        public int UserID { get; set; }
+        public int UserIDExt { get; set; }
 
-        public Comment(long _ID, int _ReferenceID, int _UserID, int _CommentType, string _CommentContent, DateTime _PostDate, int _parentID)
-        {
-            this.ID = _ID;
-            this.ReferenceID = _ReferenceID;
-            this.UserID = _UserID;
-            this.CommentType = _CommentType;
-            this.CommentContent = _CommentContent;
-            this.PostDate = _PostDate;
-            this.ParentID = _parentID;
-        }
         public Comment()
         {
             Name = "";
