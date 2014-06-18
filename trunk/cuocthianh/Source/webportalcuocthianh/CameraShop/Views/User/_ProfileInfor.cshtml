@@ -79,10 +79,13 @@
                                 Tỉnh/Thành Phố:</label>
                             @Html.DropDownListFor(m => m.ProvinceIDExt, Model.ListProvinceExt, new { @id = "provinceID", @class = "select" })
                         </li>*@
+                        <li>
+                            <div class="control-apply">
+                                <input id="btn-change-infor" class="button button-color-1" type="submit" value="Chấp nhận">
+                            </div>
+                        </li>
                     </ul>
-                    <div class="control-apply">
-                        <input id="btn-change-infor" class="button button-color-1" type="submit" value="Chấp nhận">
-                    </div>
+                    
                 </div>
             </div>
         </div>
