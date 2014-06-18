@@ -16,14 +16,15 @@ function Success(data) {
     else {
         if (data != "") {
             alert("Cập nhật thành công");
-          
+
         }
         else {
             alert("Lỗi, vui lòng thử lại");
         }
     }
 }
-
-$(".picture-fancy").colorbox({rel:'group1'});
-
+$(document).ready(function () {
+    $(".picture-fancy").colorbox({ rel: 'picture-fancy' });
+    $(".picture-samll").colorbox({ rel: 'picture-samll' });
+});
        
