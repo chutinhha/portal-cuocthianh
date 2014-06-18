@@ -28,7 +28,12 @@
                             Bình luận</h4>
                     </div>
                     <!-- <div class="comment-respond-wrapper "> -->
-                    <div class="comments" id="mainComment">
+                    <div>
+                      <center>
+                    <div class="fb-comments" data-href="@Model.Link" data-width="100%" data-numposts="5" data-colorscheme="dark"></div>
+                   </center>
+                   </div>
+                    @*<div class="comments" id="mainComment">
                         @Html.Action("_ListComment", "Comment", new { @articleid = Model.ID })
                     </div>
                     <div id="respond" class="comment-respond">
@@ -40,7 +45,7 @@
                             <input name="submitcomment" class="button button-color-1" type="submit" id="submitcomment"
                                 value="Comment">
                         </p>
-                    </div>
+                    </div>*@
                     <!-- #respond -->
                     <!-- </div> -->
                 </div>
@@ -66,4 +71,18 @@
             $(".featured-image").find("img").attr("src", $(this).find("img").attr("src"))
         });
     });
+
+
+
+   
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=171701259670809&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+  
+
 </script>
