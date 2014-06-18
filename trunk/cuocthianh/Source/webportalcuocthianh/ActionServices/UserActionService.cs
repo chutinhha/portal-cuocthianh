@@ -20,7 +20,7 @@ namespace ActionServices
         bool Delete(object _model);
         IList<CoreData.User> GetByGroup(int _groupid);
         CoreData.User GetByCustomID(long _id);
-        bool Login(CoreData.User _model,ref string username, ref int userid, ref int group);
+        bool Login(CoreData.User _model, ref string username, ref int userid, ref int group, ref int examineeid);
         List<SelectListItem> GetListProvince(int id);
         CoreData.User GetByUserName(string username);
         List<SelectListItem> GetListUserManger(int id);
@@ -128,9 +128,9 @@ namespace ActionServices
        {
            return Service.GetByCustomID(_id);
        }
-       public virtual bool Login(User _model,ref string username, ref int userid, ref int group)
+       public virtual bool Login(User _model,ref string username, ref int userid, ref int group,  ref int examineeid)
        {
-           return Service.Login(_model,ref username,ref  userid, ref  group);
+           return Service.Login(_model,ref username,ref  userid, ref  group, ref examineeid);
        }
 
        public virtual List<SelectListItem> GetListProvince(int id)

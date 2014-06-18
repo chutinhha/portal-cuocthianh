@@ -232,7 +232,7 @@ namespace Services
            catch { return null; }
        }
 
-       public bool Login(User _user,ref string username, ref int userid, ref int group)
+       public bool Login(User _user,ref string username, ref int userid, ref int group, ref int examineeid)
        {
            try
            {
@@ -243,6 +243,12 @@ namespace Services
                    userid = int.Parse(data.ID.ToString());
                    group = Group.Get(c => c.UserID == data.ID, Table.User_Group.ToString()).GroupID;
                    username = data.UserName;
+                   try
+                   {
+                       var ex = examinee.Get(c=>c.UserID.Equals(data.ID), Table.Examinee.ToString());
+                       examineeid = (int)ex.ID;
+                   }
+                   catch { }
                    return true; 
                }
                else{

@@ -1,0 +1,15 @@
+﻿@model List<CoreData.PictureExam>
+@if (Model != null && Model.Count() > 0)
+{
+    <div id="navlist">
+     <center>
+    @foreach (var item in Model)
+    {
+    <li><a class="tooltip" href="#" title="">
+        <img src="/Media/PictureExam/@item.Image" width="120" height="120" alt="">
+    </a></li>
+    }
+    </center>
+    </div>
+}
+

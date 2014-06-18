@@ -47,13 +47,29 @@ namespace CameraShop.Controllers
         //view
         public ActionResult _PictureExam()
         {
+            
             return PartialView();
         }
+        /// <summary>
+        /// hien thi danh sach hinh anh tron profile
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public ActionResult _ListPictureExamProfile()
+        {
+            var userid =  Convert.ToInt32(Session["UserID"]);
+            var data = PictureExamineeService.GetListByUserID(userid);
+            return PartialView(data);
+        }
+
         //Picture Exam
         //view
         public ActionResult _ListPictureExam(int userid=0)
         {
-            //var userid = 1;// Convert.ToInt32(Session["UserID"]);
+            if (userid == 0)
+            {
+                userid = Convert.ToInt32(Session["UserID"]);
+            }
              var data = PictureExamineeService.GetListByUserID(userid);
              return PartialView(data);
         }
@@ -66,7 +82,7 @@ namespace CameraShop.Controllers
                     {
            
                         model.Image = PathUpload;
-                        model.ExamineeID = 1;
+                        model.ExamineeID = int.Parse(Session["ExamineeID"].ToString());
                         var id = this.PictureExamineeService.Save(model);
                         PathUpload = "";
                         return Json(id, JsonRequestBehavior.AllowGet);

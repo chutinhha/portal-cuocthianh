@@ -265,6 +265,7 @@ $.fn.replyComment = function () {
             parentid = $(this).attr("parid");
             $(".reply-area").add(".btn-reply").remove();
             $(this).after("<textarea class='reply-area'></textarea>");
+            $(".reply-area").before("<input type='text' class='txtusername' />");
             $(".reply-area").after("<input type='button' class='btn-reply' value='Trả lời' />");
             $.fn.clickToPost = function () {
                 $(".btn-reply").on("click", function (e) {
@@ -276,7 +277,8 @@ $.fn.replyComment = function () {
                             url: '/Comment/_AddComment/',
                             data: {
                                 parentid: parentid,
-                                content: $(".reply-area").val()
+                                content: $(".reply-area").val(),
+                                name: $(".txtusername").val()
                             },
                             traditional: true,
                             dataType: 'json',
@@ -334,9 +336,43 @@ $.fn.replyComment = function () {
     $.fn.hideReply = function () {
         $(this).remove();
     }
+
+
+    function addcomment() {
+        var content = $("#txtname").val();
+        var name = $("#commentcontent").value();
+        var id = $("#txtid").value();
+        var Qty = $(this).attr("Qty");
+
+        $.ajax({
+            type: "POST",
+            url: '/Comment/_AddComment/',
+            data: {
+                parentid: 0,
+                articleid: id,
+                content: content,
+                name: name
+            },
+            traditional: true,
+            dataType: 'json',
+            complete: function (edata) {
+                $("#mainComment").html(edata.responseText);
+                $(".reply-link").replyComment();
+                $(".loader-main").remove();
+            }
+        });
+    }
+
 }
 
 $(document).ready(function () {
+  
     $(".reply-link").replyComment();
+
     $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
+
+
+    $("#submitcomment").click(function () {
+        addcomment();
+    });
 });
