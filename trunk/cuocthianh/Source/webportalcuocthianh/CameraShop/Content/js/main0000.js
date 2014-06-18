@@ -23,7 +23,7 @@
 })(jQuery)
 
 jQuery(document).ready(function ($) {
-    $("#wp-submit").on("click", function () {
+    function LoginHome() {
         var Username = $("#user_login").val();
         var Password = $("#user_pass").val();
         $.ajax({
@@ -39,7 +39,16 @@ jQuery(document).ready(function ($) {
                 location.href = "/";
             }
         });
+    }
+    $("#wp-submit").on("click", function () {
+        LoginHome();
     });
+    $("#user_login").add("#user_pass").on("keyup", function (e) {
+        if (e.keyCode === 13) {
+            LoginHome();
+        }
+    });
+
     /*	mobile init */
     if (document.createTouch) {
         var ismobile = 1;

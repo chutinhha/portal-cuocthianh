@@ -10,3 +10,7 @@
   font-weight: 400;
   src: local('Ubuntu Italic'), local('Ubuntu-Italic'), url(http://themes.googleusercontent.com/static/fonts/ubuntu/v5/0bJAQfNpYDMK5gdvWOS2DfesZW2xOQ-xsNqO47m55DA.woff) format('woff');
 }
+ul
+{
+    list-style: none;
+}

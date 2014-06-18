@@ -86,3 +86,25 @@ div.wpcf7 .placeheld {
     display: inline-block;
 	min-width: 200px;
 }
+.login-view
+{
+    width: 680px;
+    margin: auto;
+}
+.control-register
+{
+    text-align: center;
+}
+div.control-apply {
+    padding-left: 10px;
+}
+#listpicture
+{
+    text-align: center;
+    padding-bottom: 10px;
+}
+#listpicture #navlist li
+{
+    display: inline-block;
+	width: 19.5%;
+}
