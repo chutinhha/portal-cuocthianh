@@ -17,13 +17,15 @@ namespace Services
         readonly ICategoryEntity Categoryenity;
         readonly IManufacturerEntity ManuFacenity;
         readonly IArticleEntity Articelenity;
-        public SearchService(IUserEntity entity,IProductEntity product, ICategoryEntity category, IArticleEntity articel, IManufacturerEntity fac )
+        readonly IPictureExamEntity PictureExamEntity;
+        public SearchService(IUserEntity entity,IProductEntity product, ICategoryEntity category, IArticleEntity articel, IManufacturerEntity fac, IPictureExamEntity pic )
        {
            this.entity = entity;
            this.Productentity = product;
            this.Categoryenity = category;
            this.Articelenity = articel;
            this.ManuFacenity = fac;
+           this.PictureExamEntity = pic;
        }
 
         public IList<User> SearchUser(string name, string username, string email, string groupid)
@@ -64,73 +66,23 @@ namespace Services
         {
             try {
                 IList<Search> lst = new List<Search>();
-                List<Product> product = new List<Product>();
-                if (catId != 0)
-                {
-                    product = Productentity.GetMany(c => StringHelper.RemoveVietNamString(c.Name.ToLower()).Contains(StringHelper.RemoveVietNamString(value)) && c.CateID == catId, Table.Product.ToString()).ToList();
-                }
-                else {
-                    product = Productentity.GetMany(c => StringHelper.RemoveVietNamString(c.Name.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Product.ToString()).ToList();
-                }
-                if(product!=null)
-                {
-                    foreach (var item in product)
+                var picexaminee = new List<PictureExam>();
+                picexaminee = PictureExamEntity.GetMany(c => StringHelper.RemoveVietNamString(c.Title.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.PictureExam.ToString()).ToList();
+                if (picexaminee != null) { 
+                    foreach (var item in picexaminee)
                     {
                         Search s = new Search();
-                        var CategoryName = Categoryenity.GetById(item.CateID, Table.Category.ToString()).Name;
-                        s.Type = CategoryName;
-                        s.Name = item.Name;
-                        s.Image ="/Media/Product/" + item.Image;
-                        s.Link = item.Link + "-p" + item.ID + ".html";
-                        s.Description = item.ShortDescription;
-                        lst.Add(s);
-                    }
-                }
-                List<Category> category = new List<Category>();
-                if (catId != 0 && product.Count() < 5)
-                {
-                    category = Categoryenity.GetMany(c => StringHelper.RemoveVietNamString(c.Name.ToLower()).Contains(StringHelper.RemoveVietNamString(value)) && c.ID == catId, Table.Category.ToString()).ToList();
-                }
-                else if(product.Count() < 5){
-                    category = Categoryenity.GetMany(c => StringHelper.RemoveVietNamString(c.Name.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Category.ToString()).ToList();
-                }
-                if (category != null)
-                {
-                    foreach (var item in category)
-                    {
-                        Search s = new Search();
-                        s.Type = "Danh mục";
-                        s.Name = item.Name;
-                        s.Image = "/Media/Category/"+ item.Image;
-                        s.Link =   item.Link + "-c" + item.ID + ".html";
-                        s.Description = item.Note;
-                        lst.Add(s);
-                    }
-                }
-                var Manufac = new List<Manufacturer>();
-                if (product.Count() < 5 && category.Count() < 5)
-                {
-                    Manufac = ManuFacenity.GetMany(c => StringHelper.RemoveVietNamString(c.Name.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Manufacturer.ToString()).ToList();
-                }
-                if (Manufac != null)
-                {
-                    foreach (var item in Manufac)
-                    {
-                        Search s = new Search();
-                        s.Name = item.Name;
+                        s.Name = item.Title;
                         s.Type = "Nhà sản xuất";
-                        s.Image = "/Media/Manufacturer/" + item.Image;
+                        s.Image = "/Media/PictureExam/" + item.Image;
                         s.Link = item.Link + "-m" + item.ID + ".html";
-                        s.Description = item.Note;
+                        s.Description = item.Link;
                         lst.Add(s);
                     }
                 }
                 var article = new List<Article>();
-                if (product.Count() < 5 && category.Count() < 5 && Manufac.Count() > 0)
-                {
-                    article = Articelenity.GetMany(c => StringHelper.RemoveVietNamString(c.Title.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Article.ToString()).ToList();
-                }
-                if (article != null && Manufac.Count() < 5 && product.Count() < 5 && category.Count() < 5)
+                article = Articelenity.GetMany(c => StringHelper.RemoveVietNamString(c.Title.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Article.ToString()).ToList();
+                if (article != null)
                 {
                     foreach (var item in article)
                     {

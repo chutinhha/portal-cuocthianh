@@ -2,66 +2,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using CoreData
-
 @model Examinee
-           <input type ="hidden" value="@Model.ID" name="txtid" id="txtid" />
-<div class="container clearfix">
-    <div class="postWrap">
-        <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
-            <div class="contentbox">
-                <div class="topbar">
-                    <p class="space border-color-5">
-                        &nbsp;</p>
-                </div>
-                <p class="featured-image">
-                    <img src="/Media/PictureExam/@Model.Image" alt="">
-                </p>
-                <div class="textbox clearfix">
-                    @Model.Description
-                </div>
-                @*<p class="categories">
+@if (Model != null)
+{
+    <input type ="hidden" value="@Model.ID" name="txtid" id="txtid" />
+    <div class="container clearfix">
+        <div class="postWrap">
+            <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
+                <div class="contentbox">
+                    <div class="topbar">
+                        <p class="space border-color-5">
+                            &nbsp;</p>
+                    </div>
+                    <p class="featured-image">
+                        <img src="/Media/PictureExam/@Model.Image" alt="">
+                    </p>
+                    <div class="textbox clearfix">
+                        @Model.Description
+                    </div>
+                    @*<p class="categories">
                     Categories: &nbsp; <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"
                         title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>*@
-                <div class="metabar clearfix">
-                    <h4 class="title-5">
-                        Bình luận</h4>
+                    <div class="metabar clearfix">
+                        <h4 class="title-5">
+                            Bình luận</h4>
+                    </div>
+                    <!-- <div class="comment-respond-wrapper "> -->
+                    <div class="comments" id="mainComment">
+                        @Html.Action("_ListComment", "Comment", new { @articleid = Model.ID })
+                    </div>
+                    <div id="respond" class="comment-respond">
+                        <p class="comment-form-url">
+                            <input id="txtname" name="txtname" placeholder="Name " type="text" value></p>
+                        <p class="comment-form-comment">
+                            <textarea id="commentcontent" name="commentcontent" placeholder="Comment " aria-required="true"></textarea></p>
+                        <p class="form-submit">
+                            <input name="submitcomment" class="button button-color-1" type="submit" id="submitcomment"
+                                value="Comment">
+                        </p>
+                    </div>
+                    <!-- #respond -->
+                    <!-- </div> -->
                 </div>
-                <!-- <div class="comment-respond-wrapper "> -->
-                <div class="comments" id="mainComment">
-                    @Html.Action("_ListComment", "Comment", new { @articleid = Model.ID })
-                </div>
-                <div id="respond" class="comment-respond">
-                  
-                    
-                    
-                    <p class="comment-form-url">
-                        <input id="txtname" name="txtname" placeholder="Name " type="text" value></p>
-                    <p class="comment-form-comment">
-                        <textarea id="commentcontent" name="commentcontent" placeholder="Comment " aria-required="true"></textarea></p>
-                    <p class="form-submit">
-                        <input name="submitcomment" type="submit" id="submitcomment" value="Comment">
-                    </p>
-                   
-                </div>
-                <!-- #respond -->
-                <!-- </div> -->
             </div>
         </div>
+        <aside class="sidebar">
+            <div class="contentbox">
+                <h4 class="title-1 border-color-2">
+                    Album</h4>
+                <div class="widgetwrapper">
+                    <ul class="recentposts clearfix">
+                        @Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })
+                    </ul>
+                </div>
+            </div>
+        </aside>
     </div>
-    <aside class="sidebar">
-        <div class="contentbox">
-            <h4 class="title-1 border-color-2">
-                Album</h4>
-            <div class="widgetwrapper">
-                <ul class="recentposts clearfix">
-                    @Html.Action("_ListPictureExam", "PictureExam", new { @userid = @Model.UserID })
-                </ul>
-            </div>
-        </div>
-       
-    </aside>
-</div>
-
+}
 <script type="text/javascript">
-   
+    $(document).ready(function () {
+        $(".recentposts").find("li").click(function (e) {
+            e.preventDefault() ? e.preventDefault() : e.returnValue;
+            $(".featured-image").find("img").attr("src", $(this).find("img").attr("src"))
+        });
+    });
 </script>
