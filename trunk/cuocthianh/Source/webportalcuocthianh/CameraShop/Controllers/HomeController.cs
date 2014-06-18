@@ -97,12 +97,13 @@ namespace CameraShop.Controllers
                 long userid =this.UserService.Save(_model);
                 if (userid != -1)
                 {
-                    Examinee c = new Examinee();
-                    c.UserID = userid;
-                    c.Image="";
-                    c.Description ="";
-                    ExamineeService.Save(c);
-                    return RedirectToAction("LoginHome", "Home");
+                    //Examinee c = new Examinee();
+                    //c.UserID = userid;
+                    //c.Image="";
+                    //c.Description ="";
+                    //ExamineeService.Save(c);
+                   // return RedirectToAction("LoginHome", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 ModelState.AddModelError("", ErrorCode.Error);
