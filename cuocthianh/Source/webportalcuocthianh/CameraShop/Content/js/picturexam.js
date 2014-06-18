@@ -24,5 +24,6 @@ function Success(data) {
     }
 }
 
+$(".picture-fancy").colorbox({rel:'group1'});
 
        

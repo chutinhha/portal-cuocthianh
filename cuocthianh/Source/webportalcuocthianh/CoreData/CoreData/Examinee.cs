@@ -22,6 +22,7 @@ namespace CoreData
 
        
 
+
         public Examinee()
         {
             Code = "";

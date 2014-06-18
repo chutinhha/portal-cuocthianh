@@ -17,15 +17,15 @@ namespace Services
         readonly ICategoryEntity Categoryenity;
         readonly IManufacturerEntity ManuFacenity;
         readonly IArticleEntity Articelenity;
-        readonly IPictureExamEntity PictureExamEntity;
-        public SearchService(IUserEntity entity,IProductEntity product, ICategoryEntity category, IArticleEntity articel, IManufacturerEntity fac, IPictureExamEntity pic )
+        readonly IExamineeEntity ExamineeEntity;
+        public SearchService(IUserEntity entity,IProductEntity product, ICategoryEntity category, IArticleEntity articel, IManufacturerEntity fac, IExamineeEntity exc )
        {
            this.entity = entity;
            this.Productentity = product;
            this.Categoryenity = category;
            this.Articelenity = articel;
            this.ManuFacenity = fac;
-           this.PictureExamEntity = pic;
+           this.ExamineeEntity = exc;
        }
 
         public IList<User> SearchUser(string name, string username, string email, string groupid)
@@ -66,17 +66,18 @@ namespace Services
         {
             try {
                 IList<Search> lst = new List<Search>();
-                var picexaminee = new List<PictureExam>();
-                picexaminee = PictureExamEntity.GetMany(c => StringHelper.RemoveVietNamString(c.Title.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.PictureExam.ToString()).ToList();
+                var picexaminee = new List<Examinee>();
+                picexaminee = ExamineeEntity.GetMany(
+                    c => StringHelper.RemoveVietNamString(c.Description.ToLower()).Contains(StringHelper.RemoveVietNamString(value)) || StringHelper.RemoveVietNamString(c.UserNameExt.ToLower()).Contains(StringHelper.RemoveVietNamString(value)), Table.Examinee.ToString()).ToList();
                 if (picexaminee != null) { 
                     foreach (var item in picexaminee)
                     {
                         Search s = new Search();
-                        s.Name = item.Title;
+                        s.Name = item.UserNameExt;
                         s.Type = "Nhà sản xuất";
                         s.Image = "/Media/PictureExam/" + item.Image;
-                        s.Link = item.Link + "-m" + item.ID + ".html";
-                        s.Description = item.Link;
+                        s.Link = "Examinee/detail/" + item.ID + "?username=" + entity.GetById(item.UserID, Table.Users.ToString()).Name;
+                        s.Description = item.Description;
                         lst.Add(s);
                     }
                 }
