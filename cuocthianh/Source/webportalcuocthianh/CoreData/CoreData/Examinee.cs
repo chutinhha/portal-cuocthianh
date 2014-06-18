@@ -15,7 +15,7 @@ namespace CoreData
         public string Link { get; set; }
         public DateTime DayOfBirth { get; set; }
         public string Description { get; set; }
-
+        public string UserNameExt { get; set; }
         public Examinee()
         {
             Code = "";

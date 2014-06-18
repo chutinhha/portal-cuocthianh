@@ -32,9 +32,9 @@ namespace CoreData
         /// <summary>
         /// Pager Variable
         /// </summary>
-       public int page { get; set; }
-       public int PageSize { get; set; }
-       public int TotalPage { get; set; }
+       public int pageExt { get; set; }
+       public int PageSizeExt { get; set; }
+       public int TotalPageExt { get; set; }
 
        public List<SelectListItem> ListCategoryExt { get; set; }
        public List<Article> ListSameArticleExt { get; set; }

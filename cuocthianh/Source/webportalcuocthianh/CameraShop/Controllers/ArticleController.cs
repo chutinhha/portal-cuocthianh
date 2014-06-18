@@ -28,9 +28,9 @@ namespace CameraShop.Controllers
                 var article = ArticleService.GetListByRelationsID(catid, username);
                 foreach (var item in article)
                 {
-                    item.page = page;
-                    item.PageSize = PageSize;
-                    item.TotalPage = (int)Math.Ceiling((float)article.Count / (float)item.PageSize);
+                    item.pageExt = page;
+                    item.PageSizeExt = PageSize;
+                    item.TotalPageExt = (int)Math.Ceiling((float)article.Count / (float)item.PageSizeExt);
                 }
                 article = article.Skip(PageSize * (page - 1)).Take(PageSize).ToList();
                 return View(article);

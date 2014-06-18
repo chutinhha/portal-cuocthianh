@@ -26,8 +26,8 @@ namespace CameraShop.Controllers
             return PartialView(data);
         }
 
-        public ActionResult Detail(int id) {
-            var data = ExamineeService.GetByID(id);
+        public ActionResult Detail(int id, string username="") {
+            var data = ExamineeService.GetByID((id));
             return View(data);
         }
 
