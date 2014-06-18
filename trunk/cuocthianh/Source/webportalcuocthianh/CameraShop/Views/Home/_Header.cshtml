@@ -3,7 +3,7 @@
         <div class="left-part">
             <nav class="menu-categories dropel">
                 <a href="#" onclick="return false;" class="icon-menu-categories tooltip"
-                    title="Categories">Categories</a>
+                    title="">Categories</a>
                 @*<div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-left">
                         <ul class="categories-list">
@@ -30,13 +30,14 @@
             </div>
         </div>
         <h1 class="logo">
-            <a href="@Url.Action("Index", "Home")" title="PixelBeautify – PinThis Theme Preview">
-                <img src="../../Content/imgs/logo0000.png" alt="PixelBeautify – PinThis Theme Preview">
+            <a href="@Url.Action("Index", "Home")" title="Jbart - cuộc thi ảnh">
+                <img src="../../Content/imgs/logo0000.png" alt="Jbart - cuộc thi ảnh">
             </a>
         </h1>
         <div class="right-part">
             <div class="log-in-out dropel">
-                @if(Session["UserID"]==null || Session["UserID"]==""){
+                @if(Session["UserID"]==null || Session["UserID"].ToString()=="")
+                {
                 <a href="#" onclick="return false;" title="Đăng Nhập" class="icon-login tooltip"></a>
                 <div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-right">
@@ -65,11 +66,15 @@
                         </p>
                     </div>
                 </div>
-                } else{
-                    <a href="#" title="Đã đăng Nhập" class="tooltip">@Session["UserName"]</a>
+                } else
+                {
+                    <a href="#" title="Đã đăng Nhập" class="tooltip">Xin chào, @Session["UserName"]</a>
                     <div class="dropdown">
                     <div class="dropdown-wrapper arrow-up-right">
-                        <div id="login-form">
+                        <div id="login-form" style="width:150px">
+                           <p class="login-username">
+                                <a href="@Url.Action("Profile", "User")">Thông tin cá nhân</a>
+                            </p>
                             <p class="login-username">
                                 <a href="@Url.Action("LogOffHome", "Home")">Thoát</a>
                             </p>
@@ -87,28 +92,16 @@
             <div class="header-menu-wrapper arrow-up-right">
                 <ul id="menu-menu-1" class="header-menu-list">
                     <li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-241">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/portfolio/">Portfolio</a>
-                        <div class="dropdown">
-                            <div class="dropdown-wrapper arrow-up-left">
-                                <ul class="sub-menu">
-                                    <li id="menu-item-242" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-242">
-                                        <a href="http://pinthis-rtl.pixelbeautify.com/category/sport/">Sport</a></li>
-                                    <li id="menu-item-243" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-243">
-                                        <a href="http://pinthis-rtl.pixelbeautify.com/category/landscapes/">Landscapes</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <a href="/">Trang chủ</a>
+                       
                     </li>
                     <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/category/celebrities/">Celebrities</a></li>
+                        <a href="#">Giới thiệu</a></li>
                     <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/">Commercial</a></li>
+                         <a href="#">Thể lệ cuộc thi</a></li>
                     <li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/404">404 Page</a></li>
-                    <li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-230">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/about/">About</a></li>
-                    <li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-229">
-                        <a href="http://pinthis-rtl.pixelbeautify.com/contact/">Contact Us</a></li>
+                         <a href="#">Giải thưởng</a></li>
+                   
                 </ul>
             </div>
         </div>

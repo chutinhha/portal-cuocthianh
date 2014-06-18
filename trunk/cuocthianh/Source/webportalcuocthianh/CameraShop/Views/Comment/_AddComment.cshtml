@@ -1,7 +1,14 @@
 ﻿@using CoreData
 @model Comment
 <div class="comment-row">
-    <span>@Model.ID - @Model.CommentContent</span>
+    @if (Session["Username"] != null)
+    {
+    <span>@Session["Username"].ToString(): @Model.CommentContent</span>
+    }
+    else
+    {
+        <span>@Model.Name: @Model.CommentContent</span>
+    }
     <div class="reply-row">
         <a parid="@Model.ID" class="reply-link" href="#">Trả lời</a>
     </div>

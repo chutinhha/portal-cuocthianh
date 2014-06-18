@@ -10,11 +10,11 @@
 
         <div class="widgetButtons">
             <div class="bb"><a title="Quản trị người dùng" href="@Url.Action("Index", "UserManagement")"><span class="ibw-users"></span></a></div>
-            <div class="bb">
+            @*<div class="bb">
                 <a title="Quản trị sản phẩm" href="@Url.Action("Index", "ProductManagement")"><span class="ibw-documents"></span></a>
-            </div>
+            </div>*@
             <div class="bb"><a title="Quản lý danh mục" href="@Url.Action("Index", "CategoryManagement")"><span class="ibw-list"></span></a></div>
-            <div class="bb"><a title="Quản lý Nhà sản xuất" href="@Url.Action("Index", "ManufacturerManagement")"><span class="ibw-archive"></span></a></div>
+           @* <div class="bb"><a title="Quản lý Nhà sản xuất" href="@Url.Action("Index", "ManufacturerManagement")"><span class="ibw-archive"></span></a></div>*@
             <div class="bb">
                 <a title="Cấu hình" href="#")"><span class="ibw-mail"></span></a>
             </div>
@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="dr"><span></span></div>
-<div class="head">
+@*<div class="head">
     <div class="isw-grid">
     </div>
     <h1>
@@ -41,14 +41,14 @@
     <div class="row-fluid list">
         @Html.Action("_ShowAll", "OrderManagement", new { status = (int)Helper.ValueDefine.OrderStatus.New })
     </div>
-</div>
+</div>*@
 
 
 <div class="head">
     <div class="isw-grid">
     </div>
     <h1>
-        Danh sách khách hàng</h1>
+        Danh sách người dùng</h1>
     <ul class="buttons">
         <li><a href="#" class="isw-settings"></a>
             
