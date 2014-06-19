@@ -3,6 +3,10 @@
 }
 @using CoreData
 @model Article
+            @{
+       var day = DateTime.Today.Day;
+       var link = "http://cuocthijba.com/article/" + Model.Title.Replace(" ", "-") + "-p"+Model.ID+".html";
+   }
 <div class="container clearfix">
     <div class="postWrap">
         <div class="post-292 post type-post status-publish format-standard has-post-thumbnail hentry category-commercial">
@@ -16,6 +20,13 @@
                     @Html.Raw(Model.Content)
                 </div>
             </div>
+            <div style="width:100%; height:2px; background:#999999; margin-top:10px; margin-bottom:10px"></div>
+            <div style="font-size:large">Bình luận</div>
+            <div>
+                 <center>
+                    <div class="fb-comments" data-href="@link" data-width="100%" data-numposts="5" data-colorscheme="dark"></div>
+                   </center>
+            </div>
         </div>
     </div>
     <aside class="sidebar">
@@ -23,16 +34,7 @@
             <h4 class="title-1 border-color-2">
                 Bài viết</h4>
             <ul id="menu-menu-1" class="header-menu-list">
-                <li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-241">
-                    <a href="/">Trang chủ</a> </li>
-                <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
-                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 12 + "" })">Giới thiệu</a></li>
-                <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 13 + "" })">Thể lệ cuộc thi</a></li>
-                <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 15 + "" })">Nội dung thi</a></li>
-                <li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244">
-                    <a href="@Url.Action("Detail", "Article", new { @id = "" + 14 + "" })">Giải thưởng</a></li>
+                 @Html.Action("_GetArticleDefault", "Article")
             </ul>
         </div>
         <div class="contentbox">
@@ -42,150 +44,407 @@
                 <table id="wp-calendar">
                     <caption>
                     </caption>
-                    <thead>
+                   <thead>
                         <tr>
-                            <th scope="col" title="الإثنين">
-                                ن
+                            <th scope="col" title="Chủ nhật">
+                               CN
                             </th>
-                            <th scope="col" title="الثلاثاء">
-                                ث
+                            <th scope="col" title="Thứ 2">
+                               T2
                             </th>
-                            <th scope="col" title="الأربعاء">
-                                ر
+                            <th scope="col" title="Thứ 3">
+                                T3
                             </th>
-                            <th scope="col" title="الخميس">
-                                خ
+                            <th scope="col" title="Thứ 4">
+                                T4
                             </th>
-                            <th scope="col" title="الجمعة">
-                                ج
+                            <th scope="col" title="Thứ 5">
+                               T5
                             </th>
-                            <th scope="col" title="السبت">
-                                س
+                            <th scope="col" title="Thứ 6">
+                              T6
                             </th>
-                            <th scope="col" title="الأحد">
-                                أ
+                            <th scope="col" title="Thứ 7">
+                               T7
                             </th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <td id="prev">
-                                <a href="http://pinthis-rtl.pixelbeautify.com/2014/05/" title="مشاهدة المقالات لمايو 2014">
-                                    « مايو</a>
-                            </td>
-                            <td class="pad caption">
-                                يونيو 2014
-                            </td>
-                            <td id="next" class="pad">
-                                &nbsp;
-                            </td>
-                        </tr>
-                    </tfoot>
+                    
                     <tbody>
                         <tr>
                             <td colspan="6" class="pad">
                                 &nbsp;
                             </td>
-                            <td>
+                            @if (day == 1)
+                            {
+                            <td id="today">
                                 1
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                1
+                              </td>
+                            }
                         </tr>
                         <tr>
-                            <td>
+                           @if (day == 2)
+                            {
+                            <td id="today">
                                 2
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                2
+                              </td>
+                            }
+                            @if (day == 3)
+                            {
+                            <td id="today">
                                 3
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                3
+                              </td>
+                            }
+                            @if (day ==4)
+                            {
+                            <td id="today">
                                 4
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                4
+                              </td>
+                            }
+                            @if (day == 5)
+                            {
+                            <td id="today">
                                 5
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                5
+                              </td>
+                            }
+                            @if (day == 6)
+                            {
+                            <td id="today">
                                 6
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                6
+                              </td>
+                            }
+                            @if (day == 7)
+                            {
+                            <td id="today">
                                 7
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                7
+                              </td>
+                            }
+                           @if (day == 8)
+                            {
+                            <td id="today">
                                 8
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                8
+                              </td>
+                            }
                         </tr>
                         <tr>
-                            <td>
+                           @if (day == 9)
+                            {
+                            <td id="today">
                                 9
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                9
+                              </td>
+                            }
+                            @if (day == 10)
+                            {
+                            <td id="today">
                                 10
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                10
+                              </td>
+                            }
+                           @if (day == 11)
+                            {
+                            <td id="today">
                                 11
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                11
+                              </td>
+                            }
+                            @if (day == 12)
+                            {
+                            <td id="today">
                                 12
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                12
+                              </td>
+                            }
+                            @if (day == 13)
+                            {
+                            <td id="today">
                                 13
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                13
+                              </td>
+                            }
+                           @if (day == 14)
+                            {
+                            <td id="today">
                                 14
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                14
+                              </td>
+                            }
+                            @if (day == 15)
+                            {
+                            <td id="today">
                                 15
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                15
+                              </td>
+                            }
                         </tr>
                         <tr>
-                            <td>
+                            @if (day == 16)
+                            {
+                            <td id="today">
                                 16
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                16
+                              </td>
+                            }
+                            @if (day == 17)
+                            {
                             <td id="today">
-                                <span>17</span>
+                                17
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                17
+                              </td>
+                            }
+                           @if (day == 18)
+                            {
+                            <td id="today">
                                 18
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                18
+                              </td>
+                            }
+                            @if (day == 19)
+                            {
+                            <td id="today">
                                 19
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                19
+                              </td>
+                            }
+                            @if (day == 20)
+                            {
+                            <td id="today">
                                 20
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                20
+                              </td>
+                            }
+                            @if (day == 21)
+                            {
+                            <td id="today">
                                 21
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                21
+                              </td>
+                            }
+                            @if (day == 22)
+                            {
+                            <td id="today">
                                 22
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                22
+                              </td>
+                            }
                         </tr>
                         <tr>
-                            <td>
+                            @if (day == 23)
+                            {
+                            <td id="today">
                                 23
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                23
+                              </td>
+                            }
+                            @if (day == 24)
+                            {
+                            <td id="today">
                                 24
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                24
+                              </td>
+                            }
+                            @if (day == 25)
+                            {
+                            <td id="today">
                                 25
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                25
+                              </td>
+                            }
+                            @if (day == 26)
+                            {
+                            <td id="today">
                                 26
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                26
+                              </td>
+                            }
+                            @if (day == 27)
+                            {
+                            <td id="today">
                                 27
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                27
+                              </td>
+                            }
+                            @if (day == 28)
+                            {
+                            <td id="today">
                                 28
                             </td>
-                            <td>
+                            }
+                            else
+                            {
+                                <td >
+                                28
+                              </td>
+                            }
+                           @if (day == 29)
+                            {
+                            <td id="today">
                                 29
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                                29
+                              </td>
+                            }
                         </tr>
                         <tr>
-                            <td>
-                                30
+                            @if (day == 30)
+                            {
+                            <td id="today">
+                               30
                             </td>
+                            }
+                            else
+                            {
+                                <td >
+                               30
+                              </td>
+                            }
                             <td class="pad" colspan="6">
                                 &nbsp;
                             </td>
@@ -196,3 +455,20 @@
         </div>
     </aside>
 </div>
+
+<script type="text/javascript">
+
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=171701259670809&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
+
+  
+
+
+
+</script>

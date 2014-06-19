@@ -4,6 +4,7 @@
         var metadescription = jQuery("#Metadescription").val();
         var metakeyword = jQuery("#Metakeyword").val();
         var facebook = jQuery("#Facebook").val();
+        
         var data = "Title+" + title + "##" + "Metakeyword+" + metakeyword + "##" + "Metadescription+" + metadescription + "##" + "Facebook+" + facebook;
         $.ajax({
             type: "POST",
