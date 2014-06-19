@@ -1,4 +1,7 @@
-﻿@model List<CoreData.PictureExam>
+﻿@{
+    Layout = null;
+}
+@model List<CoreData.PictureExam>
 @if (Model != null && Model.Count() > 0)
 {
     <ul id="navlist">
@@ -6,9 +9,7 @@
         {
             <li><a class="tooltip picture-fancy" href="/Media/PictureExam/@item.Image" title="@item.Title">
                 <img src="/Media/PictureExam/@item.Image" width="120" height="120" alt="">
-            </a>
-                <a virid="@item.ID" class="btn-delete" title="Xóa ảnh" href="#">X</a>
-            </li>
+            </a><a virid="@item.ID" class="btn-delete" title="Xóa ảnh" href="#">X</a> </li>
         }
     </ul>
 }

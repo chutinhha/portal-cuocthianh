@@ -21,6 +21,7 @@ $.fn.kyersTab=function(options){
 			$(this).parent("li").addClass("active");
 			var currentIndex=$(this).parent("li").attr("index");
 			$(settings.tabItem).removeClass("active");
-			$(settings.tabItem + "[index="+currentIndex+"]").addClass("active");
+			$(settings.tabItem + "[index=" + currentIndex + "]").addClass("active");
+
 		});
 	}
