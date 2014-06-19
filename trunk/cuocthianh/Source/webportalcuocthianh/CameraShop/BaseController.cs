@@ -86,7 +86,15 @@ namespace CameraShop
             this.EmailListService =_emaillist;
             this.ExamineeService = _examinee;
         }
-
+        public BaseController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist,
+            IExamineeActionService _examinee, IConfigurationActionService config)
+        {
+            this.UserService = _user;
+            this.ProvinceService = _province;
+            this.EmailListService = _emaillist;
+            this.ExamineeService = _examinee;
+            this.ConfigurationService = config;
+        }
         public BaseController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist)
         {
             this.UserService = _user;
@@ -368,6 +376,14 @@ namespace CameraShop
                     _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
                 }
 
+                if (dir.Contains("Jbart"))
+                {
+                    _file = FileHelper.FileUpload(hpf, "Media/Jbart");
+                    //   var value = ConfigurationService.GetOneByLINQ(c => c.Code.Equals("CustomerIdeaimg")).Value;
+                    var path = Server.MapPath("~/Media/Jbart/" + Path.GetFileNameWithoutExtension(_file) + Guid.NewGuid().ToString().Substring(0, 4) + Path.GetExtension(_file));
+                    var _name = Server.MapPath("~/Media/Jbart/" + _file);
+                    _file = Path.GetFileName(_name);// ImageHelper.SaveCompressed(_name, path, long.Parse(value));
+                }
                 PathUpload = _file;
                 r.Add(new ViewDataUploadFilesResult()
                 {

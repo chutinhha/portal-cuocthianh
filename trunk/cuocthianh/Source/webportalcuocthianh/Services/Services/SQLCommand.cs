@@ -112,7 +112,7 @@ left join [Order] O on O.ID=D.OrderID left join Product P on P.ID=D.ProductID wh
        #region Configuration
 
        public const string GetGenneralConfig = @" select * from Configuration where Code ='Title' or Code ='Metakeyword'
-                                                   or Code ='Metadescription' or Code ='Facebook' ";
+                                                   or Code ='Metadescription' or Code ='Facebook' or Code='Logo' ";
        public const string GetEmailConfig = @" select * from Configuration where Code ='Email' or Code ='EmailPassword'";
 
        #endregion

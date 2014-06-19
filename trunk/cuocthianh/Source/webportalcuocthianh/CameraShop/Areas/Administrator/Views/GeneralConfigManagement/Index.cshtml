@@ -19,9 +19,9 @@
         <div class="block-fluid tabs">
             <ul>
                 <li><a href="#tabs-1">Cấu hình chung</a></li>
-                <li><a href="#tabs-2">Email</a></li>
+                @*<li><a href="#tabs-2">Email</a></li>
                 <li><a href="#tabs-3">Email template</a></li>
-                <li><a href="#tabs-4">Sao lưu - phục hồi</a></li>
+                <li><a href="#tabs-4">Sao lưu - phục hồi</a></li>*@
             </ul>
              <div class="warning-area">
                 </div>
@@ -30,14 +30,14 @@
                  @Html.Action("_General","GeneralConfigManagement")
                     
                 </div>
-                <div id="tabs-2">
+                @*<div id="tabs-2">
                
                  @Html.Action("_Email","GeneralConfigManagement")
                     
                  
-                </div>
+                </div>*@
                
-                <div id="tabs-3">
+               @* <div id="tabs-3">
                
                     <input style="margin-left:5px;" id="addnew" class="btn btn-primary" type="button" value="Thêm mới" />
                       
@@ -74,12 +74,12 @@
                 </div>
 
                 
-                </div>
-                <div id="tabs-4">
+                </div>*@
+               @* <div id="tabs-4">
                
                  
                  
-                </div>
+                </div>*@
                
             
         </div>
@@ -114,7 +114,23 @@
             Delete(e, $this);
         });
 
+
+
+
+      
     });
+
+
+
+
+
+
+    
+
+
+
+
+
 </script>
 
 

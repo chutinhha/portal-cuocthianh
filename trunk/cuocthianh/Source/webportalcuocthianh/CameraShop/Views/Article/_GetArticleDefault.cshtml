@@ -1,0 +1,11 @@
+﻿@using CoreData;
+@model IList<Article>
+  @if (Model != null)
+  {
+      foreach (var item in Model)
+      {
+                      <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
+                        <a href="@Url.Action("Detail", "Article", new { id =@item.ID , name = @Helper.StringHelper.RemoveVietNamString(item.Title).Replace(" ","-").Replace("&","va")})">@item.Title</a></li>
+                  
+      }
+  }

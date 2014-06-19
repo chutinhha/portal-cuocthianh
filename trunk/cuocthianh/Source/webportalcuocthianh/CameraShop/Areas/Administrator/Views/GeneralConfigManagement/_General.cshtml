@@ -7,7 +7,49 @@
               
        @foreach (var item in Model)
         {
-                 <div class="row-form">
+            if (item.Code == "Logo")
+            {
+                <div class="row-form">   
+                    <div class="span2">
+                       Logo :</div>
+                    <div class="span9">
+                        <input id="fileupload" type="file" name="file" />
+                        @if (item != null && item.Value != null && item.Value != "")
+                        {
+                            <div id="image">
+                          <img src="@Url.Content("~/Media/Jbart/" + item.Value)" width="70px" height="70px" alt="@item.Value" />
+                            </div>
+                        }
+                        else
+                        {
+                                <div id="image"> 
+                                 </div>
+                        }
+                     </div>
+                    <div class="clear">
+                    </div>
+                </div>
+             <script type="text/javascript">
+
+                 $('#fileupload').fileupload({
+                     dataType: 'json',
+                     url: '/Administrator/GeneralConfigManagement/UploadFiles?dir=Jbart',
+                     autoUpload: true,
+                     done: function (e, data) {
+                         $('#image').html('<img width=\"70px\" height=\"70px\" src="/Media/Jbart/' + data.result.name + '" />');
+
+                     }
+                 }).on('fileuploadprogressall', function (e, data) {
+                     var progress = parseInt(data.loaded / data.total * 100, 10);
+                     $('.progress .progress-bar').css('width', progress + '%');
+                 });
+
+
+             </script>
+            }
+            else
+            {
+                 <div class="row-form">   
                     <div class="span2">
                        @item.Name :</div>
                     <div class="span9">
@@ -15,6 +57,7 @@
                     <div class="clear">
                     </div>
                 </div>
+            }
         }
 
                 

@@ -52,7 +52,9 @@ namespace CameraShop.Areas.Administrator.Controllers
 
         public ActionResult General(string data)
         {
+            data += "##Logo+" + PathUpload;
             var id = this.ConfigurationService.UpdateConfig(data);
+            PathUpload="";
             if (id != -1)
             {
                 return Content(Helper.ErrorCode.Success);

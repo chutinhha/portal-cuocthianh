@@ -78,10 +78,23 @@ namespace Services
                var a = entity.GetAll(Table.Examinee.ToString()).ToList();
                foreach(var i in a)
                {
-                   var users = user.Get(c => c.ID.Equals(i.UserID), Table.Users.ToString());
-                   i.UserNameExt = users.Name;
+                   try
+                   {
+                       var users = user.Get(c => c.ID.Equals(i.UserID), Table.Users.ToString());
+                       if (users == null)
+                       {
+                          // a.Remove(i);
+                           i.UserNameExt = "";
+                       }
+                       else
+                       {
+                           i.UserNameExt = users.Name;
+                       }
+                   }
+                   catch { }
                    
                }
+               a = a.Where(c => c.UserNameExt != "").ToList();
                return a;
            }
            catch { return null; }

@@ -23,11 +23,13 @@ namespace CameraShop.Controllers
 
         public ActionResult _ListExaminee() {
             var data = ExamineeService.GetList();
+            if (data == null)
+                data = new List<Examinee>();
             return PartialView(data);
         }
 
-        public ActionResult Detail(int id, string username="") {
-            var data = ExamineeService.GetByID((id));
+        public ActionResult Detail(string id="0", string username="") {
+            var data = ExamineeService.GetByID(int.Parse(id));
             data.ViewCount += 1;
             ExamineeService.Save(data);
             return View(data);

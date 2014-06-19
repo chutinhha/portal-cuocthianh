@@ -15,13 +15,21 @@ namespace RegisterService
 
         public static void Route(RouteCollection routes)
         {
-       //     routes.MapRoute(
-       //    "Exdetails", // Route name
-       //    "profile/{username}-p{id}.html", // URL with parameters
-       //    new { controller = "Examinee", action = "Detail" },
-       //    new { id = UrlParameter.Optional, username = UrlParameter.Optional },
-       //     new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
-       //);
+            routes.MapRoute(
+           "Exdetails", // Route name
+           "album/{username}-p{id}.html", // URL with parameters
+           new { controller = "Examinee", action = "Detail", id = UrlParameter.Optional, username = UrlParameter.Optional},
+          
+            new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
+       );
+
+            routes.MapRoute(
+          "article", // Route name
+          "article/{name}-p{id}.html", // URL with parameters
+          new { controller = "Article", action = "Detail", id = UrlParameter.Optional, name = UrlParameter.Optional },
+
+           new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
+      );
            
             routes.MapRoute(
                     "HomePage", // Route name
