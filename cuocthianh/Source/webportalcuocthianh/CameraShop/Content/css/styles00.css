@@ -108,4 +108,23 @@ div.control-apply {
     display: inline-block;
 	width: 19.5%;
 	margin-bottom: 10px;
+	position: relative;
+}
+#listpicture #navlist li a.picture-fancy
+{
+    display: block;
+	width: 100%;
+}
+#listpicture #navlist li img
+{
+    width: 100%;
+}
+#listpicture #navlist li .btn-delete
+{
+    position: absolute;
+	background: #e64c65;
+	padding: 2px 5px;
+	top: 0;
+	right: 0;
+	color: #fff;
 }
