@@ -16,6 +16,7 @@
     <script src="@Url.Content("~/Content/Plugins/JQueryUpload/jquery.fileupload.js")" type="text/javascript"></script>
     <script src="../../Content/js/jquery.colorbox-min.js" type="text/javascript"></script>
     <script src="../../Content/js/picturexam.js" type="text/javascript"></script>
+    <script src="../../Content/plugins/SmallEditor/nicEdit.js" type="text/javascript"></script>
 }
 @section BottomResource{
     <script src="../../Content/plugins/KyersTab/js/kyersTab.js" type="text/javascript"></script>
@@ -55,6 +56,9 @@
                                     @Html.Action("_ListPictureExamProfile", "PictureExam")
                                 </div>
                             </ul>
+                            <div>
+                                @Html.Action("_IntroducePictureExamProfile", "PictureExam")
+                            </div>
                         </li>
                     </ul>
                 </div>

@@ -31,12 +31,12 @@
         </div>
         <h1 class="logo">
             <a href="@Url.Action("Index", "Home")" title="Jbart - cuộc thi ảnh">
-                <img src="../../Content/imgs/logo0000.png" alt="Jbart - cuộc thi ảnh">
+                <img src="/Media/Jbart/@ViewBag.Logo"  alt="Jbart - cuộc thi ảnh">
             </a>
         </h1>
         <div class="right-part">
             <div class="log-in-out dropel">
-                @if(Session["UserID"]==null || Session["UserID"].ToString()=="")
+                @if (Session["UserID"] == null || Session["UserID"].ToString() == "")
                 {
                 <a href="#" onclick="return false;" title="Đăng Nhập" class="icon-login tooltip"></a>
                 <div class="dropdown">
@@ -66,7 +66,8 @@
                         </p>
                     </div>
                 </div>
-                } else
+                }
+                else
                 {
                     <a href="#" title="Đã đăng Nhập" class="tooltip">Xin chào, @Session["UserName"]</a>
                     <div class="dropdown">
@@ -95,14 +96,15 @@
                         <a href="/">Trang chủ</a>
                        
                     </li>
-                    <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
-                        <a href="@Url.Action("Detail", "Article", new { @id = "" + 12 + "" })">Giới thiệu</a></li>
+                    @Html.Action("_GetArticleDefault", "Article")
+                   @* <li id="menu-item-231" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-231">
+                        <a href="@Url.Action("Detail", "Article", new { @id = "" + 12 + "", name = @Helper.StringHelper.RemoveVietNamString(Model.Title)})">Giới thiệu</a></li>
                     <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 13 + "" })">Thể lệ cuộc thi</a></li>
+                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 13 + "", name = @Helper.StringHelper.RemoveVietNamString(Model.Title)})">Thể lệ cuộc thi</a></li>
                    <li id="menu-item-232" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-232">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 15 + "" })">Nội dung thi</a></li>
+                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 15 + "", name = @Helper.StringHelper.RemoveVietNamString(Model.Title)})">Nội dung thi</a></li>
                     <li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244">
-                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 14 + "" })">Giải thưởng</a></li>
+                         <a href="@Url.Action("Detail", "Article", new { @id = "" + 14 + "", name = @Helper.StringHelper.RemoveVietNamString(Model.Title)})">Giải thưởng</a></li>*@
                    
                 </ul>
             </div>

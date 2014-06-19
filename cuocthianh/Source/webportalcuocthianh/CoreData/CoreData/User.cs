@@ -30,6 +30,7 @@ namespace CoreData
             public string ImageExt { get; set; }
             public string ExamineeCodeExt { get; set; }
             public long ExamineeIDExt { get; set; }
+            public string IntroduceExt { get; set; }
         public User()
         {       
                     UserName ="";   

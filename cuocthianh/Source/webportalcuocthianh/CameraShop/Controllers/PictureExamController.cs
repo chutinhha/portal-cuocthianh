@@ -36,6 +36,16 @@ namespace CameraShop.Controllers
             return View(data);
         }
 
+        /// <summary>
+        /// Khung giới thiệu album ảnh
+        /// </summary>
+        /// <param name="examineeid"></param>
+        /// <returns></returns>
+        public ActionResult _IntroducePictureExamProfile(int examineeid=0)
+        {
+            return View();
+        }
+
         //Picture Exam
         //action
         public ActionResult PictureExam(PictureExam _model)

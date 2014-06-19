@@ -71,6 +71,7 @@ namespace CameraShop.Areas.Administrator.Controllers
             {
                 return Content("exist");
             }
+            model.UserID = SessionManagement.GetSessionReturnInt("UserID");
             model.Image = PathUpload;
             var id = this.ArticleService.Save(model);
             PathUpload = "";

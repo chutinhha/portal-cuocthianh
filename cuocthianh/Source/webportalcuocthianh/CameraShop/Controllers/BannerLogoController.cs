@@ -22,7 +22,7 @@ namespace CameraShop.Controllers
         /// <returns></returns>
         public ActionResult _MainSlideShow()
         {
-            IList<Banner_Logo> banner = BannerService.GetListByLINQ(x => x.Active == true && x.Type == ValueDefine.BannerLogoType.Banner && x.Position == ValueDefine.BannerLogoPosition.ShideShow).Take(5).ToList();
+            IList<Banner_Logo> banner = BannerService.GetList();// (x => x.Active == true && x.Type == ValueDefine.BannerLogoType.Banner && x.Position == ValueDefine.BannerLogoPosition.ShideShow).Take(5).ToList();
             return PartialView(banner);
         }
 

@@ -45,9 +45,9 @@ namespace CameraShop.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        public ActionResult Detail(long Id)
+        public ActionResult Detail(long id, string name="")
         {
-            var data = ArticleService.GetByID(Id);
+            var data = ArticleService.GetByID(id);
             if (data == null)
                 data = new Article();
             var username = UserService.GetByID(data.UserID).UserName;
@@ -66,7 +66,11 @@ namespace CameraShop.Controllers
         }
 
 
-
+        public ActionResult _GetArticleDefault()
+        {
+            var article = ArticleService.GetList();
+            return PartialView(article);
+        }
 
     }
 }

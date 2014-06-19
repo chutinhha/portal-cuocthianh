@@ -167,8 +167,17 @@ namespace Services
                    var _item = entity.Get(c => c.Code.Equals(separe[0]), Table.Configuration.ToString());
                    if (_item != null)
                    {
-                       _item.Value = separe[1];
-                       Save(_item);
+                       if (_item.Code == "Logo")
+                       {
+                           if (_item.Value != "")
+                               _item.Value = separe[1];
+                           Save(_item);
+                       }
+                       else
+                       {
+                           _item.Value = separe[1];
+                           Save(_item);
+                       }
                    }
                }
                return 1;

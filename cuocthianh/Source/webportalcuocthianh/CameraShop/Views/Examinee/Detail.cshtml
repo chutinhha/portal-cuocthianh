@@ -3,6 +3,10 @@
 }
 @using CoreData
 @model Examinee
+             @{
+  
+                 var link = "http://cuocthijba.com/album/" + Model.UserNameExt.Replace(" ", "-") + "-p"+Model.ID+".html";
+   } 
 @if (Model != null)
 {
     <input type ="hidden" value="@Model.ID" name="txtid" id="txtid" />
@@ -23,16 +27,16 @@
                     @*<p class="categories">
                     Categories: &nbsp; <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"
                         title="شاهد جميع المقالات في Commercial" rel="category tag">Commercial</a></p>*@
-                    <div class="metabar clearfix">
+                    @*<div class="metabar clearfix">
                         <h4 class="title-5">
                             Bình luận</h4>
-                    </div>
+                    </div>*@
                     <!-- <div class="comment-respond-wrapper "> -->
-                    <div>
+                    @*<div>
                       <center>
                     <div class="fb-comments" data-href="@Model.Link" data-width="100%" data-numposts="5" data-colorscheme="dark"></div>
                    </center>
-                   </div>
+                   </div>*@
                     @*<div class="comments" id="mainComment">
                         @Html.Action("_ListComment", "Comment", new { @articleid = Model.ID })
                     </div>
@@ -48,6 +52,13 @@
                     </div>*@
                     <!-- #respond -->
                     <!-- </div> -->
+                </div>
+                <div style="width:100%; height:2px; background:#999999; margin-top:10px; margin-bottom:10px"></div>
+                <div style="font-size:large">Bình luận</div>
+                <div>
+                     <center>
+                        <div class="fb-comments" data-href="@link" data-width="100%" data-numposts="5" data-colorscheme="dark"></div>
+                       </center>
                 </div>
             </div>
         </div>
@@ -72,17 +83,24 @@
         });
     });
 
+  
+
+</script>
 
 
-   
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=171701259670809&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+<script type="text/javascript">
+
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=171701259670809&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    } (document, 'script', 'facebook-jssdk'));
 
   
+
+
 
 </script>

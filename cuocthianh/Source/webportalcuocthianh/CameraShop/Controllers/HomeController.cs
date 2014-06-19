@@ -16,8 +16,9 @@ namespace CameraShop.Controllers
         // GET: /Home/
 
 
-        public HomeController(IUserActionService _user, IProvinceActionService _province, IEmailListActionService _emaillist, IExamineeActionService examinee)
-            : base(_user, _province, _emaillist, examinee)
+        public HomeController(IUserActionService _user, IProvinceActionService _province,
+            IEmailListActionService _emaillist, IExamineeActionService examinee, IConfigurationActionService config)
+            : base(_user, _province, _emaillist, examinee, config)
         { }
         public ActionResult Index()
         {
@@ -26,7 +27,7 @@ namespace CameraShop.Controllers
         }
         public ActionResult _Header()
         {
-
+            ViewBag.Logo = ConfigurationService.GetOneByLINQ(c => c.Code == "Logo").Value;
             return PartialView();
         }
 
@@ -94,6 +95,7 @@ namespace CameraShop.Controllers
                     }
                 }
                 _model.Active = true;
+                _model.GroupIDExt = 1;
                 long userid =this.UserService.Save(_model);
                 if (userid != -1)
                 {
