@@ -42,9 +42,10 @@
                                 dataType: 'html',
                                 complete: function (edata) {
                                     $("#listpicture").html(edata.responseText);
+                                    $(".btn-delete").DeleteImage();
                                 }
                             });
-                            $(".btn-delete").DeleteImage();
+                            
                         }
                     });
                 });
