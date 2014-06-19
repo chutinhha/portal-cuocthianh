@@ -25,6 +25,31 @@
             $(document).ready(function (e) {
                 $(".topbar").find("li").find("a").kyersTab({ "tabItem": ".tab-item" });
             });
+            $.fn.DeleteImage = function () {
+                var id = $(this).attr("virid");
+                $(this).click(function () {
+                    $.ajax({
+                        type: 'get',
+                        url: '/PictureExam/Delete/',
+                        traditional: true,
+                        dataType: 'html',
+                        data: { id: id },
+                        complete: function (data) {
+                            $.ajax({
+                                type: 'get',
+                                url: '/PictureExam/_ListPictureExamProfile/',
+                                traditional: true,
+                                dataType: 'html',
+                                complete: function (edata) {
+                                    $("#listpicture").html(edata.responseText);
+                                }
+                            });
+                            $(".btn-delete").DeleteImage();
+                        }
+                    });
+                });
+            }
+            $(".btn-delete").DeleteImage();
         })(jQuery);
     </script>
 }
@@ -72,13 +97,6 @@
             <div class="widgetwrapper">
                 <ul class="recentposts clearfix">
                     @Html.Action("_ListPictureExam", "PictureExam")
-                    @* @for (int i = 0; i < 9; i++)
-                    {
-                        <li><a class="tooltip" href="http://pinthis-rtl.pixelbeautify.com/post-format-standart/"
-                            title="Post Format: Standart">
-                            <img src="postpinthis_files/dfgdfgd0.jpg" width="68" height="68" alt="Post Format: Standart">
-                        </a></li>
-                    }*@
                 </ul>
             </div>
         </div>

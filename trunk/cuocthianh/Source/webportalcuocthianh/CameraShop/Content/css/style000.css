@@ -4224,3 +4224,9 @@ list-style-type: none;
 
 
 }
+
+.postWrap .contentbox img
+{
+    max-width: 100% !important;
+    height: auto !important;
+}

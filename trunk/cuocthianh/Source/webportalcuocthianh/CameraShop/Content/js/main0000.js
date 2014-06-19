@@ -36,7 +36,12 @@ jQuery(document).ready(function ($) {
             traditional: true,
             dataType: 'json',
             complete: function (edata) {
-                location.href = "/";
+                if (edata.statusText === "OK") {
+                    location.href = "/";
+                }
+                else {
+                    alert("Tên đăng nhập hoặc mật khẩu không đúng");
+                }
             }
         });
     }
@@ -44,6 +49,7 @@ jQuery(document).ready(function ($) {
         LoginHome();
     });
     $("#user_login").add("#user_pass").on("keyup", function (e) {
+        e.preventDefault() ? e.preventDefault() : e.returnValue;
         if (e.keyCode === 13) {
             LoginHome();
         }
