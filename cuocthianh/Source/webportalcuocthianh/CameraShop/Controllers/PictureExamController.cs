@@ -84,22 +84,34 @@ namespace CameraShop.Controllers
              return PartialView(data);
         }
 
+        public ActionResult Delete(int id = 0) {
+            var picex = PictureExamineeService.GetByID(id);
+            var picname = picex.Image;
+            if (PictureExamineeService.Delete(picex)==true){
+                string fullPath = Request.MapPath("~/Media/PictureExam/" + picex.Image);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+            return PartialView("_ListPictureExamProfile");
+        }
 
-                    #region upload control
+        #region upload control
 
-                    //uoload control
-                    public ActionResult UploadPicture(PictureExam model, HttpPostedFileBase file)
-                    {
+        //uoload control
+        public ActionResult UploadPicture(PictureExam model, HttpPostedFileBase file)
+        {
            
-                        model.Image = PathUpload;
-                        model.ExamineeID = int.Parse(Session["ExamineeID"].ToString());
-                        var id = this.PictureExamineeService.Save(model);
-                        PathUpload = "";
-                        return Json(id, JsonRequestBehavior.AllowGet);
-                    }
+            model.Image = PathUpload;
+            model.ExamineeID = int.Parse(Session["ExamineeID"].ToString());
+            var id = this.PictureExamineeService.Save(model);
+            PathUpload = "";
+            return Json(id, JsonRequestBehavior.AllowGet);
+        }
                     
 
-                    #endregion
+        #endregion
 
 
         #endregion
