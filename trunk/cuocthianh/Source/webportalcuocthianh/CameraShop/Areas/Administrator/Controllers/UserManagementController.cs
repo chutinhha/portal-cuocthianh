@@ -58,7 +58,7 @@ namespace CameraShop.Areas.Administrator.Controllers
             var data = UserService.GetByCustomID(id);
             if (data == null)
                 data = new User();
-            data.ListGroupExt = GroupService.GetSelectList((int.Parse(data.GroupIDExt.ToString())));
+            data.ListGroupExt = GroupService.GetSelectList((int.Parse(data.GroupIDExt.ToString())),"full");
 
             return PartialView(data);
         }

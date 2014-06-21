@@ -1,9 +1,23 @@
 ﻿@{
     Layout = null;
 }
-<div>
+@using CoreData
+@model Examinee
+@{
+    string data = "";
+    if(Model!=null)
+    {
+        data = Model.Description;
+    }
+    }
+<div style="padding:10px">
     Bài viết dự thi
 </div>
 <div>
-    <textarea cols="60" rows="10" id="area2"></textarea>
+    <textarea style="width: 100%; height:200px; margin:3px" id="area2">@Html.Raw(data)</textarea>
 </div>
+<center>
+    <div class="control-apply" style="padding:10px">
+                                <Button id="btn-updateintroduce" class="button button-color-1"  value="Cập nhật">Cập nhật</Button>
+    </div>
+</center>

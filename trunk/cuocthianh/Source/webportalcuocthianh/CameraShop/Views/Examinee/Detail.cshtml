@@ -16,13 +16,13 @@
                 <div class="contentbox">
                     <div class="topbar">
                         <p class="space border-color-5">
-                            &nbsp;</p>
+                          Hình ảnh</p>
                     </div>
                     <p class="featured-image">
                         <img src="/Media/PictureExam/@Model.Image" alt="">
                     </p>
                     <div class="textbox clearfix">
-                        @Model.Description
+                      @Html.Raw(Model.Description)
                     </div>
                     @*<p class="categories">
                     Categories: &nbsp; <a href="http://pinthis-rtl.pixelbeautify.com/category/commercial/"

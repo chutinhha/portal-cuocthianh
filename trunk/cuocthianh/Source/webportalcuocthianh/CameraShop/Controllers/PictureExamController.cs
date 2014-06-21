@@ -12,7 +12,8 @@ namespace CameraShop.Controllers
     public class PictureExamController : BaseController
     {
         //xu ly up anh/ hien thi anh 
-        public PictureExamController(IPictureExamActionService pictureexaminee) : base(pictureexaminee) { }
+        public PictureExamController(IPictureExamActionService pictureexaminee, IExamineeActionService ex) : 
+            base(pictureexaminee, ex) { }
 
         //
         // GET: /PictureExam/
@@ -41,9 +42,11 @@ namespace CameraShop.Controllers
         /// </summary>
         /// <param name="examineeid"></param>
         /// <returns></returns>
-        public ActionResult _IntroducePictureExamProfile(int examineeid=0)
+        public ActionResult _IntroducePictureExamProfile()
         {
-            return View();
+            var users = SessionManagement.GetSessionReturnInt("UserID");
+            var data = ExamineeService.GetOneByLINQ(c=>c.UserID.Equals(users));
+            return PartialView(data);
         }
 
         //Picture Exam

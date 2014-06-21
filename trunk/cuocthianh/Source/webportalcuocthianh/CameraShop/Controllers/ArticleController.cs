@@ -50,8 +50,9 @@ namespace CameraShop.Controllers
             var data = ArticleService.GetByID(id);
             if (data == null)
                 data = new Article();
-            var username = UserService.GetByID(data.UserID).UserName;
-            data.UserNameExt = username;
+            var user = UserService.GetByID(data.UserID);
+           if(user!=null)
+               data.UserNameExt = user.UserName;
             data.ListSameArticleExt = ArticleService.GetSameListByCateID(data.ID, 5);
             return View(data);
         }
