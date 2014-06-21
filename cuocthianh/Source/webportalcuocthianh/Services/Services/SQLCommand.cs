@@ -78,9 +78,15 @@ left join [Order] O on O.ID=D.OrderID left join Product P on P.ID=D.ProductID wh
        /// Chưa hiểu lắm phần này, nếu đã gán tĩnh Article Category thì làm sao
        /// </summary>
        //public const string GetArticleList = @" select Article.* FROM Article";
+//       public const string GetArticleList = @" select Article.*, Users.ID AS UserID, Users.Name AS UserName
+//                                                from Article, Users
+//                                                where Article.UserID = Users.ID";
+
        public const string GetArticleList = @" select Article.*, Users.ID AS UserID, Users.Name AS UserName
-                                                from Article, Users
-                                                where Article.UserID = Users.ID";
+                                                from Article LEFT JOIN Users
+                                                on Article.UserID = Users.ID";
+
+
        //public const string GetListByRelationsID = @" select * from Article {0} {1}";
        public const string GetListByRelationsID = @" select a.ID, a.Active, a.CateID, a.Image, a.Link,A.ShortDescription,
     a.ShowHomePage,a.Title,a.UpdateDate, a.UserID AS UserID {0}, U.UserName AS UserAccount

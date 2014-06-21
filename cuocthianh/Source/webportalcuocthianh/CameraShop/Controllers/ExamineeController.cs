@@ -34,6 +34,24 @@ namespace CameraShop.Controllers
             ExamineeService.Save(data);
             return View(data);
         }
+        [ValidateInput(false)]
+        public ActionResult UpdateDescription(string content)
+        {
+            var examinee = ExamineeService.GetOneByLINQ(c=>c.UserID.Equals(Helper.SessionManagement.GetSessionReturnInt("UserID")));
+            if(examinee==null)
+                return Content("Fail");
+            var data = ExamineeService.GetByID(examinee.ID);
+            data.Description = content;
 
+            var c1 = ExamineeService.Save(data);
+            if (c1 > 0)
+            {
+                return Content("OK");
+            }
+            else
+            {
+                return Content("Fail");
+            }
+        }
     }
 }

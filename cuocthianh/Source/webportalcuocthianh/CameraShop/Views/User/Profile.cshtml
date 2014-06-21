@@ -34,32 +34,7 @@
                 
             });
             
-            $.fn.DeleteImage = function () {
-                var id = $(this).attr("virid");
-                $(this).click(function () {
-                    $.ajax({
-                        type: 'get',
-                        url: '/PictureExam/Delete/',
-                        traditional: true,
-                        dataType: 'html',
-                        data: { id: id },
-                        complete: function (data) {
-                            $.ajax({
-                                type: 'get',
-                                url: '/PictureExam/_ListPictureExamProfile/',
-                                traditional: true,
-                                dataType: 'html',
-                                complete: function (edata) {
-                                    $("#listpicture").html(edata.responseText);
-                                    $(".btn-delete").DeleteImage();
-                                }
-                            });
-
-                        }
-                    });
-                });
-            }
-            $(".btn-delete").DeleteImage();
+           
         })(jQuery);
     </script>
 }
@@ -84,12 +59,14 @@
                             <div>
                                 @Html.Action("_PictureExam", "PictureExam")
                             </div>
+                            <div style="width:100%; height:2px; background:#999999; margin-bottom:15px; margin-top:5px"></div>
                             <ul>
                                 <li id="listpicture">
                                     @Html.Action("_ListPictureExamProfile", "PictureExam")
                                 </li>
                             </ul>
-                            <div style="background: #fff; width: 80%; margin: 10px auto 20px auto; padding: 5px 0 5px 15px;">
+                            <div >
+                            <div style="width:100%; height:2px; background:#999999; margin-bottom:3px; margin-top:3px"></div>
                                 @Html.Action("_IntroducePictureExamProfile", "PictureExam")
                             </div>
                         </li>

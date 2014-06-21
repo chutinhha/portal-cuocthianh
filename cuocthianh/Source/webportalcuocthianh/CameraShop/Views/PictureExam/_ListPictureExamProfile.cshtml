@@ -2,14 +2,80 @@
     Layout = null;
 }
 @model List<CoreData.PictureExam>
+      
 @if (Model != null && Model.Count() > 0)
 {
+  <div style="padding:10px">Album ảnh</div>
     <ul id="navlist">
         @foreach (var item in Model)
         {
             <li><a class="tooltip picture-fancy" href="/Media/PictureExam/@item.Image" title="@item.Title">
                 <img src="/Media/PictureExam/@item.Image" width="120" height="120" alt="">
-            </a><a virid="@item.ID" class="btn-delete" title="Xóa ảnh" href="#">X</a> </li>
+            </a> <button virid="@item.ID" onclick="deleteimg(@item.ID);" class="btn-delete"  >X</button> </li>
         }
     </ul>
 }
+<script type="text/javascript">
+
+
+    function deleteimg(id) {
+
+        var result = confirm("Bạn muốn xóa ảnh này ?");
+        if (result == true) {
+            //Logic to delete the item
+
+            // var id = $(this).attr("virid");
+            $(this).click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/PictureExam/Delete/',
+                    traditional: true,
+                    dataType: 'html',
+                    data: { id: id },
+                    complete: function (data) {
+                        $.ajax({
+                            type: 'get',
+                            url: '/PictureExam/_ListPictureExamProfile/',
+                            traditional: true,
+                            dataType: 'html',
+                            complete: function (edata) {
+                                $("#listpicture").html(edata.responseText);
+                                $(".btn-delete").DeleteImage();
+                            }
+                        });
+
+                    }
+                });
+            });
+        }
+    }
+    // (function ($) {
+
+    //        $.fn.DeleteImage = function () {
+    //            var id = $(this).attr("virid");
+    //            $(this).click(function () {
+    //                $.ajax({
+    //                    type: 'get',
+    //                    url: '/PictureExam/Delete/',
+    //                    traditional: true,
+    //                    dataType: 'html',
+    //                    data: { id: id },
+    //                    complete: function (data) {
+    //                        $.ajax({
+    //                            type: 'get',
+    //                            url: '/PictureExam/_ListPictureExamProfile/',
+    //                            traditional: true,
+    //                            dataType: 'html',
+    //                            complete: function (edata) {
+    //                                $("#listpicture").html(edata.responseText);
+    //                                $(".btn-delete").DeleteImage();
+    //                            }
+    //                        });
+
+    //                    }
+    //                });
+    //            });
+    //        }
+    // $(".btn-delete").DeleteImage();
+    // })(jQuery);
+    </script>

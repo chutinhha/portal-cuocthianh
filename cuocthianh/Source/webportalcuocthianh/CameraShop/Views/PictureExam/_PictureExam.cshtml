@@ -58,14 +58,14 @@
 
 
     function loadpicture() {
-
         $.ajax({
-            type: "POST",
+            type: 'get',
             url: '/PictureExam/_ListPictureExamProfile/',
             traditional: true,
-            dataType: 'json',
-            success: function (e) {
-                $("#listpicture").innerHTML(e);
+            dataType: 'html',
+            complete: function (edata) {
+                $("#listpicture").html(edata.responseText);
+                
             }
         });
 
