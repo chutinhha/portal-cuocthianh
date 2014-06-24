@@ -259,12 +259,12 @@ input[type=checkbox], input[type=radio] {
 	background-position: left -178px;
 }
 .icon-login {
-	display: inline-block;
+	/*display: inline-block;*/
 	width: 26px;
 	height: 24px;
-	text-indent: -5000px;
+	/*text-indent: -5000px;*/
 	overflow: hidden;
-	background-image: url(../../Content/imgs/icon-login.png);
+	/*background-image: url(../../Content/imgs/icon-login.png);*/
 	background-position: left top;
 	background-repeat: no-repeat;
 }

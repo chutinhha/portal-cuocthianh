@@ -28,13 +28,13 @@
         (function ($) {
             $(document).ready(function (e) {
                 $(".topbar").find("li").find("a").kyersTab({ "tabItem": ".tab-item" });
-                $(".navbtns").find("a").on("click", function () {
-                    addArea2();
-                });
+               // $(".navbtns").find("a").on("click", function () {
+                  //  addArea2();
+               // });
                 
             });
-            
-           
+
+            addArea2();
         })(jQuery);
     </script>
 }
@@ -44,22 +44,20 @@
             <div class="contentbox">
                 <div class="topbar">
                     <ul class="navbtns navprofile">
-                        <li><a href="#">User Profile</a></li>
-                        <li><a href="#">Album Ảnh</a> </li>
+@*                        <li><a href="#">User Profile</a></li>*@
+                        <li><a href="#">Album Ảnh</a></li>
                     </ul>
                     <p class="space border-color-5">
                         &nbsp;</p>
                 </div>
                 <div class="tab-content">
                     <ul class="tab-list">
-                        <li class="tab-item">
-                            @Html.Action("_ProfileInfor", "User")
-                        </li>
+                       
                         <li class="tab-item">
                             <div>
                                 @Html.Action("_PictureExam", "PictureExam")
                             </div>
-                            <div style="width:100%; height:2px; background:#999999; margin-bottom:15px; margin-top:5px"></div>
+                            <div style="width:100%; height:2px; background:#999999; margin-bottom:15px; margin-top:10px"></div>
                             <ul>
                                 <li id="listpicture">
                                     @Html.Action("_ListPictureExamProfile", "PictureExam")
@@ -68,6 +66,15 @@
                             <div >
                             <div style="width:100%; height:2px; background:#999999; margin-bottom:3px; margin-top:3px"></div>
                                 @Html.Action("_IntroducePictureExamProfile", "PictureExam")
+                            </div>
+                            <div style="width:100%; height:2px; background:#999999; margin-bottom:3px; margin-top:3px"></div>
+
+                            <div>
+                            <div style="padding:10px; text-align:center; font-size:x-large">
+                                Thông tin cá nhân
+                            </div>
+                              @Html.Action("_ProfileInfor", "User")
+
                             </div>
                         </li>
                     </ul>
@@ -85,15 +92,15 @@
                 </ul>
             </div>
         </div>
-        <div class="contentbox">
-            <form role="search" method="get" id="searchform" class="searchform" action="http://pinthis-rtl.pixelbeautify.com/">
+        @*<div class="contentbox">
+           <form role="search" method="get" id="searchform" class="searchform" action="http://pinthis-rtl.pixelbeautify.com/">
             <div>
                 <label class="screen-reader-text" for="s">
                     البحث عن:</label>
                 <input type="text" value name="s" id="s">
                 <input type="submit" id="searchsubmit" value="بحث">
             </div>
-            </form>
-        </div>
+           </form>
+        </div>*@
     </aside>
 </div>

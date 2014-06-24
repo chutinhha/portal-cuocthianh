@@ -25,40 +25,48 @@ namespace CameraShop.Controllers
         {
             ViewBag.Title = "Jbart Academy - cuộc thi ảnh";
             var data = UserService.GetList();
-           
-            return View();
-        }
-        public ActionResult _Header()
-        {
-            ViewBag.Logo = ConfigurationService.GetOneByLINQ(c => c.Code == "Logo").Value;
-            if(SessionManagement.GetSessionReturnToString("loginFBmode")!=null)
+            //if (SessionManagement.GetSessionReturnToString("loginFBmode") != null)
+            //{
+            //    Session["loginFBmode"] = null;
+            //    return RedirectToAction("Profile", "User");
+            //}
+
+
+            //if (Request.QueryString["code"] != null)
+            //{
+            //  //  return  Redirect("http://cuocthijba.com/User/Profile");
+            //    return Redirect("http://localhost:1655/User/Profile");
+            //}
+            if (SessionManagement.GetSessionReturnToString("loginFBmode") != null)
             {
+                var redirectUri = new UriBuilder(Request.Url);
+                redirectUri.Path = Url.Action("Index", "Home");
                 try
                 {
                     string SecId = ConfigurationManager.AppSettings["Facbook_SecID"].ToString();
                     string AppId = ConfigurationManager.AppSettings["Facebook_AppID"].ToString();///
                     var client = new FacebookClient();
                     var oauthResult = client.ParseOAuthCallbackUrl(Request.Url);
-                    var redirectUri = new UriBuilder(Request.Url);
-                    redirectUri.Path = Url.Action("Index", "Home");
+                  
                     dynamic result = client.Get("/oauth/access_token", new
-                                                                           {
-                                                                               client_id = AppId,
-                                                                               redirect_uri = redirectUri.Uri.AbsoluteUri,
-                                                                               client_secret = SecId,
-                                                                               code = oauthResult.Code,
-                                                                           });
+                    {
+                        client_id = AppId,
+                        redirect_uri = redirectUri.Uri.AbsoluteUri,
+                        client_secret = SecId,
+                        code = oauthResult.Code,
+                    });
                     // Read the auth values
+                    redirectUri.Path = result.redirect_uri;
                     string accessToken = result.access_token;
                     Session["access_token"] = accessToken;
                     DateTime expires = DateTime.UtcNow.AddSeconds(Convert.ToDouble(result.expires));
                     // Get the user's profile information
                     dynamic me = client.Get("/me",
                                             new
-                                                {
-                                                    fields = "first_name,last_name,email",
-                                                    access_token = accessToken
-                                                });
+                                            {
+                                                fields = "first_name,last_name,email",
+                                                access_token = accessToken
+                                            });
 
                     User u = new CoreData.User();
                     long fbiduser = long.Parse(me.id);
@@ -91,9 +99,15 @@ namespace CameraShop.Controllers
                     }
                 }
                 catch { Session["loginFBmode"] = null; }
-                       
-                       
+
+                return RedirectToAction("Profile","User");
             }
+            return View();
+        }
+        public ActionResult _Header()
+        {
+            ViewBag.Logo = ConfigurationService.GetOneByLINQ(c => c.Code == "Logo").Value;
+           
             return PartialView();
         }
 
@@ -103,7 +117,7 @@ namespace CameraShop.Controllers
         /// <returns></returns>
         public ActionResult Register(int id = 0)
         {
-            if (Userid != 0)
+            if (SessionManagement.GetSessionReturnToString("UserName") != null)
                 return RedirectToAction("Index", "Home");
             return View();
         }
