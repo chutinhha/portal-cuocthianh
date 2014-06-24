@@ -23,8 +23,40 @@ function Success(data) {
         }
     }
 }
+
+$.fn.AddIntroduce = function () {
+    $(this).on("click", function () {
+        var content = $("div.nicEdit-main").html();
+       
+        $.ajax({
+            type: "POST",
+            url: '/Examinee/UpdateDescription/',
+            data: {
+                content: content
+
+            },
+            traditional: true,
+            dataType: 'json',
+            complete: function (e) {
+                if (e.responseText == "OK") {
+                   
+                    alert("Cập nhật thành công");
+                }
+                else {
+                    alert("Lỗi, vui lòng thử lại");
+                }
+            }
+        });
+    });
+}
+
+
+
+
+
 $(document).ready(function () {
     $(".picture-fancy").colorbox({ rel: 'picture-fancy' });
     $(".picture-samll").colorbox({ rel: 'picture-samll' });
+    $("#btn-updateintroduce").AddIntroduce();
 });
        

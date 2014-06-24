@@ -22,6 +22,22 @@ namespace RegisterService
           
             new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
        );
+            routes.MapRoute(
+          "register", // Route name
+          "dang-ky.html", // URL with parameters
+          new { controller = "Home", action = "Register" },
+
+           new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
+      );
+
+
+            routes.MapRoute(
+         "forgotpass", // Route name
+         "phuc-hoi-mat-khau.html", // URL with parameters
+         new { controller = "Home", action = "ForgotPassword" },
+
+          new[] { "CameraShop.Controllers" }// Parameter defaults// Parameter defaults
+     );
 
             routes.MapRoute(
           "article", // Route name

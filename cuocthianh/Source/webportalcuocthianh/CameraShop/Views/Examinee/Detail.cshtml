@@ -1,5 +1,7 @@
 ﻿@{
+    ViewBag.Title = "Bài dự thi cuộc thi ảnh - " + Model.UserNameExt;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 @using CoreData
 @model Examinee
@@ -57,7 +59,7 @@
                 <div style="font-size:large">Bình luận</div>
                 <div>
                      <center>
-                        <div class="fb-comments" data-href="@link" data-width="100%" data-numposts="5" data-colorscheme="dark"></div>
+                        <div class="fb-comments" data-href="@link" data-width="100%" data-numposts="15" data-colorscheme="dark"></div>
                        </center>
                 </div>
             </div>
@@ -87,20 +89,11 @@
 
 </script>
 
-
-<script type="text/javascript">
-
-
-    (function (d, s, id) {
+<div id="fb-root"></div>
+<script>    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=171701259670809&version=v2.0";
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=331902120290983&version=v2.0";
         fjs.parentNode.insertBefore(js, fjs);
-    } (document, 'script', 'facebook-jssdk'));
-
-  
-
-
-
-</script>
+    } (document, 'script', 'facebook-jssdk'));</script>

@@ -17,6 +17,7 @@ namespace CoreData
             public string Phone{get;set;}
             public string Email{get;set;}
             public bool Active{get;set;}
+            public long FacebookUserID { get; set; }
             public string ProvinceNameExt { get; set; }
             public int GroupIDExt { get; set; }
             public int ProvinceIDExt { get; set; }
@@ -31,6 +32,15 @@ namespace CoreData
             public string ExamineeCodeExt { get; set; }
             public long ExamineeIDExt { get; set; }
             public string IntroduceExt { get; set; }
+
+        //for facebook login
+            public string accessTokenExt { get; set; }
+
+            public long fbIdExt { get; set; }
+            public string firstNameExt { get; set; }
+            public string lastNameExt { get; set; }
+            public string emailIdExt { get; set; }
+
         public User()
         {       
                     UserName ="";   
@@ -87,7 +97,8 @@ namespace CoreData
                     case "ProvinceNameExt":
                        ret.ProvinceNameExt = ConvertObject.ToString(dt[column]);
                        break;
-
+                   case "FacebookUserID":
+                       ret.FacebookUserID = ConvertObject.ToLong(dt[column]); break;
                    default:
                        break;
                }

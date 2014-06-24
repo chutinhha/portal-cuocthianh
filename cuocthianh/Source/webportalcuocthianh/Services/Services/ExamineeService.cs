@@ -12,10 +12,12 @@ namespace Services
     {
        readonly IExamineeEntity entity;
        readonly IUserEntity user;
-       public ExamineeService(IExamineeEntity entity,IUserEntity user)
+       readonly IPictureExamEntity pictureexam;
+       public ExamineeService(IExamineeEntity entity,IUserEntity user, IPictureExamEntity pic)
        {
            this.entity = entity;
            this.user = user;
+           this.pictureexam = pic;
 
        }
 
@@ -75,7 +77,7 @@ namespace Services
        {
            try
            {
-               var a = entity.GetAll(Table.Examinee.ToString()).ToList();
+               var a = entity.GetMany(c=>c.UserID!=1, Table.Examinee.ToString()).ToList();
                foreach(var i in a)
                {
                    try
@@ -89,6 +91,11 @@ namespace Services
                        else
                        {
                            i.UserNameExt = users.Name;
+                       }
+                       var pic = pictureexam.Get(c=>c.ExamineeID.Equals(i.ID),Table.PictureExam.ToString());
+                       if(pic!=null)
+                       {
+                           i.Image = pic.Image;
                        }
                    }
                    catch { }
@@ -162,6 +169,9 @@ namespace Services
 
 
         #region Other Method
+
+
+     
 
         #endregion 
     

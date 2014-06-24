@@ -63,7 +63,7 @@ namespace CameraShop.Areas.Administrator.Controllers
         [ValidateInput(false)]
         public ActionResult AddOrUpdate(Banner_Logo model, HttpPostedFileBase file)
         {
-            var exist = this.BannerService.GetOneByLINQ(c => c.Name.Equals(model.Name));
+            var exist = this.BannerService.GetOneByLINQ(c => c.ID.Equals(model.ID));
             model.Position = 0;
             model.Type = 0;
             if (exist != null && model.ID == 0)

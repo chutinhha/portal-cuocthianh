@@ -5,6 +5,7 @@
 	$(document).ready(function(e) {
 	  // $(".showcat-button").showDropDown({"showDiv":".nav-category","eventX":"mouseover", "leaveToOut":true});
        $(".loginweb").loginweb();
+      //  $(".loginFBweb").loginfacebookweb();
     });
     
 
@@ -38,6 +39,26 @@
      };
 
   
+
+   $.fn.loginfacebookweb = function () {
+        $(this).click(function () {
+
+                   
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Home/LoginFB/',
+                        data: { },
+                        traditional: true,
+                        dataType: 'json',
+                        complete: function (edata) {
+               
+                        }
+                        });
+
+
+        });
+     };
+
 
 }(jQuery));
 

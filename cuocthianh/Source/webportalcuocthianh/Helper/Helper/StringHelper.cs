@@ -193,9 +193,13 @@ namespace Helper
        /// </summary>
        public static string GenerateCode(int num)
        {
-           if (num < 10)
-               return "0" + num;
-           return num.ToString();
+           if (num <9)
+               return "00" + (num+1);
+           if (num == 9)
+               return "010";
+           if (num <= 90&&num>9)
+               return "0" + (num + 1);
+           return (num+1).ToString();
        }
 
     }

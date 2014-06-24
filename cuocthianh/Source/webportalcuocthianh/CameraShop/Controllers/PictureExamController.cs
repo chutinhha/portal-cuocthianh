@@ -60,7 +60,14 @@ namespace CameraShop.Controllers
         //view
         public ActionResult _PictureExam()
         {
-            
+            var userid = Convert.ToInt32(Session["UserID"]);
+            var data = PictureExamineeService.GetListByUserID(userid);
+            if (data != null && data.Count >= 1)
+                Session["uploadover"] = "OK"; //chi dc  up một tấm ảnh
+            else
+            {
+                Session["uploadover"] = null;
+            }
             return PartialView();
         }
         /// <summary>
@@ -72,6 +79,8 @@ namespace CameraShop.Controllers
         {
             var userid =  Convert.ToInt32(Session["UserID"]);
             var data = PictureExamineeService.GetListByUserID(userid);
+          //  if (data != null && data.Count > 1)
+              //  Session["uploadover"] = "OK"; //chi dc  up một tấm ảnh
             return PartialView(data);
         }
 
@@ -105,7 +114,10 @@ namespace CameraShop.Controllers
         //uoload control
         public ActionResult UploadPicture(PictureExam model, HttpPostedFileBase file)
         {
-           
+            var userid = Convert.ToInt32(Session["UserID"]);
+            var data = PictureExamineeService.GetListByUserID(userid);
+            if (data != null && data.Count >= 1)
+                return Json("Bạn chỉ có thể upload một ảnh duy nhất", JsonRequestBehavior.AllowGet);
             model.Image = PathUpload;
             model.ExamineeID = int.Parse(Session["ExamineeID"].ToString());
             var id = this.PictureExamineeService.Save(model);

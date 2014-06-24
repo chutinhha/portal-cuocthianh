@@ -54,6 +54,7 @@ namespace CameraShop.Controllers
                 if (data != null)
                 {
                     _model.ID = userid;
+                    _model.GroupIDExt = 1;
                     if((_model.TempPassWordExt!=null))
                     {
                         if (Security.EncryptString(_model.TempPassWordExt) == data.Password)

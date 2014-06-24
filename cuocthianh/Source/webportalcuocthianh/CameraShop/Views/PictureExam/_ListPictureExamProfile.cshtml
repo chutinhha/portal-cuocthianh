@@ -33,6 +33,7 @@
                     dataType: 'html',
                     data: { id: id },
                     complete: function (data) {
+                        location = '/User/Profile';
                         $.ajax({
                             type: 'get',
                             url: '/PictureExam/_ListPictureExamProfile/',
@@ -41,6 +42,7 @@
                             complete: function (edata) {
                                 $("#listpicture").html(edata.responseText);
                                 $(".btn-delete").DeleteImage();
+                              
                             }
                         });
 
