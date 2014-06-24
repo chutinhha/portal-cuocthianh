@@ -27,8 +27,8 @@ Description: RTL version
 	text-indent: 5000px;
 }
 .icon-login {
-	background-image: url(../../Content/imgs/icon-log.png);
-	text-indent: 5000px;
+	/*background-image: url(../../Content/imgs/icon-log.png);
+	text-indent: 5000px;*/
 }
 .icon-login.out {
 	background-image: url(../../Content/imgs/icon-login.png);

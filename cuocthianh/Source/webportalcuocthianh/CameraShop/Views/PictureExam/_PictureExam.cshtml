@@ -5,6 +5,12 @@
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
 @*@using (Ajax.BeginForm("UploadPicture", "PictureExam", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
 {*@
+<div style="padding:10px; font-size:x-large">
+    Upload hình ảnh
+</div>
+<div style="padding:10px;">
+    Lưu ý: Chờ cho tới khi ảnh được upload xong , sau đó tiếp tục bấm vào nút "Upload Ảnh" bên dưới để hoàn thành thao tác
+</div>
     @Html.HiddenFor(model => model.ID)
    <input type="hidden" id="txtexid" value="@Session["ExamineeID"].ToString()" />
    @if (Helper.SessionManagement.GetSessionReturnToString("uploadover") == null)
@@ -30,12 +36,13 @@
                     <div id="image">
                     </div>
                 }
+                <div id="processimg"></div>
             </li>
             
         </ul>
-        <div class="control-apply">
+        @*<div class="control-apply">
             <input id="btn-change-infor" class="button button-color-1 cmdaddimage" type="submit" value="Thêm ảnh">
-        </div>
+        </div>*@
     </div>  
    }
 @*}*@
@@ -49,75 +56,108 @@
             autoUpload: true,
             done: function (e, data) {
                 $('#image').html('<img width=\"120px\" height=\"120px\" src="/Media/PictureExam/' + data.result.name + '" />');
-
+                $('#processimg').html('');
+                $("#btn-updateintroduce").show();
             }
         }).on('fileuploadprogressall', function (e, data) {
+
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('.progress .progress-bar').css('width', progress + '%');
+            $('#processimg').html('Đang upload.....');
+            $("#btn-updateintroduce").hide();
         });
 
     });
 
 
 
-    function loadpicture() {
-        $.ajax({
-            type: 'get',
-            url: '/PictureExam/_ListPictureExamProfile/',
-            traditional: true,
-            dataType: 'html',
-            complete: function (edata) {
-                $("#listpicture").html(edata.responseText);
-                
-            }
-        });
+//    function loadpicture() {
+//        $.ajax({
+//            type: 'get',
+//            url: '/PictureExam/_ListPictureExamProfile/',
+//            traditional: true,
+//            dataType: 'html',
+//            complete: function (edata) {
+//                $("#listpicture").html(edata.responseText);
+//                
+//            }
+//        });
 
-    }
+//    }
 
 
-    $.fn.uppicture = function () {
-        $(this).on("click", function () {
-            var title = $("#Title").val();
-            var exid = $("#txtexid").val();
+//    $.fn.uppicture = function () {
+//        $(this).on("click", function () {
+//            var title = $("#Title").val();
+//            var exid = $("#txtexid").val();
 
-            if (title == "") {
-                //alert
-            }
-            $.ajax({
-                type: "POST",
-                url: '/PictureExam/UploadPicture/',
-                data: {
-                    ExamineeID: exid,
-                    Title: title
+//            if (title == "") {
+//                //alert
+//            }
+//            $.ajax({
+//                type: "POST",
+//                url: '/PictureExam/UploadPicture/',
+//                data: {
+//                    ExamineeID: exid,
+//                    Title: title
 
-                },
-                traditional: true,
-                dataType: 'json',
-                success: function (e) {
-                    if (e != "-1" && !isNaN(e)) {
-                        $('#image').html('');
-                        $('#Title').val('');
-                        loadpicture();
-                        alert("Upload ảnh thành công");
-                    }
-                    else if (isNaN(e)) {
-                        $('#Title').val('');
-                        $('#image').html('');
-                        alert(e);
-                    }
-                    else {
-                        $('#Title').val('');
-                        $('#image').html('');
-                        alert("Lỗi, vui lòng thử lại");
-                    }
-                }
-            });
-        });
-    }
+//                },
+//                traditional: true,
+//                dataType: 'json',
+//                success: function (e) {
+//                    if (e != "-1" && !isNaN(e)) {
+//                        $('#image').html('');
+//                        $('#Title').val('');
+//                        loadpicture();
+//                        UpdateDescription();
+//                        alert("Upload ảnh thành công");
 
 
 
+//                    }
+//                    else if (isNaN(e)) {
+//                        $('#Title').val('');
+//                        $('#image').html('');
+//                        alert(e);
+//                    }
+//                    else {
+//                        $('#Title').val('');
+//                        $('#image').html('');
+//                        alert("Lỗi, vui lòng thử lại");
+//                    }
+//                }
+//            });
+//        });
+//    }
 
-    $(".cmdaddimage").uppicture();
+//    function UpdateDescription() {
 
+
+//        var content = $("div.nicEdit-main").html();
+
+//        $.ajax({
+//            type: "POST",
+//            url: '/Examinee/UpdateDescription/',
+//            data: {
+//                content: content
+
+//            },
+//            traditional: true,
+//            dataType: 'json',
+//            complete: function (e) {
+//                if (e.responseText == "OK") {
+
+//                  //  alert("Cập nhật thành công");
+//                }
+//                else {
+//                   // alert("Lỗi, vui lòng thử lại");
+//                }
+//            }
+//        });
+
+//    }
+
+
+  //  $(".cmdaddimage").uppicture();
+//    $("#btn-updateintroduce").uppicture();
 </script>
