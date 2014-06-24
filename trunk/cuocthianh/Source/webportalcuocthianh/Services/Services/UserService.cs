@@ -29,6 +29,17 @@ namespace Services
 
        #region Main Method
 
+
+       public string RandomSBD()
+       {
+           try
+           {
+               var da = examinee.GetByCusTomSQL(SQLCommand.GetMaxCodeExaminee).First();
+               return Helper.StringHelper.GenerateCode(int.Parse(da.Code));
+           }
+           catch { return "001"; }
+       }
+
        /// <summary>
        /// Save 
        /// </summary>
@@ -50,8 +61,10 @@ namespace Services
                    if (obj.GroupIDExt == 1)
                    {
                        obj.ExamineeExt = new Examinee();
-                       obj.ExamineeExt.Code = StringHelper.GenerateCode((int)id);
+
+                       obj.ExamineeExt.Code = RandomSBD();// StringHelper.GenerateCode((int)id);
                        obj.ExamineeExt.UserID = id;
+                       obj.ExamineeExt.DayOfBirth = DateTime.Now;
                        examinee.Save(obj.ExamineeExt, Table.Examinee.ToString());
                    }
                }
@@ -167,6 +180,11 @@ namespace Services
                {
                    userrole.Delete(i, Table.User_Role_Module.ToString());
                }
+               try { 
+                   var aaaa = examinee.Get(c=>c.UserID.Equals(data.ID),Table.Examinee.ToString());
+                   examinee.Delete(aaaa, Table.Examinee.ToString());
+               }
+               catch {  }
                return true;
            }
            catch { return false; }

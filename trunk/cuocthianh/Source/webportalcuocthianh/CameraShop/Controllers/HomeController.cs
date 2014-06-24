@@ -7,7 +7,8 @@ using ActionServices;
 using CoreData;
 using Helper;
 using System.Text.RegularExpressions;
-
+using Facebook;
+using System.Configuration;
 namespace CameraShop.Controllers
 {
     public class HomeController : BaseController
@@ -22,12 +23,77 @@ namespace CameraShop.Controllers
         { }
         public ActionResult Index()
         {
+            ViewBag.Title = "Jbart Academy - cuộc thi ảnh";
             var data = UserService.GetList();
+           
             return View();
         }
         public ActionResult _Header()
         {
             ViewBag.Logo = ConfigurationService.GetOneByLINQ(c => c.Code == "Logo").Value;
+            if(SessionManagement.GetSessionReturnToString("loginFBmode")!=null)
+            {
+                try
+                {
+                    string SecId = ConfigurationManager.AppSettings["Facbook_SecID"].ToString();
+                    string AppId = ConfigurationManager.AppSettings["Facebook_AppID"].ToString();///
+                    var client = new FacebookClient();
+                    var oauthResult = client.ParseOAuthCallbackUrl(Request.Url);
+                    var redirectUri = new UriBuilder(Request.Url);
+                    redirectUri.Path = Url.Action("Index", "Home");
+                    dynamic result = client.Get("/oauth/access_token", new
+                                                                           {
+                                                                               client_id = AppId,
+                                                                               redirect_uri = redirectUri.Uri.AbsoluteUri,
+                                                                               client_secret = SecId,
+                                                                               code = oauthResult.Code,
+                                                                           });
+                    // Read the auth values
+                    string accessToken = result.access_token;
+                    Session["access_token"] = accessToken;
+                    DateTime expires = DateTime.UtcNow.AddSeconds(Convert.ToDouble(result.expires));
+                    // Get the user's profile information
+                    dynamic me = client.Get("/me",
+                                            new
+                                                {
+                                                    fields = "first_name,last_name,email",
+                                                    access_token = accessToken
+                                                });
+
+                    User u = new CoreData.User();
+                    long fbiduser = long.Parse(me.id);
+                    var userFBexist = UserService.GetOneByLINQ(c => c.FacebookUserID.Equals(fbiduser));
+                    if (userFBexist == null)
+                    {
+                        u.Active = true;
+                        u.UserName = me.first_name;
+                        u.Name = me.last_name + " " + me.first_name;
+                        u.Password = "daylauserfbma";
+                        u.Email = me.email;
+                        u.GroupIDExt = 1;
+                        u.FacebookUserID = fbiduser;
+                        var uid = UserService.Save(u);
+                        Session["access_token"] = result.access_token;
+                        Session["UserName"] = u.UserName;
+                        Session["UserID"] = uid;
+                        Session["UserGroup"] = 1;
+                        Session["ExamineeID"] = ExamineeService.GetOneByLINQ(c => c.UserID.Equals(uid)).ID;
+                        Session["loginFBmode"] = null;
+                    }
+                    else
+                    {
+                        Session["access_token"] = result.access_token;
+                        Session["UserName"] = userFBexist.UserName;
+                        Session["UserID"] = userFBexist.ID;
+                        Session["UserGroup"] = 1;
+                        Session["ExamineeID"] = ExamineeService.GetOneByLINQ(c => c.UserID.Equals(userFBexist.ID)).ID;
+                        Session["loginFBmode"] = null;
+                    }
+                }
+                catch { Session["loginFBmode"] = null; }
+                       
+                       
+            }
             return PartialView();
         }
 
@@ -99,12 +165,7 @@ namespace CameraShop.Controllers
                 long userid =this.UserService.Save(_model);
                 if (userid != -1)
                 {
-                    //Examinee c = new Examinee();
-                    //c.UserID = userid;
-                    //c.Image="";
-                    //c.Description ="";
-                    //ExamineeService.Save(c);
-                   // return RedirectToAction("LoginHome", "Home");
+                    
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -118,6 +179,29 @@ namespace CameraShop.Controllers
             }
         }
 
+
+       
+        public ActionResult _LoginFacebookButton()
+        {
+            return PartialView();
+        }
+
+        //login Fb action
+        public ActionResult LoginFB()
+        {
+              string SecId = ConfigurationManager.AppSettings["Facbook_SecID"].ToString();
+              string AppId = ConfigurationManager.AppSettings["Facebook_AppID"].ToString();
+              var redirectUri = new UriBuilder(Request.Url);
+              redirectUri.Path = Url.Action("Index", "Home");
+            var client = new FacebookClient();
+            var uri = client.GetLoginUrl(new
+            {
+                client_id = AppId,
+                redirect_uri = redirectUri.Uri.AbsoluteUri
+            });
+            SessionManagement.SetSesionValue("loginFBmode", "FB");
+            return Redirect(uri.ToString());
+        }
 
         /// <summary>
         /// Contact page
@@ -227,7 +311,24 @@ namespace CameraShop.Controllers
             Session["UserName"] = null;
             Session["UserGroup"] = null;
             Session["UserID"] = null;
+            
+            Session["ExamineeID"] = null;
             Userid = 0;
+            if (SessionManagement.GetSessionReturnToString("loginFBmode") != null)
+            {
+               
+                var oauth = new FacebookClient();
+                var logoutParameters = new Dictionary<string, object>
+                  {
+                     {"access_token",  Session["access_token"]},
+                      { "next", Url.Action("Index","Home") }
+                  };
+                Session["loginFBmode"] = null;
+                Session["access_token"] = null;
+                var logoutUrl = oauth.GetLogoutUrl(logoutParameters);
+                return Redirect(logoutUrl.ToString());
+            }
+
             return RedirectToAction("Index", "Home");
         }
 

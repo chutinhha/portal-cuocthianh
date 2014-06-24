@@ -7,6 +7,8 @@
 {*@
     @Html.HiddenFor(model => model.ID)
    <input type="hidden" id="txtexid" value="@Session["ExamineeID"].ToString()" />
+   @if (Helper.SessionManagement.GetSessionReturnToString("uploadover") == null)
+   {
     <div class="std">
         <ul>
             <li>
@@ -35,6 +37,7 @@
             <input id="btn-change-infor" class="button button-color-1 cmdaddimage" type="submit" value="Thêm ảnh">
         </div>
     </div>  
+   }
 @*}*@
 <script type="text/javascript">
     ///Document Ready jQuery
@@ -91,11 +94,20 @@
                 traditional: true,
                 dataType: 'json',
                 success: function (e) {
-                    if (e != "-1") {
+                    if (e != "-1" && !isNaN(e)) {
+                        $('#image').html('');
+                        $('#Title').val('');
                         loadpicture();
                         alert("Upload ảnh thành công");
                     }
+                    else if (isNaN(e)) {
+                        $('#Title').val('');
+                        $('#image').html('');
+                        alert(e);
+                    }
                     else {
+                        $('#Title').val('');
+                        $('#image').html('');
                         alert("Lỗi, vui lòng thử lại");
                     }
                 }
