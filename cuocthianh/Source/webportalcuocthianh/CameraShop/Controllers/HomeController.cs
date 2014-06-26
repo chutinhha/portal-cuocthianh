@@ -24,9 +24,11 @@ namespace CameraShop.Controllers
         { }
         public ActionResult Index()
         {
-            Response.AppendHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-            Response.AppendHeader("Pragma", "no-cache"); // HTTP 1.0.
-            Response.AppendHeader("Expires", "0"); // Proxies.
+            //var data = ExamineeService.GetList();
+           // Session["dataindex"] = data;
+            //Response.AppendHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            //Response.AppendHeader("Pragma", "no-cache"); // HTTP 1.0.
+            //Response.AppendHeader("Expires", "0"); // Proxies.
             ViewBag.Title = "Jbart Academy - cuộc thi ảnh";
            // var data = UserService.GetList();
 
@@ -180,6 +182,10 @@ namespace CameraShop.Controllers
                 if (_model.Phone != null && Regex.IsMatch(_model.Phone, @"\d+") == false)
                 {
                     ModelState.AddModelError("", ErrorCode.NotValidPhoneNumber);
+                }
+                if (string.IsNullOrEmpty(_model.Phone))
+                {
+                    ModelState.AddModelError("", "Số điện thoại không được trống");
                 }
                 foreach (var item in ModelState.Values)
                 {
