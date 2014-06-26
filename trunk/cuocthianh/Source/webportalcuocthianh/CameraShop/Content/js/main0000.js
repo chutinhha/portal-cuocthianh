@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
             dataType: 'json',
             complete: function (edata) {
                 if (edata.statusText === "OK") {
-                    location.href = "/";
+                    location.href = "/User/Profile";
                 }
                 else {
                     alert("Tên đăng nhập hoặc mật khẩu không đúng");
@@ -45,9 +45,9 @@ jQuery(document).ready(function ($) {
             }
         });
     }
-    $("#wp-submit").on("click", function () {
-        LoginHome();
-    });
+//    $("#wp-submit").on("click", function () {
+//        LoginHome();
+//    });
     $("#user_login").add("#user_pass").on("keyup", function (e) {
         e.preventDefault() ? e.preventDefault() : e.returnValue;
         if (e.keyCode === 13) {

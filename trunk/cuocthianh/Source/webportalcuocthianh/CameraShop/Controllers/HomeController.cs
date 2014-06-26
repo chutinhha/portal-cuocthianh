@@ -11,6 +11,7 @@ using Facebook;
 using System.Configuration;
 namespace CameraShop.Controllers
 {
+   
     public class HomeController : BaseController
     {
         //
@@ -23,8 +24,13 @@ namespace CameraShop.Controllers
         { }
         public ActionResult Index()
         {
+            Response.AppendHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            Response.AppendHeader("Pragma", "no-cache"); // HTTP 1.0.
+            Response.AppendHeader("Expires", "0"); // Proxies.
             ViewBag.Title = "Jbart Academy - cuộc thi ảnh";
-            var data = UserService.GetList();
+           // var data = UserService.GetList();
+
+
             //if (SessionManagement.GetSessionReturnToString("loginFBmode") != null)
             //{
             //    Session["loginFBmode"] = null;
@@ -102,6 +108,14 @@ namespace CameraShop.Controllers
 
                 return RedirectToAction("Profile","User");
             }
+
+
+            //HttpContext..Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+            //HttpContext.Current.Response.Cache.SetValidUntilExpires(false);
+            //HttpContext.Current.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            //HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //HttpContext.Current.Response.Cache.SetNoStore();
+
             return View();
         }
         public ActionResult _Header()
@@ -176,10 +190,21 @@ namespace CameraShop.Controllers
                 }
                 _model.Active = true;
                 _model.GroupIDExt = 1;
+                string pass = _model.Password;
                 long userid =this.UserService.Save(_model);
+                _model.Password = pass;
+                int exmineeid = 0;
                 if (userid != -1)
                 {
-                    
+
+                    if (UserService.Login(_model, ref Username, ref Userid, ref Groupid, ref exmineeid) == true)
+                    {
+                        Session["UserName"] = Username;
+                        Session["UserID"] = Userid;
+                        Session["UserGroup"] = Groupid;
+                        Session["ExamineeID"] = exmineeid;
+                        return RedirectToAction("Profile", "User");
+                    }
                     return RedirectToAction("Index", "Home");
                 }
 

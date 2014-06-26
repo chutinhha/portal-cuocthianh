@@ -4227,8 +4227,9 @@ list-style-type: none;
 
 .postWrap .contentbox img
 {
-    max-width: 100% !important;
-    height: auto !important;
+    margin-top:10px !important;
+    max-width: 50% !important;
+    height: 50% !important;
 }
 
 
