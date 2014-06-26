@@ -269,125 +269,122 @@ jQuery(window).load(function ($) {
     });
 });
 
-$.fn.replyComment = function () {
-    var parentid = null;
-    $(this).each(function () {
-        $(this).on("click", function (e) {
-            $(this).addClass("no-load");
-            parentid = null;
-            e.preventDefault() ? e.preventDefault() : e.returnValue;
-            parentid = $(this).attr("parid");
-            $(".reply-area").add(".btn-reply").remove();
-            $(this).after("<textarea class='reply-area'></textarea>");
-            $(".reply-area").before("<input type='text' class='txtusername' />");
-            $(".reply-area").after("<input type='button' class='btn-reply' value='Trả lời' />");
-            $.fn.clickToPost = function () {
-                $(".btn-reply").on("click", function (e) {
-                    var btnReply = $(this);
-                    e.preventDefault() ? e.preventDefault() : e.returnValue;
-                    if (parentid !== null && $(".reply-area").val !== "") {
-                        $.ajax({
-                            type: "POST",
-                            url: '/Comment/_AddComment/',
-                            data: {
-                                articleid: $("#txtid").val(),
-                                parentid: parentid,
-                                content: $(".reply-area").val(),
-                                name: $(".txtusername").val()
-                            },
-                            traditional: true,
-                            dataType: 'json',
-                            complete: function (edata) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: '/Comment/_ListComment/',
-                                    data: {
-                                        parentid: 1
-                                    },
-                                    traditional: true,
-                                    dataType: 'json',
-                                    complete: function (edata) {
-                                        $("#mainComment").html(edata.responseText);
-                                        $(".reply-link").replyComment();
-                                        $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
-                                        $(".loader-main").remove();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-            $(".btn-reply").clickToPost();
-        });
-        $(document).on("click", function (e) {
-            if (!$(e.target).closest($(".reply-row")).length) {
-                $(".reply-link").removeClass("no-load");
-            }
-        });
-        setInterval(function () {
-            if (!$(".reply-link").hasClass("no-load")) {
-                if ($(".loader-main").length === 0) {
-                    $("body").append("<div class='loader-main'></div>");
-                }
-                $.ajax({
-                    type: "POST",
-                    url: '/Comment/_ListComment/',
-                    data: {
-                        parentid: 1
-                    },
-                    traditional: true,
-                    dataType: 'json',
-                    complete: function (edata) {
-                        $("#mainComment").html(edata.responseText);
-                        $(".reply-link").replyComment();
-                        $(".loader-main").remove();
-                    }
-                });
-            }
+//$.fn.replyComment = function () {
+//    var parentid = null;
+//    $(this).each(function () {
+//        $(this).on("click", function (e) {
+//            $(this).addClass("no-load");
+//            parentid = null;
+//            e.preventDefault() ? e.preventDefault() : e.returnValue;
+//            parentid = $(this).attr("parid");
+//            $(".reply-area").add(".btn-reply").remove();
+//            $(this).after("<textarea class='reply-area'></textarea>");
+//            $(".reply-area").before("<input type='text' class='txtusername' />");
+//            $(".reply-area").after("<input type='button' class='btn-reply' value='Trả lời' />");
+//            $.fn.clickToPost = function () {
+//                $(".btn-reply").on("click", function (e) {
+//                    var btnReply = $(this);
+//                    e.preventDefault() ? e.preventDefault() : e.returnValue;
+//                    if (parentid !== null && $(".reply-area").val !== "") {
+//                        $.ajax({
+//                            type: "POST",
+//                            url: '/Comment/_AddComment/',
+//                            data: {
+//                                articleid: $("#txtid").val(),
+//                                parentid: parentid,
+//                                content: $(".reply-area").val(),
+//                                name: $(".txtusername").val()
+//                            },
+//                            traditional: true,
+//                            dataType: 'json',
+//                            complete: function (edata) {
+//                                $.ajax({
+//                                    type: "POST",
+//                                    url: '/Comment/_ListComment/',
+//                                    data: {
+//                                        parentid: 1
+//                                    },
+//                                    traditional: true,
+//                                    dataType: 'json',
+//                                    complete: function (edata) {
+//                                        $("#mainComment").html(edata.responseText);
+//                                        $(".reply-link").replyComment();
+//                                        $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
+//                                        $(".loader-main").remove();
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    }
+//                });
+//            }
+//            $(".btn-reply").clickToPost();
+//        });
+//        $(document).on("click", function (e) {
+//            if (!$(e.target).closest($(".reply-row")).length) {
+//                $(".reply-link").removeClass("no-load");
+//            }
+//        });
+//        setInterval(function () {
+//            if (!$(".reply-link").hasClass("no-load")) {
+//                if ($(".loader-main").length === 0) {
+//                    $("body").append("<div class='loader-main'></div>");
+//                }
+//                $.ajax({
+//                    type: "POST",
+//                    url: '/Comment/_ListComment/',
+//                    data: {
+//                        parentid: 1
+//                    },
+//                    traditional: true,
+//                    dataType: 'json',
+//                    complete: function (edata) {
+//                        $("#mainComment").html(edata.responseText);
+//                        $(".reply-link").replyComment();
+//                        $(".loader-main").remove();
+//                    }
+//                });
+//            }
 
-        }, 600000);
-    });
-    $.fn.hideReply = function () {
-        $(this).remove();
-    }
+//        }, 600000);
+//    });
+//    $.fn.hideReply = function () {
+//        $(this).remove();
+//    }
 
 
-    $.fn.AddComment = function () {
-        $(this).click(function () {
-            var content = $("#txtname").val();
-            var name = $("#commentcontent").val();
-            var id = $("#txtid").val();
-            var Qty = $(this).attr("Qty");
+//    $.fn.AddComment = function () {
+//        $(this).click(function () {
+//            var content = $("#txtname").val();
+//            var name = $("#commentcontent").val();
+//            var id = $("#txtid").val();
+//            var Qty = $(this).attr("Qty");
 
-            $.ajax({
-                type: "POST",
-                url: '/Comment/_AddComment/',
-                data: {
-                    parentid: 0,
-                    articleid: id,
-                    content: content,
-                    name: name
-                },
-                traditional: true,
-                dataType: 'json',
-                complete: function (edata) {
-                    $("#mainComment").html(edata.responseText);
-                    $(".reply-link").replyComment();
-                    $(".loader-main").remove();
-                }
-            });
-        });
-    }
+//            $.ajax({
+//                type: "POST",
+//                url: '/Comment/_AddComment/',
+//                data: {
+//                    parentid: 0,
+//                    articleid: id,
+//                    content: content,
+//                    name: name
+//                },
+//                traditional: true,
+//                dataType: 'json',
+//                complete: function (edata) {
+//                    $("#mainComment").html(edata.responseText);
+//                    $(".reply-link").replyComment();
+//                    $(".loader-main").remove();
+//                }
+//            });
+//        });
+//    }
 
-}
+//}
 
 $(document).ready(function () {
 
     $(".reply-link").replyComment();
-
     $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
-
-
-    $("#submitcomment").AddComment();
+    //$("#submitcomment").AddComment();
 });
