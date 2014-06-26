@@ -79,21 +79,21 @@ jQuery(document).ready(function ($) {
     });
 
     /*	masonry */
-    var $container = $('.boxcontainer');
-    $container.imagesLoaded(function () {
-        $container.masonry({
-            columnWidth: 236,
-            gutterWidth: 14,
-            isFitWidth: true,
-            itemSelector: '.pinbox',
-            isAnimated: false,
-            isRTL: $("body").hasClass("rtl"),
-            layoutPriorities: {
-                upperPosition: 1,
-                shelfOrder: 1
-            }
-        });
-    });
+//    var $container = $('.boxcontainer');
+//    $container.imagesLoaded(function () {
+//        $container.masonry({
+//            columnWidth: 236,
+//            gutterWidth: 14,
+//            isFitWidth: true,
+//            itemSelector: '.pinbox',
+//            isAnimated: false,
+//            isRTL: $("body").hasClass("rtl"),
+//            layoutPriorities: {
+//                upperPosition: 1,
+//                shelfOrder: 1
+//            }
+//        });
+//    });
 
     /*	login form */
     //	$('#login-form').find('input[id=user_login]').each(function (ev) {
@@ -381,10 +381,17 @@ jQuery(window).load(function ($) {
 //    }
 
 //}
-
-$(document).ready(function () {
-
-    $(".reply-link").replyComment();
-    $("#mainComment").find(">ul >li").find(">ul >li").find(">ul >li").find(">ul >li").find(".reply-row").hideReply();
-    //$("#submitcomment").AddComment();
+$(window).load(function () {
+    var container = document.querySelector('.boxcontainer');
+    var msnry = new Masonry(container, {
+        columnWidth: 246,
+        gutterWidth: 14,
+        isFitWidth: true,
+        itemSelector: '.pinbox',
+        isAnimated: false,
+        layoutPriorities: {
+            upperPosition: 1,
+            shelfOrder: 1
+        }
+    });
 });
