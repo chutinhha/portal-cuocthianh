@@ -494,6 +494,7 @@ body {
 	color: #fff;
 	background-color: #1e233a;
 	overflow-x: hidden;
+	visibility: hidden;
 	padding-bottom: 84px; /* footer copyright height + 30px */
 	padding-top: 65px; /* header height */
 	background-attachment: fixed;
