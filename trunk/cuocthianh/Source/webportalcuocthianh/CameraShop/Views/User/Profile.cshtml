@@ -21,20 +21,13 @@
 @section BottomResource{
     <script src="../../Content/plugins/KyersTab/js/kyersTab.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var area2;
-        function addArea2() {
-            area2 = new nicEditor({ fullPanel: true }).panelInstance('area2');
-        }
         (function ($) {
             $(document).ready(function (e) {
-                $(".topbar").find("li").find("a").kyersTab({ "tabItem": ".tab-item" });
-               // $(".navbtns").find("a").on("click", function () {
-                  //  addArea2();
-               // });
-                
+                $(".topbar").find("li").find("a").kyersTab({ "tabItem": ".tab-item" });                
             });
-
-            addArea2();
+            bkLib.onDomLoaded(function () {
+                new nicEditor({ fullPanel: true }).panelInstance('area2');
+            });
         })(jQuery);
     </script>
 }
