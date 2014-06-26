@@ -1,6 +1,10 @@
 ﻿@using CoreData
 @model List<Examinee>
-
+@{
+ 
+    
+    
+ }
 @foreach (var item in Model)
 {
     var link = "http://cuocthijpa.com/" + "album/"+item.UserNameExt.Replace(" ","-")+"-p"+item.ID+".html";
@@ -24,11 +28,11 @@
                     <a href="@Url.Action("Detail", "Examinee", new { id = "" + @item.ID + "", username = @item.UserNameExt.Replace(" ", "-") })" title="">
                        @if(!String.IsNullOrEmpty(item.Image))
                        {
-                           @:<img src="/Media/PictureExam/@item.Image" width="236" height="208" alt="" />
+                           <img src="/Media/PictureExam/@item.Image" width="236" height="208" alt="" />
                        }
                        else
                        {
-                           @:<img src="#" width="236" height="208" alt="" />
+                           <img src="#" width="236" height="208" alt="" />
                        }
                     </a>
                 </p>

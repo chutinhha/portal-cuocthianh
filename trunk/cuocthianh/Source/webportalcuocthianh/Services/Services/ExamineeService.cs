@@ -64,6 +64,11 @@ namespace Services
                var data = entity.GetById(_id, Table.Examinee.ToString());
                var users = user.Get(c => c.ID.Equals(data.UserID), Table.Users.ToString());
                data.UserNameExt = users.Name;
+               var image = pictureexam.Get(c => c.ExamineeID.Equals(_id), Table.PictureExam.ToString());
+               if(image!=null)
+               {
+                   data.Image = image.Image; 
+               }
                return data;
            }
            catch { return null; }

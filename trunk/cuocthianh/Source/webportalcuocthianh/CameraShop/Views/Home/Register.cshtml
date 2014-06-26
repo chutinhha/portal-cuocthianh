@@ -22,22 +22,22 @@
                         <ul>
                             <li>
                                 <label>
-                                    Họ tên:</label>@Html.TextBoxFor(x => x.Name, new { @class = "txt" })</li>
+                                    Họ tên (*):</label>@Html.TextBoxFor(x => x.Name, new { @class = "txt" })</li>
                             <li>
                                 <label>
-                                    Tên đăng nhập:</label>@Html.TextBoxFor(x => x.UserName, new { @class = "txt" })</li>
+                                    Tên đăng nhập (*):</label>@Html.TextBoxFor(x => x.UserName, new { @class = "txt" })</li>
                             <li>
                                 <label>
-                                    Mật khẩu:</label>@Html.PasswordFor(x => x.Password, new { @class = "txt", @id = "txt-Password" })</li>
+                                    Mật khẩu (*):</label>@Html.PasswordFor(x => x.Password, new { @class = "txt", @id = "txt-Password" })</li>
                             <li>
                                 <label>
-                                    Nhập lại mật khẩu:</label>@Html.PasswordFor(x => x.TempPassWordExt, new { @class = "txt", @id = "txt-rePassword" })</li>
+                                    Nhập lại mật khẩu (*):</label>@Html.PasswordFor(x => x.TempPassWordExt, new { @class = "txt", @id = "txt-rePassword" })</li>
                             <li>
                                 <label>
                                     Email:</label>@Html.TextBoxFor(x => x.Email, new { @class = "txt" })</li>
                             <li>
                                 <label>
-                                    Điện thoại:</label>@Html.TextBoxFor(x => x.Phone, new { @class = "txt" })</li>
+                                    Điện thoại (*):</label>@Html.TextBoxFor(x => x.Phone, new { @class = "txt" })</li>
                             <li>
                                 <div class="inside-row">
                                     <label>
