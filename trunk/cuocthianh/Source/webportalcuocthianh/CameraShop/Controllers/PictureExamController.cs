@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CoreData;
 using ActionServices;
 using Helper;
+using System.IO;
 
 namespace CameraShop.Controllers
 {
@@ -119,7 +120,18 @@ namespace CameraShop.Controllers
             if (data != null && data.Count >= 1)
                 return Json("Bạn chỉ có thể upload một ảnh duy nhất", JsonRequestBehavior.AllowGet);
             model.Image = PathUpload;
+            if (model.Image != "")
+            {
+                string path = Server.MapPath("~/Media/PictureExam/" + Path.GetFileNameWithoutExtension(model.Image) + "thum" + Path.GetExtension(model.Image));
+                model.ThumnailImg = Helper.ImageHelper.ScropImage(Server.MapPath("~/Media/PictureExam/" + model.Image), path, 200, 250);
+            }
+            else
+            { model.ThumnailImg = ""; }
+
             model.ExamineeID = int.Parse(Session["ExamineeID"].ToString());
+            var check = PictureExamineeService.GetOneByLINQ(c => c.ExamineeID == (model.ExamineeID));
+            if (check != null)
+                model.ID = check.ID;
             var id = this.PictureExamineeService.Save(model);
             PathUpload = "";
             return Json(id, JsonRequestBehavior.AllowGet);

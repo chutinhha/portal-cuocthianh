@@ -14,13 +14,15 @@ namespace CoreData
             public string Image{get;set;}
             public string Link{get;set;}
             public DateTime PostDate { get; set; }
+            public string ThumnailImg { get; set; }
             public bool Active{get;set;}
          
         public PictureExam()
         {       
                     Title ="";   
                     Image ="";   
-                    Link ="";   
+                    Link ="";
+                    ThumnailImg = "";
         }
         
        static PictureExam DynamicCast<T>(object row_data, object row_header) where T : PictureExam
@@ -54,6 +56,9 @@ namespace CoreData
                        break;
                       case "PostDate":
                        ret.PostDate = ConvertObject.ToDateTime(dt[column]);
+                       break;
+                      case "ThumnailImg":
+                       ret.ThumnailImg = ConvertObject.ToString(dt[column]);
                        break;
                    default:
                        break;

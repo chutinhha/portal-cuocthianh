@@ -29,6 +29,7 @@ namespace CameraShop
 
         public void Session_Start(object sender, EventArgs e)
         {
+            Session.Timeout = 450;
             //Session["ShoppingCart"] = new List<CoreData.ShoppingCart>();
         }
         public void Session_End(object sender, EventArgs e)
