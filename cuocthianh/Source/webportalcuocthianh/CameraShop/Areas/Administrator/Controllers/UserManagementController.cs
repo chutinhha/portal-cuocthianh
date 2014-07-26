@@ -14,8 +14,9 @@ namespace CameraShop.Areas.Administrator.Controllers
         //
         // GET: /Administrator/Category/
 
-        public UserManagementController(IUserActionService user, IGroupActionService group, ISearchActionService _search, IUser_Role_ModuleActionService _userrole)
-            : base(user, group, _search, _userrole)
+        public UserManagementController(IUserActionService user, IGroupActionService group, 
+            ISearchActionService _search, IUser_Role_ModuleActionService _userrole, IExamineeActionService _examinee)
+            : base(user, group, _search, _userrole, _examinee)
         {
             try
             {
@@ -72,8 +73,17 @@ namespace CameraShop.Areas.Administrator.Controllers
         {
 
             var id = this.UserService.Save(model); 
-         //   var a = GroupService.d
+
             var data = this.UserService.GetByCustomID(id);
+            if (id > 1)
+            {
+                var examinee = ExamineeService.GetOneByLINQ(x => x.UserID == model.ID);
+                if (examinee != null)
+                {
+                    examinee.DayOfBirth = model.DayOfBirthExt;
+                    this.ExamineeService.Save(model);
+                }
+            }
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 

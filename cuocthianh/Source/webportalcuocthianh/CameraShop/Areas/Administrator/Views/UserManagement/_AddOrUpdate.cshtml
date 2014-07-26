@@ -15,88 +15,95 @@
         <div class="block-fluid tabs">
             <ul>
                 <li><a href="#tabs-1">Nội dung trang</a></li>
-               @* <li><a href="#tabs-2">Quản lý SEO</a></li>*@
+                @* <li><a href="#tabs-2">Quản lý SEO</a></li>*@
             </ul>
             @using (Ajax.BeginForm("AddOrUpdate", "UserManagement", new AjaxOptions { OnSuccess = "Success", HttpMethod = "Post" }, new { enctype = "multipart/form-data", @id = "validation" }))
             {
                 <div class="warning-area">
                 </div>
                 <div id="tabs-1">
-                     @Html.HiddenFor(model => model.ID)
-                <div class="row-form">
-                    <div class="span2">
-                        Tên người dùng:</div>
-                    <div class="span9">
-                        @Html.TextBoxFor(x => x.Name, new { @class = "validate[required]" })</div>
-                    <div class="clear">
+                    @Html.HiddenFor(model => model.ID)
+                    <div class="row-form">
+                        <div class="span2">
+                            Tên người dùng:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Name, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Tài khoản:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.UserName, new { @class = "validate[required]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    @if (Model == null || Model.ID == 0)
+                    {
+                        <div class="row-form">
+                            <div class="span2">
+                                Mật khẩu:</div>
+                            <div class="span9">
+                                @Html.PasswordFor(x => x.Password, new { @class = "validate[required]" })</div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    }
+                    @if (Model != null && Model.GroupIDExt != 1)
+                    {
+                        <div class="row-form">
+                            <div class="span2">
+                                Nhóm:</div>
+                            <div class="span9">
+                                @Html.DropDownListFor(x => x.GroupIDExt, Model.ListGroupExt, new { @class = "validate[required]" })</div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    }
+                    <div class="row-form">
+                        <div class="span2">
+                            Địa chỉ</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Address)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Điện thoại</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Phone)</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Email</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "validate[custom[email]]" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Ngày cập nhật:</div>
+                        <div class="span9">
+                            @Html.TextBoxFor(x => x.DayOfBirthExt, new { id = "DayOfBirthExt" })</div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span2">
+                            Kích hoạt :</div>
+                        <div class="span9">
+                            @Html.CheckBoxFor(x => x.Active)</div>
+                        <div class="clear">
+                        </div>
                     </div>
                 </div>
-                <div class="row-form">
-                    <div class="span2">
-                        Tài khoản:</div>
-                    <div class="span9">
-                        @Html.TextBoxFor(x => x.UserName, new { @class = "validate[required]" })</div>
-                    <div class="clear">
-                    </div>
-                               
-                </div>
-                @if(Model==null||Model.ID==0)
-                {
-                 <div class="row-form">
-                 <div class="span2">
-                        Mật khẩu:</div>
-                    <div class="span9">
-                        @Html.PasswordFor(x => x.Password, new { @class = "validate[required]" })</div>
-                    <div class="clear">
-                 </div>
-                </div>
-                }
-               @if (Model != null && Model.GroupIDExt != 1)
-               {
-                <div class="row-form">
-                    <div class="span2">
-                        Nhóm:</div>
-                    <div class="span9">
-                        @Html.DropDownListFor(x => x.GroupIDExt, Model.ListGroupExt, new { @class = "validate[required]" })</div>
-                    <div class="clear">
-                    </div>
-                </div>
-               }
-                <div class="row-form">
-                    <div class="span2">
-                        Địa chỉ</div>
-                    <div class="span9">
-                        @Html.TextBoxFor(x => x.Address)</div>
-                    <div class="clear">
-                    </div>
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        Điện thoại</div>
-                    <div class="span9">
-                        @Html.TextBoxFor(x => x.Phone)</div>
-                    <div class="clear">
-                    </div>
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        Email</div>
-                    <div class="span9">
-                        @Html.TextBoxFor(x => x.Email, new {@class="validate[custom[email]]"})</div>
-                    <div class="clear">
-                    </div>
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        Kích hoạt :</div>
-                    <div class="span9">
-                        @Html.CheckBoxFor(x => x.Active)</div>
-                    <div class="clear">
-                    </div>
-                </div>
-                </div>
-                      if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
-                      {
+                    if (CameraShop.BaseController.Permission.Contains("U") || CameraShop.BaseController.Permission.Contains("C"))
+                    {
                 <div class="row-form">
                     <div class="span2">
                     </div>
@@ -105,7 +112,7 @@
                     <div class="clear">
                     </div>
                 </div>
-                      }
+                    }
             }
         </div>
     </div>
