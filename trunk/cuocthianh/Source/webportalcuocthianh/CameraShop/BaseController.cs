@@ -109,6 +109,15 @@ namespace CameraShop
             this.SearchService = _search;
             this.UserRoleModuleService = _userrole;
         }
+
+        public BaseController(IUserActionService _user, IGroupActionService _group, ISearchActionService _search, 
+            IUser_Role_ModuleActionService _userrole, IExamineeActionService _examinee)
+        {
+            this.UserService = _user; this.GroupService = _group;
+            this.SearchService = _search;
+            this.UserRoleModuleService = _userrole;
+            this.ExamineeService = _examinee;
+        }
         public BaseController(ICategoryActionService _category, IConfigurationActionService _config)
         { this.CategoryService = _category; this.ConfigurationService = _config; }
         public BaseController(IManufacturerActionService _manufacturer, IConfigurationActionService _config) {
