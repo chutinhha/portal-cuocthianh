@@ -37,7 +37,7 @@ namespace Services
               // var id = long.Parse(_model.GetType().GetProperty("ID").GetValue(_model, null).ToString());
                if (id == 0)
                {
-                   obj.DayOfBirth = DateTime.Now;
+                   obj.DayOfBirth = DateTime.Today;
                    return entity.Save(obj, Table.Examinee.ToString());
                }
                else
@@ -46,6 +46,7 @@ namespace Services
                    {
                        obj.Image = GetByID(obj.ID).Image;
                    }
+                   obj.DayOfBirth = GetByID(obj.ID).DayOfBirth;
                    return entity.Update(obj, Table.Examinee.ToString());
                }
            }
@@ -67,7 +68,8 @@ namespace Services
                var image = pictureexam.Get(c => c.ExamineeID.Equals(_id), Table.PictureExam.ToString());
                if(image!=null)
                {
-                   data.Image = image.Image; 
+                   data.Image = image.Image;
+                   data.ThumnailimgExt = image.ThumnailImg;
                }
                return data;
            }

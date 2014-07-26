@@ -43,6 +43,10 @@ namespace Services
                    {
                        data.Image = GetByID(data.ID).Image;
                    }
+                   if (data.ThumnailImg == null || data.ThumnailImg == "")
+                   {
+                       data.ThumnailImg = GetByID(data.ID).ThumnailImg;
+                   }
                    data.PostDate = GetByID(data.ID).PostDate;
                    return entity.Update(data, Table.PictureExam.ToString());
                }

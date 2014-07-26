@@ -1,14 +1,36 @@
 ﻿@{
-    ViewBag.Title = "Bài dự thi cuộc thi ảnh - " + Model.UserNameExt;
+    ViewBag.Title = "Album dự thi cuộc thi ảnh JBart - "+@Model.UserNameExt;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
-@using CoreData
-@model Examinee
-             @{
+    @{
   
+             
                  var link = "http://cuocthijba.com/album/" + Model.UserNameExt.Replace(" ", "-") + "-p"+Model.ID+".html";
    } 
+@section HeadResource{
+
+<!-- for Facebook -->          
+<meta property="og:title" content="Học viện đào tạo thẩm mỹ JBart" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="http://cuocthijba.com/Media/PictureExam/@Model.ThumnailimgExt" />
+<meta property="og:url" content="@link" />
+<meta property="og:description" content="Album dự thi cuộc thi ảnh JBart - @Model.UserNameExt" />
+
+<!-- for google-->
+    <meta itemprop="name" content="Học viện đào tạo thẩm mỹ JBart" />
+    <meta itemprop="description" content="Album dự thi cuộc thi ảnh JBart - @Model.UserNameExt" />
+    <meta itemprop="url" content="@link" />
+ @*    <meta property="og:image"  content="http://cuocthijba.com/Media/PictureExam/@Model.Image" />*@
+     <meta itemprop="image" content="http://cuocthijba.com/Media/PictureExam/@Model.ThumnailimgExt" />
+
+
+
+  
+}
+@using CoreData
+@model Examinee
+  
 @if (Model != null)
 {
     <input type ="hidden" value="@Model.ID" name="txtid" id="txtid" />

@@ -7,12 +7,13 @@
  }
 @foreach (var item in Model)
 {
-    var link = "http://cuocthijpa.com/" + "album/"+item.UserNameExt.Replace(" ","-")+"-p"+item.ID+".html";
+    string title = "Ảnh dự thi cuộc thi ảnh jba - Jbart Academy";
+    var link = "http://cuocthijba.com/" + "album/"+item.UserNameExt.Replace(" ","-")+"-p"+item.ID+".html";
     <article class="pinbox">
         <div class="post-122 post type-post status-publish format-standard has-post-thumbnail sticky hentry category-landscapes tag-dummy tag-industry tag-ipsum tag-lorem tag-printing tag-simply tag-text tag-typesetting">
             <div class="top-bar">
                 <ul class="social-media-icons clearfix">
-                    <li><a href="https://www.facebook.com/sharer/sharer.php?url=@link"
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=@link&t=@title"
                         class="border-color-3 icon-facebook tooltip" title="Share on Facebook" target="_blank">
                         Facebook</a></li>
                     <li><a href="https://plus.google.com/share?url=@link"

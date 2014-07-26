@@ -64,7 +64,7 @@ namespace Services
 
                        obj.ExamineeExt.Code = RandomSBD();// StringHelper.GenerateCode((int)id);
                        obj.ExamineeExt.UserID = id;
-                       obj.ExamineeExt.DayOfBirth = DateTime.Now;
+                       obj.ExamineeExt.DayOfBirth = DateTime.Today;
                        examinee.Save(obj.ExamineeExt, Table.Examinee.ToString());
                    }
                }
@@ -83,6 +83,7 @@ namespace Services
                    {
                        obj.UserName = GetByID(obj.ID).UserName;
                    }
+
                    id = entity.Update(obj, Table.Users.ToString());
                  
                }

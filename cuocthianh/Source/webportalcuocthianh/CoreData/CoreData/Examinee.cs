@@ -19,7 +19,7 @@ namespace CoreData
         public string UserNameExt { get; set; }
 
         public DateTime PostDateExt { get; set; }
-
+        public string ThumnailimgExt { get; set; }
        
 
 
