@@ -41,6 +41,7 @@ namespace CoreData
         public string firstNameExt { get; set; }
         public string lastNameExt { get; set; }
         public string emailIdExt { get; set; }
+          //  public DateTime ExammineeCreateDateExt { get; set; }
 
 
         public User()

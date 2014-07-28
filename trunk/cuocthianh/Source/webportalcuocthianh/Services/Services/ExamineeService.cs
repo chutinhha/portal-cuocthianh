@@ -46,7 +46,14 @@ namespace Services
                    {
                        obj.Image = GetByID(obj.ID).Image;
                    }
-                   obj.DayOfBirth = GetByID(obj.ID).DayOfBirth;
+                   if (obj.DayOfBirth.ToShortDateString() != GetByID(obj.ID).DayOfBirth.ToShortDateString())
+                   {
+                       obj.DayOfBirth = obj.DayOfBirth;
+                   }
+                   else
+                   {
+                       obj.DayOfBirth = GetByID(obj.ID).DayOfBirth;
+                   }
                    return entity.Update(obj, Table.Examinee.ToString());
                }
            }
