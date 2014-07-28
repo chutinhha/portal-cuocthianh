@@ -60,7 +60,11 @@ namespace CameraShop.Areas.Administrator.Controllers
             if (data == null)
                 data = new User();
             data.ListGroupExt = GroupService.GetSelectList((int.Parse(data.GroupIDExt.ToString())),"full");
-
+            var examinee= ExamineeService.GetOneByLINQ(c => c.UserID == id);
+            if (examinee != null)
+            {
+                data.DayOfBirthExt = examinee.DayOfBirth;
+            }
             return PartialView(data);
         }
 
@@ -81,7 +85,7 @@ namespace CameraShop.Areas.Administrator.Controllers
                 if (examinee != null)
                 {
                     examinee.DayOfBirth = model.DayOfBirthExt;
-                    this.ExamineeService.Save(model);
+                    this.ExamineeService.Save(examinee);
                 }
             }
             return Json(data, JsonRequestBehavior.AllowGet);
